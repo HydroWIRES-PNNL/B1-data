@@ -60,6 +60,7 @@ HILARRI
 
 readxl::read_xlsx(eha_fn, sheet = "Operational") -> EHA
 
+# associate EIA plant code with HUC4
 EHA %>%
   filter(
     !EHA_PtID %in% HILARRI$eha_ptid,
@@ -71,6 +72,7 @@ EHA %>%
   select(eha_ptid = EHA_PtID, HUC4) %>%
   unique() -> additional_HUC
 
+# associate EIA plant code with HUC4
 HILARRI %>%
   mutate(HUC4 = substr(huc_12, 1, 4)) %>%
   select(eha_ptid, HUC4) %>%
@@ -81,43 +83,10 @@ HILARRI %>%
   unique() ->
 EIA_and_HUC4
 
-## CB Oct 2023, had to change line 140 from Data/USGS_Streamgage_HUC4.csv
-## 05587455 to 05587450, the previous was not returning streamflow data
-## the gage was returning no streamflow data
-## get USGS daily flow data averges
-"data/USGS_Streamgage_HUC4.csv" |>
-  vroom::vroom() %>%
-  # vroom::vroom("Data/USGS_00060_HUC4.csv") %>%
-  filter(!is.na(StreamGage_FEA1)) %>%
-  select(HUC4, USGS_ID = StreamGage_FEA1) %>%
-  # select(HUC4, USGS_ID = USGS_ID) %>%
-  pmap_dfr(function(HUC4, USGS_ID) {
-    message(USGS_ID)
+# read flow data created by `2-streamflow.R`
+all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
 
-    dataRetrieval::readNWISdata(
-      sites = USGS_ID, service = "dv",
-      parameterCd = "00060",
-      asDateTime = FALSE,
-      startDate = "2001-01-01",
-      endDate = sprintf("%s-12-31", end_year)
-    ) -> data_dl
-    data_dl %>%
-      as_tibble() %>%
-      select(
-        av_flow_cfs = X_00060_00003,
-        date = dateTime
-      ) %>%
-      mutate(day = day(date), month = month(date), year = year(date)) %>%
-      group_by(day, month, year) %>%
-      summarise(av_flow_cfs = mean(av_flow_cfs, na.rm = T), .groups = "drop") %>%
-      mutate(HUC4 = as.character(!!HUC4), USGS_ID = !!USGS_ID)
-  }) -> HUC4_average_flows
-
-HUC4_average_flows %>%
-  mutate(HUC4 = if_else(nchar(HUC4) == 3, paste0(0, HUC4), HUC4)) ->
-all_flows
-
-
+# read monthly B1 data
 2001:end_year %>%
   map_dfr(function(yr) {
     read_csv(paste0("B1_monthly/B1_monthly_", yr, ".csv"), show = F) %>%
@@ -152,7 +121,7 @@ all_flows
         # but maybe sean decided it was bogus
         if (EIA_ID_ == 314) HUC <- NA_character_
 
-        # if the EIA ID does not have a HUC accociated or if the flow
+        # if the EIA ID does not have a HUC associated or if the flow
         # data is incomplete then just split evenly across each week
         if (!(EIA_ID_ %in% EIA_and_HUC4$EIA_ID) | nrow(all_flows %>% filter(HUC4 == HUC, year == yr)) < 365) {
           x %>%

@@ -34,9 +34,8 @@ readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
   select(EHA_PtID, plant = PtName, EIA_ID = EIA_PtID, nameplate_MW = CH_MW) ->
 HS
 
-rectifhyd_fn |>
-  read_csv() ->
-hydro923plus
+all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
+hydro923plus <- read_csv(rectifhyd_fn)
 
 hydro923plus %>%
   left_join(HS, by = c("EIA_ID", "plant")) %>%
