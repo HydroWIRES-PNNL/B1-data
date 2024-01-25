@@ -34,11 +34,22 @@ readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
   select(EHA_PtID, plant = PtName, EIA_ID = EIA_PtID, nameplate_MW = CH_MW) ->
 HS
 
-all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
-hydro923plus <- read_csv(rectifhyd_fn)
+# read table of EIA ids associated with HUC4
+EIA_and_HUC4 <- read_csv("data/eia_huc4.csv", show = F, progress = F)
+
+# flows
+all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress = F)
+all_flows_monthly <- all_flows |>
+  group_by(year, month, HUC4, USGS_ID) |>
+  summarise(av_flow_cfs = mean(av_flow_cfs), .groups = "drop") |>
+  mutate(month = month.abb[month])
+
+# rectifhyd data
+hydro923plus <- read_csv(rectifhyd_fn, show = F, progress = F)
 
 hydro923plus %>%
   left_join(HS, by = c("EIA_ID", "plant")) %>%
+  # left_join(EIA_and_HUC4, by = c('EIA_ID')) %>%
   mutate(target_MWh = if_else(recommended_data == "RectifHyd",
     RectifHyd_MWh,
     EIA_MWh
@@ -72,7 +83,7 @@ monthly_targets %>%
   left_join(full_frame, by = "EIA_ID") %>%
   left_join(hours_per_month, by = c("month", "year")) %>%
   left_join(monthly_targets,
-    by = c("EIA_ID", "EHA_PtID", "plant", "state", "nameplate_MW", "month", "year", "n_hours")
+    by = join_by(EIA_ID, EHA_PtID, plant, state, nameplate_MW, month, year, n_hours)
   ) %>%
   left_join(replacement_data, by = c("EIA_ID", "month")) %>%
   mutate(p_avg = if_else(is.na(p_avg), p_avg_, p_avg)) %>%
@@ -89,7 +100,7 @@ readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
   filter(!duplicated(EIA_ID)) %>%
   unique() -> modes
 
-read_csv("PNW_28_max_min_ador_parameters.csv") %>%
+read_csv("PNW_28_max_min_ador_parameters.csv", show = F, progress = F) %>%
   left_join(modes) %>%
   group_by(mode) %>%
   summarise(
@@ -99,7 +110,7 @@ read_csv("PNW_28_max_min_ador_parameters.csv") %>%
   ) ->
 mma_params_general
 
-read_csv("PNW_28_max_min_ador_parameters.csv") %>%
+read_csv("PNW_28_max_min_ador_parameters.csv", show = F, progress = F) %>%
   select(-dam) ->
 mma_params_pnw
 
@@ -117,7 +128,9 @@ bind_rows(
     p_min = min_param * p_avg,
     ador = ador_param * (p_max - p_min)
   ) %>%
-  select(EIA_ID, plant, state, year, month, target_MWh, nameplate = nameplate_MW, p_avg, p_min, p_max, ador) ->
+  select(EIA_ID, plant, state, year, month, target_MWh, nameplate = nameplate_MW, p_avg, p_min, p_max, ador) %>%
+  left_join(EIA_and_HUC4, by = join_by(EIA_ID)) |>
+  left_join(all_flows_monthly, by = join_by(year, month, HUC4)) ->
 monthly_final
 
 # perform basic checks

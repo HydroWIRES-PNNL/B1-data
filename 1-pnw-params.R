@@ -48,7 +48,7 @@ hydrofixr:::dam_codes %>%
 
 
 "data/hydrofixr/USACE_hourly_gen_raw_27_plants_MST_2001_2022.csv" |>
-  vroom::vroom() %>%
+  read_csv(show = F, progress = F) %>%
   select(dam, date_time, power) %>%
   split(.$dam) %>% # .[[1]] -> x
   map(function(x) {

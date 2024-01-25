@@ -5,7 +5,6 @@ library(tidyverse)
 
 end_year <- 2023
 eha_fn <- "data/ORNL_EHAHydroPlant_FY2023_rev.xlsx"
-hilarri_fn <- "data/HILARRI_v1_1/HILARRI_v1_1_Public_SubsetHydropowerDams_Plants.csv"
 output_dir <- "B1_weekly"
 
 dir.create(output_dir, showWarnings = FALSE)
@@ -50,41 +49,11 @@ date_time_sequence %>%
     }
   ) -> sequence_weekly
 
-
-# get all flows!
-
-# read in HILARRI database
-read_csv(hilarri_fn, show = F) %>%
-  filter(!is.na(eha_ptid)) ->
-HILARRI
-
-readxl::read_xlsx(eha_fn, sheet = "Operational") -> EHA
-
-# associate EIA plant code with HUC4
-EHA %>%
-  filter(
-    !EHA_PtID %in% HILARRI$eha_ptid,
-    !is.na(HUC)
-  ) %>%
-  mutate(HUC = if_else(nchar(HUC) == 11, paste0("0", HUC), as.character(HUC))) %>%
-  filter(nchar(HUC) == 12) %>%
-  mutate(HUC4 = substr(HUC, 1, 4)) %>%
-  select(eha_ptid = EHA_PtID, HUC4) %>%
-  unique() -> additional_HUC
-
-# associate EIA plant code with HUC4
-HILARRI %>%
-  mutate(HUC4 = substr(huc_12, 1, 4)) %>%
-  select(eha_ptid, HUC4) %>%
-  bind_rows(additional_HUC) %>%
-  left_join(EHA %>% select(EHA_PtID, EIA_ID = EIA_PtID), by = c("eha_ptid" = "EHA_PtID")) %>%
-  filter(!is.na(EIA_ID)) %>%
-  select(HUC4, EIA_ID) %>%
-  unique() ->
-EIA_and_HUC4
+# read table of EIA ids associated with HUC4
+EIA_and_HUC4 <- read_csv("data/eia_huc4.csv", show = F, progress = F)
 
 # read flow data created by `2-streamflow.R`
-all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
+all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress = F)
 
 # read monthly B1 data
 2001:end_year %>%
@@ -155,7 +124,7 @@ all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
           group_by(month, year) %>%
           mutate(daily_allocation = av_flow_cfs / sum(av_flow_cfs)) %>%
           mutate(daily_allocation = if_else(is.nan(daily_allocation), 1 / n(), daily_allocation)) %>%
-          select(year, month, day, daily_allocation) %>%
+          select(year, month, day, daily_allocation, av_flow_cfs) %>%
           ungroup() %>%
           mutate(month = month(month, label = T)) ->
         daily_flow_allocation
@@ -171,7 +140,9 @@ all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
           group_by(jweek, week_start) %>%
           summarise(
             target_MWh = sum(daily_gen_MWh),
-            n_hours = 24 * n(), .groups = "drop"
+            n_hours = 24 * n(),
+            av_flow_cfs = mean(av_flow_cfs),
+            .groups = "drop"
           ) %>%
           mutate(
             year = yr, EIA_ID = x[["EIA_ID"]][1],
@@ -184,7 +155,11 @@ all_flows <- read_csv("data/HUC4_average_flows_imputed.csv")
       }) -> all_targets_yr_x
 
     return(all_targets_yr_x)
-  }) -> weekly_targets_all_years
+  }) |>
+  # add HUC4 and USGS_ID
+  left_join(EIA_and_HUC4, by = join_by(EIA_ID)) |>
+  left_join(all_flows |> distinct(HUC4, USGS_ID), by = join_by(HUC4)) ->
+weekly_targets_all_years
 
 
 readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
@@ -227,7 +202,10 @@ bind_rows(
     p_min = min_param * p_avg,
     ador = ador_param * (p_max - p_min)
   ) %>%
-  select(EIA_ID, plant, state, year, jweek, week_start, n_hours, target_MWh, nameplate, p_avg, p_min, p_max, ador) ->
+  select(
+    EIA_ID, HUC4, USGS_ID, plant, state, year, jweek,
+    week_start, n_hours, target_MWh, nameplate, p_avg, p_min, p_max, ador
+  ) ->
 weekly_final
 
 weekly_final %>%
