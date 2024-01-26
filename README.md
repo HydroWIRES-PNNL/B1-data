@@ -26,11 +26,13 @@ Steps to reproduce:
   
   9. Run `1-pnw-params.R` from within R using `source('1-pnw-params.R')` or on the command line `Rscript 1-pnw-params.R` to   produce the parameters for disaggregation
   
-  10. Run `2-streamflow.R` from within R using `source('2-streamflow.R')` or on the command line `Rscript 2-streamflow.R` to   downlaod and prepare the streamflow data
+  10. Run `2-streamflow.R` from within R using `source('2-streamflow.R')` or on the command line `Rscript 2-streamflow.R` to download and prepare the streamflow data
   
-  11. Run `2a-B1-monthly.R` from within R using `source('2a-B1-monthly.R')` or on the command line `Rscript 2a-B1-monthly.R`   to produce monthly constraints 
+  11. Run `3-hydropower.R` from within R using `source('3-hydropower.R')` or on the command line `Rscript 3-hydropower.R` to download and prepare the hydropower data (power, inflow, outflow, forebay)
   
-  12. Run `2a-B1-weekly.R` from within R using `source('2a-B1-weekly.R')` or on the command line `Rscript 2a-B1-weekly.R` to produce weekly constraints
+  12. Run `4a-B1-monthly.R` from within R using `source('4a-B1-monthly.R')` or on the command line `Rscript 4a-B1-monthly.R` to produce monthly constraints 
+  
+  13. Run `4a-B1-weekly.R` from within R using `source('4a-B1-weekly.R')` or on the command line `Rscript 4a-B1-weekly.R` to produce weekly constraints
 
 The output from these steps will be two directories `B1_monthly` and `B1_weekly` with one file per year. The dataset provides both monthly and weekly constraints (maximum and minimum generation) and power targets for hundreds of hydropower plants across the United States. The data is intended for use in Production Cost Models (PCMs) and Capacity Expansion Models (CEMs). The hydropower data is based on disaggregated annual power data which is part of the EIA-923 dataset. The original disaggregation procedure is detailed here:
 

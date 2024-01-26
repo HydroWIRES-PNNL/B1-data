@@ -44,6 +44,19 @@ all_flows_monthly <- all_flows |>
   summarise(av_flow_cfs = mean(av_flow_cfs), .groups = "drop") |>
   mutate(month = month.abb[month])
 
+# PNW dam data, daily forebay, inflow, outflow, power
+pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
+  pivot_wider(id_cols = c(year, month, day, dam, EIA_ID), names_from = "variable") |>
+  mutate(inflow_cfs = inflow_kcfs * 1000, outflow_cfs = outflow_kcfs * 1000) |>
+  group_by(year, month, EIA_ID) |>
+  summarise(
+    inflow_cfs = mean(inflow_cfs, na.rm = T),
+    outflow_cfs = mean(outflow_cfs, na.rm = T),
+    forebay_ft = forebay_ft[1],
+    .groups = "drop"
+  ) |>
+  mutate(month = month.abb[month])
+
 # rectifhyd data
 hydro923plus <- read_csv(rectifhyd_fn, show = F, progress = F)
 
@@ -130,12 +143,14 @@ bind_rows(
   ) %>%
   select(EIA_ID, plant, state, year, month, target_MWh, nameplate = nameplate_MW, p_avg, p_min, p_max, ador) %>%
   left_join(EIA_and_HUC4, by = join_by(EIA_ID)) |>
-  left_join(all_flows_monthly, by = join_by(year, month, HUC4)) ->
+  left_join(all_flows_monthly, by = join_by(year, month, HUC4)) |>
+  rename(HUC4_flow_cfs = av_flow_cfs) ->
 monthly_final
 
 # perform basic checks
 
 monthly_final %>%
+  left_join(pnw_dam_data, by = join_by(year, month, EIA_ID)) %>%
   mutate(month = factor(month, levels = month.abb)) %>%
   mutate(
     EIA_ID = as.integer(EIA_ID),
@@ -167,5 +182,5 @@ monthly_final %>%
     x %>%
       pull(year) %>%
       .[1] -> yr
-    write_csv(x, paste0(output_dir, "/B1_monthly_", yr, ".csv"))
-  })
+    write_csv(x, paste0(output_dir, "/B1_monthly_", yr, ".csv"), na = "")
+  }) -> shhh

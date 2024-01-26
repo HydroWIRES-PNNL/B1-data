@@ -55,6 +55,11 @@ EIA_and_HUC4 <- read_csv("data/eia_huc4.csv", show = F, progress = F)
 # read flow data created by `2-streamflow.R`
 all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress = F)
 
+# PNW dam data, daily forebay, inflow, outflow, power
+pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
+  pivot_wider(id_cols = c(year, month, day, dam, EIA_ID), names_from = "variable") |>
+  mutate(inflow_cfs = inflow_kcfs * 1000, outflow_cfs = outflow_kcfs * 1000)
+
 # read monthly B1 data
 2001:end_year %>%
   map_dfr(function(yr) {
@@ -117,6 +122,11 @@ all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress 
           return(weekly_targets)
         }
 
+        pnw_dam_data |>
+          filter(EIA_ID == EIA_ID_) |>
+          select(year, month, day, forebay_ft, inflow_cfs, outflow_cfs) ->
+        dam_data
+
         all_flows %>%
           filter(HUC4 == HUC) %>%
           filter(year == yr) %>%
@@ -126,6 +136,8 @@ all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress 
           mutate(daily_allocation = if_else(is.nan(daily_allocation), 1 / n(), daily_allocation)) %>%
           select(year, month, day, daily_allocation, av_flow_cfs) %>%
           ungroup() %>%
+          # join in dam data, might be empty
+          left_join(dam_data, by = join_by(year, month, day)) %>%
           mutate(month = month(month, label = T)) ->
         daily_flow_allocation
 
@@ -142,6 +154,9 @@ all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress 
             target_MWh = sum(daily_gen_MWh),
             n_hours = 24 * n(),
             av_flow_cfs = mean(av_flow_cfs),
+            forebay_ft = forebay_ft[1],
+            inflow_cfs = mean(inflow_cfs, na.rm = T),
+            outflow_cfs = mean(outflow_cfs, na.rm = T),
             .groups = "drop"
           ) %>%
           mutate(
@@ -204,8 +219,10 @@ bind_rows(
   ) %>%
   select(
     EIA_ID, HUC4, USGS_ID, plant, state, year, jweek,
-    week_start, n_hours, target_MWh, nameplate, p_avg, p_min, p_max, ador
-  ) ->
+    week_start, n_hours, target_MWh, nameplate, p_avg, p_min, p_max, ador,
+    av_flow_cfs, forebay_ft, inflow_cfs, outflow_cfs
+  ) |>
+  rename(HUC4_flow_cfs = av_flow_cfs) ->
 weekly_final
 
 weekly_final %>%
@@ -239,5 +256,5 @@ weekly_final %>%
     x %>%
       pull(year) %>%
       .[1] -> yr
-    write_csv(x, paste0(output_dir, "/B1_weekly_", yr, ".csv"))
-  })
+    write_csv(x, paste0(output_dir, "/B1_weekly_", yr, ".csv"), na = "")
+  }) -> shhh
