@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 .DS_Store
+data/proc/flow_metadata.csv
+data/proc/flow_all_td.csv

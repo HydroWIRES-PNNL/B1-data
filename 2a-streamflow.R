@@ -4,7 +4,7 @@
 # Last Modified: 2024-04-24
 # Description: [B1-data] streamflow data retrieval
 #===========================================================
-source(utilities.R)
+source('utilities.R')
 
 #===========================================================
 # GLOBAL SETTINGS
@@ -385,13 +385,13 @@ for(i in 1:length(flow_file_list)){
 write_csv(dat_flow, paste0(dir_data, '/proc/flow_all_td.csv'))
 
 #- build spread csv
-# dat_flow_sp = dat_flow %>%
-#  mutate(EIA_ID = paste0(EIA_, EIA_ID)) %>%
-#  dplyr::select(date, EIA_ID, value) %>%
-#  spread(EIA_ID, value)
+dat_flow_sp = dat_flow %>%
+  mutate(EIA_ID = paste0('EIA_', EIA_ID)) %>%
+  dplyr::select(date, EIA_ID, value) %>%
+  spread(EIA_ID, value, -date)
 
 #- write out spread csv
-# write_csv(dat_flow_sp, paste0(dir_data, '/proc/flow_all_sp.csv'))
+write_csv(dat_flow_sp, paste0(dir_data, '/proc/flow_all_sp.csv'))
 
 #- create metadata file
 dat_flow_meta = dat_flow %>%
@@ -400,15 +400,9 @@ dat_flow_meta = dat_flow %>%
 
 write_csv(dat_flow_meta, paste0(dir_data, '/proc/flow_metadata.csv'))
 
-dat_flow_stat = dat_flow %>%
-  group_by(date, EIA_ID) %>%
-  mutate(value = ifelse(value < 0, 0, value)) %>%
-  group_by(EIA_ID) %>%
-  dplyr::summarise(sd = sd(value, na.rm = T))
-
 #===========================================================
 # diagnostic plots
-dir_diag = '/Users/brom374/Library/CloudStorage/OneDrive-PNNL/Documents/Projects/FY2024/WECC2032ADS/b1_update/diag/'
+dir_diag = 'diag/'
 
 id_list = unique(dat_flow$EIA_ID)
 for(i in 1:length(id_list)){
