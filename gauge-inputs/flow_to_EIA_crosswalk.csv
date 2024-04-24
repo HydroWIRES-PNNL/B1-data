@@ -1,0 +1,1503 @@
+EIA_ID,plant,state,USGS_ID,USGS_ID_turbinerelease,USGS_ID_totalrelease,USGS_ID_update,notes,alt_ID_turbinerelease,alt_source_turbinerelease,alt_ID_totalrelease,alt_source_totalrelease,update_flag
+833,Cabinet Gorge,ID,12433000,,,,12391950; usgs alternative,,,CAB.Flow-Out.Ave.1Hour.1Hour.CBT-RAW;kcfs,NWD,1
+59357,Dorena Lake Dam Project,OR,14211720,,,,,,,DOR.Flow-Out.Inst.0.0.Best;cfs,NWD,1
+7511,McNary Fish,WA,14105700,,,,"main generator flows, but best approximation",,,MCN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,1
+2199,Noxon Rapids,MT,12433000,,,,12391400; usgs alternative,,,NOX.Flow-Out.Ave.1Hour.1Hour.CBT-RAW;kcfs,NWD,1
+7431,The Dalles Fishway,WA,14105700,,,,"main generator flows, but best approximation",,,TDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,1
+851,Albeni Falls,ID,12433000,,,,NWD,ALF.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3074,Big Cliff,OR,14211720,,,,,BCL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3075,Bonneville,OR,14246900,,,,,BON.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3076,Cougar,OR,14211720,,,,,CGR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3921,Chief Joseph,WA,12472800,,,,,CHJ.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3077,Detroit,OR,14211720,,,,,DET.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3078,Dexter,OR,14211720,,,,,DEX.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+840,Dworshak,ID,13342500,,,,NWD,DWR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6552,Foster,OR,14211720,,,,,FOS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+6163,Grand Coulee,WA,12472800,,,,,GCL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3080,Green Peter,OR,14211720,,,,,GPR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3081,Hills Creek,OR,14211720,,14145500,,,HCR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+2203,Hungry Horse,MT,12433000,,,,NWD,HGH.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3925,Ice Harbor,WA,13342500,,,,,IHR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3082,John Day,OR,14105700,,,,,JDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3926,Little Goose,WA,13342500,,,,,LGS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6172,Libby,MT,12433000,,,,,LIB.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3927,Lower Monumental,WA,13342500,,,,,LMN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3083,Lookout Point,OR,14211720,,,,,LOP.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+6174,Lost Creek,OR,14301000,,,,,LOS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+6175,Lower Granite,WA,13342500,,,,,LWG.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3084,McNary,OR,14105700,,,,,MCN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3887,Priest Rapids,WA,12472800,,,,,PRD.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6200,Rock Island,WA,12472800,,,,,RIS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3883,Rocky Reach,WA,12472800,,,,,RRH.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3895,The Dalles,OR,14105700,,,,,TDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3888,Wanapum,WA,12472800,,,,,WAN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3886,Wells,WA,12472800,,,,,WEL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+162,Drop No. 9,CA,NA,,,,canal,,,,,0
+7113,Potholes East Canal Headworks,WA,12472800,,,,data in CBP but not accessable,,,,,0
+10707,Cove Hydroelectric,CA,NA,,,,NA;  no gauge,,,,,0
+54142,Hillcrest Pump Station,CO,NA,,,,NA;  no gauge,,,,,0
+10806,Crystal Springs,ID,NA,,,,NA;  no gauge,,,,,0
+10809,Rock Creek II,ID,NA,,,,NA;  no gauge,,,,,0
+50323,N-32 Canal,ID,NA,,,,NA;  no gauge,,,,,0
+50891,El Dorado Hydro Elk Creek,ID,NA,,,,NA;  no gauge,,,,,0
+54394,Dry Creek Project,ID,NA,,,,NA;  no gauge,,,,,0
+54514,Blind Canyon Hydro,ID,NA,,,,NA;  no gauge,,,,,0
+50360,Michell Butte Power Project,OR,NA,,,,NA;  no gauge,,,,,0
+52155,Lacomb Irrigation District,OR,NA,,,,NA;  no gauge,,,,,0
+52039,Quail Creek Hydro Plant #1,UT,9402300,,,,NA;  no gauge,,,,,0
+50091,Big Sheep Creek,WA,NA,,,,NA;  no gauge,,,,,0
+50228,Rocky Brook Hydroelectric,WA,NA,,,,NA;  no gauge,,,,,0
+50382,Twin Reservoirs,WA,NA,,,,NA;  no gauge,,,,,0
+50421,Orchard Avenue 1,WA,NA,,,,NA;  no gauge,,,,,0
+50423,Cowiche,WA,NA,,,,NA;  no gauge,,,,,0
+50700,Lilliwaup Falls Generating,WA,NA,,,,NA;  no gauge,,,,,0
+54267,Koma Kulshan,WA,NA,,,,NA;  no gauge,,,,,0
+54652,Mirror Lake,WA,NA,,,,NA;  no gauge,,,,,0
+72,Venice,CA,NA,,,,NA; MWD network,,,,,0
+161,Drop No. 1 Powerhouse (Turlock Lake),CA,11303500,,,,NA; no gauge,,,,,0
+215,Angels,CA,11303500,,,,NA; no gauge,,,,,0
+242,Hamilton Branch,CA,11425500,,,,NA; no gauge,,,,,0
+261,Murphys,CA,11303500,,,,NA; no gauge,,,,,0
+359,San Gorgonio 2,CA,NA,,,,NA; no gauge,,,,,0
+457,Bear Valley,CA,11078000,,,,NA; no gauge,,,,,0
+839,Scott Flat,CA,11425500,,,,NA; no gauge,,,,,0
+846,Combie South,CA,11425500,,,,NA; no gauge,,,,,0
+847,Combie North,CA,11425500,,,,NA; no gauge,,,,,0
+6449,Azusa,CA,NA,,,,NA; no gauge,,,,,0
+6479,San Francisquito 1,CA,11078000,,,,NA; no gauge,,,,,0
+6480,San Francisquito 2,CA,11078000,,,,NA; no gauge,,,,,0
+6644,Lake Mathews,CA,NA,,,,NA; no gauge,,,,,0
+6645,Foothill Feeder,CA,NA,,,,NA; no gauge,,,,,0
+6646,San Dimas,CA,NA,,,,NA; no gauge,,,,,0
+6647,Yorba Linda,CA,NA,,,,NA; no gauge,,,,,0
+7077,Sawtelle,CA,11078000,,,,NA; no gauge,,,,,0
+7151,Stony Gorge,CA,11425500,,,,NA; no gauge,,,,,0
+7942,Diamond Valley Lake,CA,11078000,,,,NA; no gauge,,,,,0
+10162,Whitewater Hydro Plant,CA,NA,,,,NA; no gauge,,,,,0
+10282,Big Creek Water Works,CA,NA,,,,NA; no gauge,,,,,0
+55009,Montgomery Creek Hydro,CA,NA,,,,NA; no gauge,,,,,0
+59428,Baker Creek Diversion,CA,NA,,,,NA; no gauge,,,,,0
+50147,R E Badger Filtration Plant,CA,NA,,,,NA; no gauge,,,,,0
+50156,Nichols,CA,NA,,,,NA; no gauge,,,,,0
+50218,Woodward Power Plant,CA,11303500,,,,NA; no gauge,,,,,0
+50219,Frankenheimer Power Plant,CA,NA,,,,NA; no gauge,,,,,0
+50233,San Dimas Wash Generating Station,CA,NA,,,,NA; no gauge,,,,,0
+50322,Madera Canal (Site 980 65),CA,NA,,,,NA; no gauge,,,,,0
+50375,East Portal Generator,CA,NA,,,,NA; no gauge,,,,,0
+50492,Point Loma,CA,NA,,,,NA; no gauge,,,,,0
+50961,Slate Creek,CA,NA,,,,NA; no gauge,,,,,0
+54017,San Gabriel Hydro Project,CA,11078000,,,,NA; no gauge,,,,,0
+54308,Three Forks Water Power Project,CA,NA,,,,NA; no gauge,,,,,0
+474,Salida No. 1,CO,7134180,,,,NA; no gauge,,,,,0
+475,Salida No. 2,CO,NA,,,,NA; no gauge,,,,,0
+54680,Betasso,CO,NA,,,,NA; no gauge,,,,,0
+55931,Boulder City Silver Lake Hydro,CO,6764880,,,,NA; no gauge,,,,,0
+814,Clear Lake,ID,NA,,,,NA; no gauge,,,,,0
+820,Thousand Springs,ID,NA,,,,NA; no gauge,,,,,0
+830,Paris,ID,NA,,,,NA; no gauge,,,,,0
+845,Soda Spgs-Hooper,ID,10068500,,,,NA; no gauge,,,,,0
+7150,Soda Creek,ID,10068500,,,,NA; no gauge,,,,,0
+7718,Buffalo,ID,13154500,,,,NA; no gauge,,,,,0
+10049,Little Mac Project,ID,NA,,,,NA; no gauge,,,,,0
+10140,Birch Creek Power,ID,NA,,,,NA; no gauge,,,,,0
+10296,Lowline Canal Drop Hydro,ID,NA,,,,NA; no gauge,,,,,0
+10325,Mink Creek Hydro,ID,NA,,,,NA; no gauge,,,,,0
+54674,Ford Hydro LP,ID,NA,,,,NA; no gauge,,,,,0
+54753,Lateral No. 10,ID,NA,,,,NA; no gauge,,,,,0
+56498,Mora Drop Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
+10781,Koyle Ranch Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
+10138,South Dry Creek Hydro,MT,NA,,,,NA; no gauge,,,,,0
+159,Lake Creek,UT,NA,,,,NA; no gauge,,,,,0
+925,Ephraim City,UT,NA,,,,NA; no gauge,,,,,0
+3651,Granite,UT,NA,,,,NA; no gauge,,,,,0
+3658,Snake Creek,UT,NA,,,,NA; no gauge,,,,,0
+3659,Stairs,UT,NA,,,,NA; no gauge,,,,,0
+3666,Brigham City,UT,10068500,,,,NA; no gauge,,,,,0
+3668,Ephraim City No. 3,UT,NA,,,,NA; no gauge,,,,,0
+3673,Snake Creek,UT,NA,,,,NA; no gauge,,,,,0
+3679,Lower Monroe,UT,NA,,,,NA; no gauge,,,,,0
+3680,Upper Monroe,UT,NA,,,,NA; no gauge,,,,,0
+3681,Lower-Unit,UT,10217000,,,,NA; no gauge,,,,,0
+3682,Upper-Unit,UT,10217000,,,,NA; no gauge,,,,,0
+3685,Center Creek,UT,NA,,,,NA; no gauge,,,,,0
+3688,Bartholomew,UT,NA,,,,NA; no gauge,,,,,0
+3689,Hobble Creek,UT,NA,,,,NA; no gauge,,,,,0
+3690,Spring Creek,UT,10172630,,,,NA; no gauge,,,,,0
+3692,Payson,UT,NA,,,,NA; no gauge,,,,,0
+3699,Boulder Creek,UT,NA,,,,NA; no gauge,,,,,0
+6537,Little Cottonwood,UT,NA,,,,NA; no gauge,,,,,0
+6538,Red Creek,UT,10217000,,,,NA; no gauge,,,,,0
+7015,Unit 4,UT,10217000,,,,NA; no gauge,,,,,0
+7016,Unit 3,UT,10172630,,,,NA; no gauge,,,,,0
+7027,Upper Bartholomew,UT,NA,,,,NA; no gauge,,,,,0
+7362,Pine Valley,UT,NA,,,,NA; no gauge,,,,,0
+7590,Lower Boulder,UT,9333500,,,,NA; no gauge,,,,,0
+3892,Calispel,WA,12433000,,,,NA; no gauge,,,,,0
+3929,Packwood,WA,14246900,,,,NA; no gauge,,,,,0
+54860,Black Creek,WA,NA,,,,NA; no gauge,,,,,0
+57763,Youngs Creek,WA,NA,,,,NA; no gauge,,,,,0
+60418,Calligan Creek,WA,NA,,,,NA; no gauge,,,,,0
+60517,Hancock Creek,WA,NA,,,,NA; no gauge,,,,,0
+6393,Strawberry Creek,WY,NA,,,,NA; no gauge,,,,,0
+6394,Swift Creek,WY,NA,,,,NA; no gauge,,,,,0
+56694,Russell D Smith,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56695,Summer Falls Power Plant,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56696,Eltopia Branch Canal 4.6,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56697,Potholes East Canal 66.0,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56698,Dry Falls Dam (Main Canal Headworks),WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+391,Big Pine,CA,10261500,,,,NA; no gauge; LDWP pp,,,,,0
+397,Franklin,CA,11078000,,,,NA; no gauge; LDWP pp,,,,,0
+403,San Fernando,CA,11078000,,,,NA; no gauge; LDWP pp,,,,,0
+466,Boulder Canyon Hydro,CO,6764880,,,,NA; no gauge; on Boulder municipal supply,,,,,0
+509,Longmont,CO,NA,,,,NA; no gauge; on Boulder municipal supply,,,,,0
+58384,Fargo No. 1,ID,NA,,,,NA; no gauge; on canal,,,,,0
+61688,North Gooding Main Hydroelectric Project,ID,NA,,,,NA; no gauge; on canal,,,,,0
+64607,MC6 Hydro Facility,ID,NA,,,,NA; no gauge; on canal,,,,,0
+58120,Lower South Fork Irrigation Project,MT,NA,,,,NA; no gauge; on canal,,,,,0
+917,Quincy Chute,WA,NA,,,,NA; no gauge; on CBP network,,,,,0
+332,Fontana,CA,NA,,,,NA; no gauge; on conveyance network,,,,,0
+494,Manitou Springs,CO,NA,,,,NA; no gauge; on CSU network,,,,,0
+495,Ruxton Park,CO,NA,,,,NA; no gauge; on CSU network,,,,,0
+7233,Tesla,CO,7134180,,,,NA; no gauge; on CSU network,,,,,0
+10070,Foothills Hydro Plant,CO,6764880,,,,NA; no gauge; on CSU network,,,,,0
+3024,Eagle Point,OR,NA,,,,NA; no gauge; on EPID network,,,,,0
+314,Drop 5,CA,NA,,,,NA; no gauge; on IID canal,,,,,0
+586,East Highline,CA,NA,,,,NA; no gauge; on IID network,,,,,0
+6370,Turnip,CA,NA,,,,NA; no gauge; on IID network,,,,,0
+392,Castaic,CA,11078000,,,,NA; no gauge; on LA aqueduct,,,,,0
+394,Cottonwood,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
+395,Division Creek,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
+396,Foothill,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
+398,Haiwee,CA,10261500,,,,NA; no gauge; on LA aqueduct,,,,,0
+393,Control Gorge,CA,NA,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+401,Middle Gorge,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+50393,Friant Hydro Facility,CA,11303500,,,,assumes power generation from river outlet works,,,10806,RISE,1
+402,Pleasant Valley,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+407,Upper Gorge,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+459,Papazian (Fairfield),CA,NA,,,,NA; no gauge; on MID canal,,,,,0
+461,Reta (Canal Creek),CA,NA,,,,NA; no gauge; on MID canal,,,,,0
+499,Stone Drop,CA,NA,,,,NA; no gauge; on MID network,,,,,0
+428,Parker,CA,NA,,,,NA; no gauge; on MIDcanal,,,,,0
+316,Sepulveda Canyon,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+479,Temescal,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+480,Corona,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+481,Perris,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
+482,Rio Hondo,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+483,Coyote Creek,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+484,Red Mountain,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
+487,Valley View,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+745,Etiwanda,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+6196,W E Warne,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
+56125,Springville Hydroelectric,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+56615,Rancho Penasquitos,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+57854,North Hollywood,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+65033,Kings River Syphon,CA,NA,,,,NA; no gauge; on OCID canal,,,,,0
+100,South Consolidated,AZ,NA,,,,NA; SRP network,,,,,0
+143,Crosscut,AZ,NA,,,,NA; SRP network,,,,,0
+380,Dion R Holm,CA,11303500,,11278400,,1km downstream,,,,,1
+385,Drop 2,CA,NA,,9527700,,1km downstream,,,,,1
+825,Ashton,ID,13154500,,13046000,,1km downstream,,,,,1
+3053,Sullivan,OR,14211720,,14197900,,36km upstream,,,,,1
+339,Kern River No. 3,CA,NA,11185500,,,diversion to powerhouse in canal/conduit,,,,,1
+3037,Soda Springs,OR,14301000,,14316500-14316495,,3km downstream; remove Boulder Creek inflow,,,,,1
+3646,Cutler,UT,10068500,,,10126000,40km downstream,,,,,1
+818,Shoshone Falls,ID,13154500,,13090500,,6km downstream,,,,,1
+3636,Sand Cove,UT,9402300,,9409880,,above Gunlock; includes Santa Clara River flows,,,,,1
+3866,Little Falls,WA,12433000,,12433000,,above pp,,,,,1
+54249,Smith Creek,ID,NA,,,12321500,adjacent creek,,,,,1
+6424,Chelan,WA,12472800,,12452500,,at diversion; I believe contains the diversion and river flow,,,,,1
+386,Drop 3,CA,NA,,,9527700,below Drop 2,,,,,1
+387,Drop 4,CA,NA,,,9527700,below Drop 2,,,,,1
+841,City Power Plant,ID,13154500,,13060000,,below Gem State,,,,,1
+843,Lower No 2,ID,13154500,,13060000,,below Gem State,,,,,1
+844,Upper Power Plant,ID,13154500,,13060000,,below Gem State,,,,,1
+3635,Veyo,UT,9402300,,9409880,,below Gunlock return,,,,,1
+3675,Hydro III,UT,10068500,,10109000,,below Hydro II,,,,,1
+439,Don Pedro,CA,11303500,,,11289650,below La Grange dam,,,,,1
+154,Hoover Dam (NV),NV,9404200,,9421500,,combined with Hoover Dam (AZ),6125,RISE,,,1
+8902,Hoover Dam (AZ),AZ,9404200,,,,combined with Hoover Dam (NV),6125,RISE,,,1
+3913,Alder,WA,12200500,,12086500,,below LaGrande,,,,,1
+3869,Nine Mile,WA,12433000,,12433000,,below Long Lake; storage effects,,,,,1
+3861,Upper Baker,WA,12200500,,12193400,,below Lower Baker,,,,,1
+3643,Upper Beaver,UT,10217000,,10234500,,below Lower Beaver,,,,,1
+3664,Beaver Mid Hydro 2,UT,NA,,10234500,,below Lower Beaver,,,,,1
+3918,Mossyrock,WA,14246900,,14238000,,below Mayfield,,,,,1
+3850,Swift 1,WA,14246900,,,14220500,below Merwin,,,,,1
+54812,Mile 28 Water Power Project,ID,NA,,,,diversion quite upstream,,,MIII;QJ,PNH,1
+3852,Yale,WA,14246900,,,14220500,below Merwin,,,,,1
+6265,Swift 2,WA,14246900,,,14220500,below Merwin,,,,,1
+50380,Upriver Dam Hydro Plant,WA,12433000,,12422500,,below Monroe Street,,,,,1
+9096,Upper Falls,WA,12433000,,12422500,,below Monroe Street,,,,,1
+3854,Electron,WA,NA,,12093500,,below pp; ignores effect of afterbay,,,,,1
+3050,Round Butte,OR,14105700,,14092500,,below Reregulating,,,,,1
+622,South Fork Tolt,WA,12200500,,12148300,,below reregulating basin,,,,,1
+3045,Faraday,OR,14211720,,14210000,,below River Mill,,,,,1
+3047,North Fork,OR,14211720,,14210000,,below River Mill,,,,,1
+827,Grace,ID,10068500,,,10079500,below Soda,,,,,1
+3036,Slide Creek,OR,14301000,,14316500-14316495,,below Soda Springs,,,,,1
+3040,Toketee,OR,14301000,,14316500-14316495,,below Soda Springs,,,,,1
+3067,Carmen Smith,OR,14211720,,14158850,,below Trail Bridge reservoir; includes McKenzie River effects,,,,,1
+6513,Fleish,NV,NA,,10347460,,below Washoe,,,,,1
+6531,Verdi,NV,NA,,10347460,,below Washoe,,,,,1
+7069,Gunlock Hydro,UT,9402300,,9410100,,below Winsor Dam,,,,,1
+145,Horse Mesa,AZ,9514100,,,9502000,better than original; contacted SRP for release data,,,,,1
+148,Mormon Flat,AZ,9514100,,,9502000,better than original; contacted SRP for release data,,,,,1
+149,Roosevelt,AZ,9514100,,,9502000,better than original; contacted SRP for release data,,,,,1
+714,Toadtown,CA,11425500,11389800,,,canal downstream of pp,,,,,1
+58696,Nooksack,WA,NA,,12205000,,Cascade Creek included in flow,,,,,1
+239,Electra,CA,11303500,,,11319500,combined river flow and pp flow 5km downstream,,,,,1
+218,Balch 2,CA,11189500,11216300,,,combined with Balch 1,,,,,1
+217,Balch 1,CA,11189500,11216300,,,combined with Balch 2,,,,,1
+223,Caribou 2,CA,11425500,11401110,,,combined with Caribou 1,,,,,1
+222,Caribou 1,CA,11425500,11401110,,,combined with Caribou 2,,,,,1
+336,Kaweah 2,CA,NA,11208818,,,conduit at pp,,,,,1
+337,Kaweah 1,CA,NA,11208800,,,conduit at pp,,,,,1
+338,Kaweah 3,CA,NA,11208565,,,conduit at pp,,,,,1
+365,Lower Tule,CA,NA,11202838,,,conduit at pp,,,,,1
+3034,Prospect 3,OR,14301000,,,14332000,only South Fork Flow,,,,,1
+381,Moccasin,CA,11303500,11276600-11276900,,,difference should give diversion to pp,,,,,1
+751,Moccasin Low Head Hydro Project,CA,11303500,11276600-11276900,,,difference; miss some effect of afterbay,,,,,1
+323,Bishop Creek 2,CA,10261500,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+324,Bishop Creek 3,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+325,Bishop Creek 4,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+326,Bishop Creek 5,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+253,Kilarc,CA,NA,11372325,,,diversion to powerhouse in canal/conduit,,,,,1
+264,Phoenix,CA,11303500,11297500,,,diversion to powerhouse in canal/conduit,,,,,1
+284,Spring Gap,CA,11303500,11297000,,,diversion to powerhouse in canal/conduit,,,,,1
+327,Bishop Creek 6,CA,NA,10271060,,,diversion to powerhouse in canal/conduit,,,,,1
+340,Kern River No. 1,CA,11189500,11192000,,,diversion to powerhouse in canal/conduit,,,,,1
+343,Lytle Creek,CA,NA,11060900,11062000,,diversion to powerhouse in canal/conduit,,,,,1
+412,Chicago Park,CA,11425500,11421780,,,diversion to powerhouse in canal/conduit,,,,,1
+413,Dutch Flat 2,CA,11425500,11421760,,,diversion to powerhouse in canal/conduit,,,,,1
+815,Lower Malad,ID,NA,,13153500,,downstream of pp,,,,,1
+3020,Clearwater 1,OR,14301000,14314400,,,diversion to powerhouse in canal/conduit,,,,,1
+50718,Notch Butte Hydro,ID,NA,,,,gauge upstream of pp,,,WODI;QD,PNH,1
+3021,Clearwater 2,OR,14301000,14314600,,,diversion to powerhouse in canal/conduit,,,,,1
+3026,Fish Creek,OR,14301000,14315900,,,diversion to powerhouse in canal/conduit,,,,,1
+3029,Lemolo 1,OR,14301000,14312900,,,diversion to powerhouse in canal/conduit,,,,,1
+10222,Success,CA,11189500,,,,includes other release works; misses water pumped from tailrace to Pioneer Canal,,,SCC;23;D,CDEC,1
+6421,Lemolo 2,OR,14301000,14313600,,,diversion to powerhouse in canal/conduit,,,,,1
+3878,Yelm,WA,12200500,12089208,,,diversion to powerhouse in canal/conduit,,,,,1
+674,Pilot Butte,WY,6294500,,,,inflow to offstream reservoir through pp,,,PBR;IN,MBH,1
+361,Santa Ana 1,CA,NA,,,11051501,downstream aggregate gauge,,,,,1
+6507,Drop 2,WA,NA,,,,main canal diversion,,,WOPW;QJ,PNH,1
+6508,Drop 3,WA,NA,,,,main canal diversion,,,WOPW;QJ,PNH,1
+363,Santa Ana 3,CA,NA,,,11051501,downstream aggregate gauge,,,,,1
+7079,Upper Salmon B,ID,13154500,,13135000,,downstream of Lower Salmon,,,,,1
+2181,Black Eagle,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+2182,Cochrane,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+2193,Rainbow,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+2194,Ryan,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+4213,Portland No. 1,OR,14246900,,,14140000,downstream of Portland No. 2,,,,,1
+3704,Uintah,UT,NA,,9301500,,downstream of pp,,,,,1
+520,Lower Molina,CO,9106150,,,9105000,downstream of pp; additional flow from plateau creek,,,,,1
+54306,Wilson Lake Hydroelectric Project,ID,13154500,,,,misses reservoir effects,,,TCNI;QJ,PNH,1
+521,Upper Molina,CO,9106150,,,9105000,downstream of pp; additional flow from plateau creek,,,,,1
+7224,High Line,CA,NA,,,,NA; no gauge,,,SDV;110;E,CDEC,1
+3855,Lower Baker,WA,12200500,,12193400,,earlier gauge prior to 2007,,,,,1
+278,San Joaquin 1A,CA,NA,11246570,,,flow from San Joaquin 2 is conveyed to San Joaquin 1A,,,,,1
+585,Drop 1,CA,NA,,9527700,,gauge below Drop 2,,,,,1
+294,Copco 1,CA,11530500,,,11516530,gauge below Iron Gate (reregulating) so some influence of storage,,,,,1
+295,Copco 2,CA,11530500,,,11516530,gauge below Iron Gate (reregulating) so some influence of storage,,,,,1
+410,McSwain,CA,11303500,,11270900,,gauge downsteam of Merced Falls,,,,,1
+3014,Oxbow,OR,13269000,,13290450,,gauge downstream of Hells Canyon,,,,,1
+822,Upper Salmon A,ID,13154500,,13135000,,gauge downstream of Lower Salmon,,,,,1
+9842,Newhalem,WA,NA,,,12178100,gauge may be below diversion,,,,,1
+415,Donnells,CA,11303500,,11292700,,gauge may be just above pp (supplied by conduit),,,,,1
+4176,Fremont Canyon,WY,6674500,,,,Pathfinder total release,,,647,RISE,1
+823,Upper Malad,ID,NA,,13153500,,gauge missing diversion to Lower Malad,,,,,1
+436,Devil Canyon,CA,11078000,11063682,,,gauge on CA Aqueduct but I think representative of pp flow,,,,,1
+54729,Taylor Draw Hydroelectric Facility,CO,9306500,,,9306500,gauge quite downstream,,,,,1
+4229,Fish Power,CA,11425500,,11413517;11413520,,gauge replaced 2004,,,,,1
+987,Last Chance,ID,NA,,10079500,,gauge upstream 5km,,,,,1
+10081,Strontia Springs Hydro Plant,CO,6764880,,,,unclear if turbine discharges water into conduit or river,,,PLASTRCO,CDSS,1
+3025,East Side,OR,11530500,,11507500,,gauge upstream of diversion return,,,,,1
+3042,West Side,OR,11530500,,11507500,,gauge upstream of diversion return,,,,,1
+6359,Felt,ID,NA,,13052200,,gauge upstream of pp,,,,,1
+6506,Moyie Springs,ID,12433000,,12306500,,gauge upstream of pp,,,,,1
+3656,Pioneer,UT,10172630,,,10140100,gauge upstream of pp,,,,,1
+3634,Gunlock,UT,9402300,,9409880,,includes Santa Clara River flows,,,,,1
+7179,Headgate Rock,AZ,9404200,,9428500,,inflow,,,,,1
+832,St Anthony,ID,13154500,,13050500,,inflow upstream of pp,,,,,1
+57551,Garland Canal,WY,NA,,,,upstream of pp,,,BBR;QJ,MBH,1
+489,Upper Dawson,CA,11303500,,11289500,,may miss some storage effects,,,,,1
+4214,Portland No. 2,OR,14246900,,,14140000,may miss water supply diversion,,,,,1
+1020,Manti Canyon Lower,UT,NA,,10215900,,may not be representative as source water is springs and water system,,,,,1
+3676,Manti Canyon Upper,UT,NA,,10215900,,may not be representative as source water is springs and water system,,,,,1
+7147,Mill Creek 3,CA,NA,11052500,,,Mill Creek 2 and 3,,,,,1
+152,Davis,AZ,9404200,,9423000,,,,,6135,RISE,1
+153,Glen Canyon,AZ,9333500,,9380000,,,507,RISE,,,1
+438,Thermalito,CA,11425500,,11407000,,misses effect of Thermalito afterbay,,,,,1
+258,Merced Falls,CA,11303500,,11270900,,misses irrigation diversions,,,,,1
+214,Alta,CA,NA,11421725,,,NA; no gauge,,,,,1
+819,Swan Falls,ID,13269000,,13172500,,NA; no gauge,,,,,1
+6206,Tacoma,CO,9379500,,,9362520,no gauge on diversion from Elektra Lake; includes Animas River flow,,,,,1
+50917,Middle Fork Irrigation District,OR,14105700,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
+10323,Farmers ID No. 2,OR,NA,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
+10324,Farmers ID No. 3,OR,NA,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
+7127,Wynoochee,WA,14301000,,12035400,,"NWD data also exists, but messy",,,,,1
+54654,Kekawaka Power House,CA,NA,,,11474780,gauge below diversion,,,,,1
+50755,New Hogan,CA,11303500,,,,,,,NHG;23;D,CDEC,1
+388,Pilot Knob,CA,NA,,9527000,,"potential just turbine flow, but unclear from gauge description",,,,,1
+54261,Warm Springs,CA,11530500,,,,,,,WRS;23;D,CDEC,1
+54343,Terminus Hydroelectric Project,CA,11189500,,,,,,,TRM;23;D,CDEC,1
+50546,Bowman,CA,11425500,,11416000+11416500,,release to Spaulding 3 plus river release,,,,,1
+255,Lime Saddle,CA,11425500,,,11405200,upstream of pp; only WB Feather,,,,,1
+472,Georgetown,CO,6764880,,,6715000,below Georgetown Lake,,,,,1
+230,Crane Valley,CA,11303500,,11243500+11244000,,total dam release is combination of canal flow release and river release,,,,,1
+2195,Thompson Falls,MT,12433000,,12389000+12389500,,upstream gauges; sum approximates inflow; misses effect of storage,,,,,1
+476,Shoshone,CO,NA,,,9070500,upstream of diversion,,,,,1
+3068,Leaburg,OR,14211720,,14162500,,upstream of diversion,,,,,1
+3071,Walterville,OR,14211720,,14162500,,upstream of diversion,,,,,1
+353,Poole,CA,10261500,10287762,,,upstream of pp,,,,,1
+50987,Rock Creek,ID,NA,,13092747,,upstream of pp,,,,,1
+54524,Horseshoe Bend Hydro Partners,ID,13269000,,13247500,,upstream of pp,,,,,1
+3661,Weber,UT,10172630,,10136500,,upstream of pp,,,,,1
+50972,Marsh Valley Development,ID,NA,,13073000,,upstream of pp and canal diversion,,,,,1
+3914,Cushman 1,WA,12200500,,,12056500,upstream of pp and storage,,,,,1
+3915,Cushman 2,WA,12200500,,,12056500,upstream of pp and storage,,,,,1
+6397,Boise R Diversion,ID,13269000,,13202000,,upstream release from Lucky Peak,,,,,1
+150,Stewart Mountain,AZ,9514100,,9502000,,,,,,,1
+354,Portal,CA,11303500,11235500,,,,,,,,1
+357,Rush Creek,CA,10261500,10287300,,,,,,,,1
+50037,Rio Bravo Hydro Project,CA,11189500,11193010,,,,,,,,1
+50076,Santa Felicia Dam,CA,11078000,,11109800,,,,,,,1
+50128,Clear Lake Hydro Project,CA,11425500,,11451000,,,,,,,1
+50129,Indian Valley Dam Hydro Project,CA,11425500,,11451300,,,,,,,1
+50179,Lake Siskiyou,CA,11425500,,,11342000,50km downstream,,,,,1
+50350,Forks of Butte Hydro Project,CA,NA,11389747,,,,,,,,1
+50352,Nacimiento Hydro Project,CA,11143250,,11149400,,,,,,,1
+50400,Sand Bar Power Plant,CA,NA,11292860,,,,,,,,1
+50892,Rock Creek LP,CA,NA,11444280,,,,,,,,1
+54554,Spicer Meadow Project,CA,11303500,11293760,,,,,,,,1
+54555,Collierville Powerhouse,CA,11303500,11295250,,,,,,,,1
+34,Rollins,CA,11425500,11421900,,,,,,,,1
+180,Volta 2,CA,NA,11376046,,,,,,,,1
+219,Belden,CA,11425500,11403050,,,,,,,,1
+220,Bucks Creek,CA,11425500,11403700,,,,,,,,1
+221,Butt Valley,CA,11425500,11400600,,,,,,,,1
+224,Centerville,CA,NA,11389775,,,,,,,,1
+225,Chili Bar,CA,11425500,,11444500,,,,,,,1
+227,Coleman,CA,11425500,11376458,,,,,,,,1
+229,Cow Creek,CA,NA,11372080,,,,,,,,1
+231,Cresta,CA,11425500,11404360,,,,,,,,1
+232,De Sabla,CA,11425500,11389750,,,,,,,,1
+233,Deer Creek,CA,NA,11414205,,,,,,,,1
+235,Drum 1,CA,11425500,11414194,,,,,,,,1
+236,Drum 2,CA,11425500,11414195,,,,,,,,1
+237,Dutch Flat,CA,11425500,11421750,,,,,,,,1
+238,El Dorado,CA,11425500,,11439000,,canal upstream of pp; misses effect of forebay,,,,,1
+240,Haas,CA,11189500,11216050,,,,,,,,1
+241,Halsey,CA,11425500,11425310,,,,,,,,1
+243,Hat Creek 1,CA,NA,11358800,,,,,,,,1
+244,Hat Creek 2,CA,11189500,11359300,,,,,,,,1
+248,Inskip,CA,NA,11376430,,,,,,,,1
+249,James B Black,CA,11425500,11363910,,,,,,,,1
+250,Kerckhoff,CA,11303500,11246950,,,,,,,,1
+254,Kings River,CA,11189500,11218700,,,,,,,,1
+262,Narrows,CA,11425500,11417970,,,,,,,,1
+265,Pit 1,CA,11425500,11355010,,,,,,,,1
+266,Pit 3,CA,11425500,11362300,,,,,,,,1
+267,Pit 4,CA,11425500,11362600,,,,,,,,1
+268,Pit 5,CA,11425500,11362700,,,,,,,,1
+269,Pit 6,CA,11425500,11364150,,,,,,,,1
+376,Pardee,CA,11303500,,,,,,,PAR;23;D,CDEC,1
+382,R C Kirkwood,CA,11303500,,,,,,,HTH;110;D,CDEC,1
+270,Pit 7,CA,11425500,11364800,,,,,,,,1
+272,Poe,CA,11425500,11404900,11404901,,,,,,,1
+274,Potter Valley,CA,11530500,11471099,,,,,,,,1
+275,Rock Creek,CA,11425500,11403800,,,,,,,,1
+276,San Joaquin 2,CA,NA,11246570,,,,,,,,1
+277,San Joaquin 3,CA,11303500,11244100,,,,,,,,1
+279,Salt Springs,CA,11303500,11313510,,,,,,,,1
+280,South,CA,NA,11376410,,,,,,,,1
+281,Spaulding 1,CA,11425500,11414154,,,,,,,,1
+282,Spaulding 2,CA,11425500,11414155,,,,,,,,1
+283,Spaulding 3,CA,11425500,11416200,,,,,,,,1
+285,Stanislaus,CA,11303500,11295505,,,,,,,,1
+287,Tiger Creek,CA,11303500,11316610,,,,,,,,1
+289,Tule River,CA,NA,11201700,,,,,,,,1
+290,Volta 1,CA,NA,11376043,,,,,,,,1
+291,West Point,CA,11303500,,11316700,,,,,,,1
+292,Wise,CA,11425500,11425415,,,,,,,,1
+441,Folsom,CA,11425500,,,,,10779,RISE,10772,RISE,1
+293,A G Wishon,CA,11303500,11246610,,,,,,,,1
+443,Keswick,CA,11425500,,11370500,,,,,10792,RISE,1
+444,Nimbus,CA,11425500,,11446500,,,10823,RISE,10817,RISE,1
+445,Shasta,CA,11425500,,,,,10866,RISE,10869,RISE,1
+447,Parker,CA,9404200,,9427520,,,,,6130,RISE,1
+450,Spring Creek,CA,11425500,11371600,,,,,,10839,RISE,1
+451,Trinity,CA,11530500,,,,,10856,RISE,10859,RISE,1
+296,Fall Creek,CA,NA,,11512000,,,,,,,1
+317,Big Creek 1,CA,11303500,11238100,,,,,,,,1
+318,Big Creek 2,CA,11303500,11238380,,,,,,,,1
+319,Big Creek 3,CA,11303500,11241800,,,,,,,,1
+320,Big Creek 4,CA,11303500,11246530,,,,,,,,1
+321,Big Creek 8,CA,11303500,11238550,,,,,,,,1
+322,Big Creek 2A,CA,11303500,11238400,,,,,,,,1
+342,Lundy,CA,10261500,10287195,,,,,,,,1
+344,Mammoth Pool,CA,11303500,11235100,,,,,,,,1
+346,Mill Creek 1,CA,NA,,,11052500,Mill Creek 2 and 3 diversion as surrogate,,,,,1
+409,Exchequer,CA,11303500,11269700,,,,,,,,1
+414,Beardsley,CA,11303500,11292820,,,,,,,,1
+977,Lewiston,CA,11530500,,11525500,,,10801,RISE,10796,RISE,1
+6158,New Melones,CA,11303500,,,,,10845,RISE,,,1
+416,Tulloch,CA,11303500,11299996,,,,,,,,1
+7066,Stampede,CA,10301755,,,,,,,STP;23;D,CDEC,1
+417,Forbestown,CA,11425500,11396290,,,,,,,,1
+7129,Thermalito Diverson Dam,CA,11425500,,,,,,,TDV;48;D,CDEC,1
+7189,Whiskeytown,CA,11425500,,,,,,,10825,RISE,1
+7229,Black Butte,CA,11425500,,,,,,,BLB;23;D,CDEC,1
+418,Kelly Ridge,CA,11425500,11396329,,,,,,,,1
+7489,Lake Mendocino,CA,11530500,,,,,,,COY;23;D,CDEC,1
+419,Woodleaf,CA,11425500,11396090,,,,,,,,1
+424,French Meadows,CA,11425500,11427200,,,,,,,,1
+7907,Pine Flat,CA,11189500,,,,,,,PNF;23;D,CDEC,1
+425,Middle Fork,CA,11425500,11428600,,,,,,,,1
+426,Oxbow,CA,11425500,11433212,,,,,,,,1
+10139,Isabella Hydro Project,CA,11189500,,,,,,,ISB;23;D,CDEC,1
+427,Ralston,CA,11425500,11427765,,,,,,,,1
+430,Camino,CA,11425500,11441895,,,,,,,,1
+431,Jaybird,CA,11425500,11441780,,,,,,,,1
+432,Loon Lake,CA,11425500,11429340,,,,,,,,1
+433,Robbs Peak,CA,11425500,11429300,,,,,,,,1
+435,White Rock/Slab Creek,CA,11425500,11443460,,,,,,,,1
+437,Edward C Hyatt,CA,11425500,11406818,11406820,,,,,,,1
+440,La Grange,CA,11303500,,11289650,,,,,,,1
+442,Judge F Carr,CA,11530500,11525430,,,,,,,,1
+454,Colgate,CA,11425500,11413510,,,,,,,,1
+50206,Vallecito,CO,9379500,,,,,,,4323,RISE,1
+50267,Redlands Water & Power,CO,9152500,,,,,,,RLCGRJCO,CDSS,1
+50435,Sugarloaf Hydro Plant,CO,7134180,,,,,,,TURQ;QD,MBH,1
+473,Palisade,CO,NA,,,,,GRDVALCO,CDSS,,,1
+512,Blue Mesa,CO,9152500,,,,,4302,RISE,4310,RISE,1
+513,Estes,CO,6764880,,,,,,,OLYDAMCO;QD,MBH,1
+514,Morrow Point,CO,9152500,,,,,4303,RISE,4311,RISE,1
+515,Big Thompson,CO,6764880,,,,,BTPPFBCO;GJ,MBH,,,1
+516,Green Mountain,CO,9106150,,9057500,,,,,23,RISE,1
+517,Marys Lake,CO,6764880,,,,,,MBH,MARYSR;QD,MBH,1
+518,Flatiron,CO,6764880,,,,alt FLARESCO;QED1+QED2+QED3,,,FLARESCO;QD,MBH,1
+519,Pole Hill,CO,NA,,,,,OLYTUNCO;QJ,MBH,,,1
+6159,Crystal,CO,9152500,,,,,4304,RISE,4312,RISE,1
+455,Narrows 2,CA,11425500,11417980,,,,,,,,1
+7372,McPhee,CO,9185600,,,,,,,4342,RISE,1
+7373,Towaoc,CO,9185600,,,,,,,DOLTUNCO,CDSS,1
+7458,Ruedi,CO,9106150,,,,,,,RUERESCO;QD,MBH,1
+522,Slab Creek,CA,11425500,11443460,,,,,,,,1
+531,Camp Far West,CA,11425500,,11423800,,,,,,,1
+10423,North Fork Hydro Plant,CO,NA,,,,,,,ROBTUNCO,CDSS,1
+10424,Gross,CO,6764880,,,,,,,BOCBGRCO,CDSS,1
+58622,Carter Hydro,CO,6764880,,,,,,,CARCONCO;QJ,MBH,1
+58783,South Canal Hydro-1,CO,NA,,,,,,,SOUCANCO,CDSS,1
+58784,South Canal Hydro-3,CO,NA,,,,,,,SOUCANCO,CDSS,1
+58901,Ridgway,CO,9152500,,,,,,,4837,RISE,1
+60119,Granby Dam,CO,9106150,,,,,,,386,RISE,1
+61189,Shavano Falls Hydro,CO,NA,,,,,,,SOUCANCO,CDSS,1
+61190,Shavano Falls Hydro Drop 4,CO,NA,,,,,,,SOUCANCO,CDSS,1
+61191,Drop 5,CO,NA,,,,,,,SOUCANCO,CDSS,1
+64123,Pueblo Dam,CO,7134180,,,,,,,684,RISE,1
+10807,Dietrich Drop,ID,NA,,,,,,,MIII;QJ,PNH,1
+10808,Lower Low Line,ID,NA,,,,,,,TCSI;QJ,PNH,1
+50895,Bypass,ID,NA,,,,,,,TCNI;QJ,PNH,1
+50896,S E Hazelton A,ID,NA,,,,,,,TCNI;QJ,PNH,1
+534,Jones Fork,CA,11425500,11440900,,,,,,,,1
+54558,Hazelton B Hydro,ID,13154500,,,,,,,TCNI;QJ,PNH,1
+537,Camanche,CA,11303500,,11323500,,,,,,,1
+626,Oak Flat,CA,11425500,,11401112,,,,,,,1
+632,Newcastle,CA,11425500,11425416,,,,,,,,1
+682,Kerckhoff 2,CA,11303500,11247050,,,,,,,,1
+763,Hell Hole,CA,11425500,,11428800,,,,,,,1
+776,Sly Creek,CA,11425500,11396000+11396090,,,,,,,,1
+905,Alamo,CA,11078000,10260776,,,,,,,,1
+6612,Union Valley,CA,11425500,11441002,,,,,,,,1
+7072,Mojave Siphon,CA,10261500,,10260780,,,,,,,1
+7338,Grizzly,CA,11425500,11404240,,,,,,,,1
+7507,Deadwood Creek,CA,NA,11413326,,,,,,,,1
+7646,Monticello,CA,11425500,,11454000,,,,,,,1
+7911,Kern Canyon,CA,11189500,,11192940,,,,,,,1
+4204,Island Park,ID,13154500,,,,,,,ISL;QD,PNH,1
+6395,Anderson Ranch,ID,13269000,,,,,AND;QV,PNH,,,1
+10128,R.W. Matthews,CA,11530500,,11480410,,,,,,,1
+10458,Muck Valley Hydroelectric,CA,11425500,11351700,,,,,,,,1
+10706,Burney Creek,CA,NA,,,,NA; no gauge,,,,,0
+10708,Lost Creek I,CA,NA,11358010,,,,,,,,1
+10014,Lucky Peak,ID,13269000,,,,,LUC;QT,PNH,,,1
+10709,Ponderosa Bailey Creek,CA,NA,11376110,,,,,,,,1
+10880,Bidwell Ditch Project,CA,NA,11364155,,,,,,,,1
+10881,Roaring Creek Water Power,CA,NA,11364155,,,,,,,,1
+56893,Chester Diversion Hydroelectric Project,ID,13154500,,,,,,,CHCI;QJ,PNH,1
+56997,Arrowrock,ID,13269000,,,,,,,ARKI;QD,PNH,1
+10882,Hatchet Creek Project,CA,NA,11364250,,,,,,,,1
+50180,Olsen,CA,11180700,11372350,,,,,,,,1
+50223,Nelson Creek,CA,NA,11362800,,,,,,,,1
+57364,Siphon Drop,CA,NA,9524000,,,,,,,,1
+6207,Ames,CO,9185600,,9171310,,,,,,,1
+10421,Dillon Hydro Plant,CO,9106150,,9050700,,,,,,,1
+10422,Williams Fork Hydro Plant,CO,9106150,,9038500,,,,,,,1
+2204,Yellowtail,MT,6294500,,,,,,,167,RISE,1
+54386,Little Wood Hydro Project,ID,13154500,,13148500,,,,,,,1
+6400,Canyon Ferry,MT,6108800,,,,,CFR;QED,MBH,,,1
+790,Gem State,ID,13154500,,13060000,,,,,,,1
+809,American Falls,ID,13154500,,13077000,,,,,,,1
+810,Bliss,ID,13154500,,13153776,,,,,,,1
+811,Brownlee,ID,13269000,,13290450,,,,,,,1
+812,C J Strike,ID,13269000,,13171620,,,,,,,1
+584,Navajo Dam,NM,9379500,,,,,,,4316,RISE,1
+6402,Elephant Butte,NM,8361000,,,,,,,4377,RISE,1
+7593,El Vado Dam,NM,8359500,,,,,,,4502,RISE,1
+813,Cascade,ID,13269000,,13245000,,,,,,,1
+816,Lower Salmon,ID,13154500,,13135000,,,,,,,1
+821,Twin Falls,ID,13154500,,13090000,,,,,,,1
+829,Oneida,ID,10068500,,10086500,,,,,,,1
+50361,Owyhee Dam Power Project,OR,13269000,,,,,,,OWY;QD,PNH,1
+50362,Tunnel 1 Power Project,OR,13269000,,,,,,,OWCO;QJ,PNH,1
+831,Soda,ID,10068500,,10079500,,,,,,,1
+50980,Central Oregon Siphon,OR,NA,,,,,,,CENO;QJ,PNH,1
+835,Post Falls,ID,12433000,,12419000,,,,,,,1
+850,Palisades,ID,13154500,,13032500,,,,,,,1
+6396,Black Canyon,ID,13269000,,13249500,,,,,,,1
+6398,Minidoka,ID,13154500,,13081500,,,,,,,1
+7012,Lower No 1,ID,13154500,,13060000,,,,,,,1
+7190,Milner Hydro,ID,13154500,13087505,,,,,,,,1
+10735,Barber Dam,ID,13269000,,13206000,17km downstream,,,,,,1
+10740,Magic Dam Hydroelectric Project,ID,13154500,,13142500,,,,,,,1
+54668,Falls River Hydro,ID,NA,,13047600,,,,,,,1
+54006,Broadwater Power Project,MT,6108800,,6054500,,,,,,,1
+2185,Hauser,MT,6108800,,6065500,,,,,,,1
+6403,Green Springs,OR,11530500,,,,,GSPO;QD,PNH,,,1
+6484,Bend,OR,14105700,,,,,,,DEBO;QD,PNH,1
+2186,Holter,MT,6108800,,6066500,,,,,,,1
+2188,Selis Ksanka Qlispe,MT,12433000,,12372000,,,,,,,1
+2191,Morony,MT,6108800,,6090300,,,,,,,1
+2192,Mystic Lake,MT,6214500,,6204050,,,,,,,1
+57437,Juniper Ridge Hydroelectric Project,OR,NA,,,,,,,NCAO;QJ,PNH,1
+58455,45-Mile Hydroelectric Project,OR,NA,,,,,,,NMCO;QJ,PNH,1
+58470,C Drop,OR,NA,,,,,,,ACHO;QJ,PNH,1
+6422,Madison,MT,6054500,,6041000,,,,,,,1
+6459,Big Fork,MT,NA,,12370000,,,,,,,1
+6623,Fort Peck,MT,6130500,,6132000,,,,,,,1
+56499,Tiber,MT,6108800,,6101500,,,,,,,1
+58392,Flint Creek Hydroelectric Project,MT,12433000,,12325500,,,,,,,1
+7789,Abiquiu Dam,NM,8359500,,8287000,,,,,,,1
+6521,Lahontan,NV,10301755,,10312150,,,,,,,1
+6532,Washoe,NV,NA,,10347460,,,,,,,1
+50261,New Lahontan,NV,10301755,,10312150,,,,,,,1
+50938,Galesville Project,OR,14301000,,14309000,,,,,,,1
+52187,Falls Creek,OR,NA,,,14185000,,,,,,1
+54251,Opal Springs Hydro,OR,14105700,,14087400,,,,,,,1
+297,Iron Gate,OR,11530500,,11516530,,,,,,,1
+3013,Hells Canyon,OR,13342500,,13290450,,,,,,,1
+6405,Flaming Gorge,UT,9234500,,,,,4306,RISE,,,1
+3028,John C Boyle,OR,11530500,,11510700,,,,,,,1
+3032,Prospect 1,OR,NA,,14330000,,,,,,,1
+3033,Prospect 2,OR,NA,,14330000,,,,,,,1
+3698,Wanship,UT,10172630,,10129500,,,,,4335,RISE,1
+3035,Prospect 4,OR,NA,,14330000,,,,,,,1
+4263,Echo Dam,UT,10172630,,,,,,,4330,RISE,1
+6404,Deer Creek,UT,10172630,,,,,4308,RISE,,,1
+3041,Wallowa Falls,OR,NA,,13325000,,,,,,,1
+3048,Pelton,OR,14105700,,14092500,,,,,,,1
+3049,River Mill,OR,14211720,,14210000,,,,,,,1
+7548,Causey,UT,10172630,,10137500,,,,,4328,RISE,1
+61853,Jordanelle,UT,10172630,,,,,4542,RISE,4347,RISE,1
+6505,Oak Grove,OR,14211720,,14209500,,,,,,,1
+7508,Stone Creek,OR,NA,,14209000,,,,,,,1
+10737,North Fork Hydro,OR,NA,,11495800,maybe just turbine flow,,,,,,1
+54721,Reregulating,OR,14105700,,14092500,,,,,,,1
+3674,Hyrum,UT,10068500,,10113500,,,,,,,1
+3691,Spanish Fork,UT,10172630,,10150500,,,,,,,1
+3697,Gateway,UT,NA,,10136500,,,,,,,1
+3705,Yellowstone,UT,9315000,,9292000,,,,,,,1
+6536,Beaver City Lower,UT,NA,,10234500,,,,,,,1
+6202,Ross,WA,12200500,,,,,,,41,RO,1
+6406,Chandler,WA,12510500,,,,,CHCW;QJ,PNH,,,1
+6407,Roza,WA,12510500,,,,,RZCW;QJ,PNH,,,1
+7034,Hydro II,UT,NA,,10109000,,,,,,,1
+7132,Pine View Dam,UT,10172630,,10140100,,,,,,,1
+6432,Diablo,WA,12200500,,,,,,,42,RO,1
+50827,Twin Falls Hydro,WA,NA,,,12143600,,,,,,1
+54387,Weeks Falls,WA,NA,,,12143600,,,,,,1
+3847,Merwin,WA,14246900,,14220500,,,,,,,1
+3860,Snoqualmie,WA,12200500,,12144500,,,,,,,1
+3867,Long Lake,WA,12433000,,12433000,,,,,,,1
+3868,Meyers Falls,WA,NA,,12409000,,,,,,,1
+57496,Tieton,WA,12510500,,,,,,,RIM;QD,PNH,1
+3891,Box Canyon,WA,12433000,,12396500,,,,,,,1
+3916,LaGrande,WA,12200500,,12086500,,,,,,,1
+3917,Mayfield,WA,14246900,,14238000,,,,,,,1
+6430,Cedar Falls,WA,12200500,12116400,,,,,,,,1
+6431,Gorge,WA,12200500,,12178000,,,,,,,1
+6433,Boundary,WA,12433000,,12398600,,,,,,,1
+7259,Skookumchuck,WA,14301000,,12026150,,,,,,,1
+7427,Cowlitz Falls,WA,14246900,,14233500,,,,,,,1
+7588,Jackson,WA,12200500,,12138160,,,,,,,1
+7867,Snoqualmie 2,WA,12200500,,12144500,,,,,,,1
+9095,Monroe Street,WA,12433000,,12422500,,,,,,,1
+505,Boysen,WY,6294500,,6259000,,,BOYR;QED,MBH,,,1
+4177,Glendo,WY,6674500,,,,,,,377,RISE,1
+4178,Guernsey,WY,6674500,,,,,,,377,RISE,1
+4180,Kortes,WY,6674500,,,,,,,KORR;QD,MBH,1
+4182,Seminoe,WY,6674500,,,,,,,735,RISE,1
+4183,Shoshone,WY,6294500,,,,,BBR;QESD,MBH,,,1
+4185,Fontenelle,WY,9234500,,,,,4305,RISE,,,1
+6408,Heart Mountain,WY,6294500,,,,,BBR;QEHD,MBH,,,1
+6409,Alcova,WY,6674500,,,,,,,116,RISE,1
+7050,Viva Naughton,WY,9234500,,9223385,,,,,,,1
+7317,Buffalo Bill,WY,6294500,,,,,BBR;QEBBD,MBH,,,1
+7541,Spirit Mountain,WY,6294500,,,,,BBR;QESPD,MBH,,,1
+,,,,,,,,,,,,
+2,Bankhead,AL,2469761,,,,,,,,,
+4,Walter Bouldin Dam,AL,2420000,,,,,,,,,
+11,H Neely Henry Dam,AL,2420000,,,,,,,,,
+12,Holt,AL,2469761,,,,,,,,,
+13,Jordan Dam,AL,2420000,,,,,,,,,
+14,Logan Martin Dam,AL,2420000,,,,,,,,,
+15,Lay Dam,AL,2420000,,,,,,,,,
+16,Martin Dam,AL,2420000,,,,,,,,,
+17,Mitchell,AL,2420000,,,,,,,,,
+18,Lewis Smith,AL,2469761,,,,,,,,,
+19,Thurlow Dam,AL,2420000,,,,,,,,,
+20,Weiss Dam,AL,2420000,,,,,,,,,
+21,Yates Dam,AL,2420000,,,,,,,,,
+38,Millers Ferry,AL,2420000,,,,,,,,,
+48,Guntersville,AL,3584600,,,,,,,,,
+49,Wheeler Dam,AL,3584600,,,,,,,,,
+53,Gantt,AL,2376033,,,,,,,,,
+55,Point A,AL,2376033,,,,,,,,,
+88,Ashokan,NY,1358000,,,,,,,,,
+166,Carpenter,AR,7362000,,,,,,,,,
+174,Remmel,AR,7362000,,,,,,,,,
+182,Beaver,AR,7074850,,,,,,,,,
+187,Degray,AR,7362000,,,,,,,,,
+188,Greers Ferry Lake,AR,7074850,,,,,,,,,
+195,Narrows,AR,7362000,,,,,,,,,
+196,Norfork,AR,7074850,,,,,,,,,
+197,Blakely Mountain,AR,7362000,,,,,,,,,
+198,Bull Shoals,AR,7074850,,,,,,,,,
+199,Dardanelle,AR,7263451,,,,,,,,,
+347,Black Brook Dam,WI,5340500,,,,,,,,,
+378,Prairie River,MN,5288500,,,,,,,,,
+541,Bulls Bridge,CT,1127000,,,,,,,,,
+551,Scotland Dam,CT,1127000,,,,,,,,,
+552,Shepaug,CT,1127000,,,,,,,,,
+553,Stevenson,CT,1127000,,,,,,,,,
+554,Taftville,CT,1127000,,,,,,,,,
+557,Tunnel,CT,1127000,,,,,,,,,
+559,Rainbow,CT,1170500,,,,,,,,,
+560,Falls Village,CT,1127000,,,,,,,,,
+579,High Falls,NY,1358000,,,,,,,,,
+580,Second Street,CT,1127000,,,,,,,,,
+582,Occum,CT,1127000,,,,,,,,,
+583,Tenth Street,CT,1127000,,,,,,,,,
+625,Upper Mechanicville,NY,1358000,,,,,,,,,
+678,Green River,VT,4268000,,,,,,,,,
+690,J Woodruff,FL,2359170,,,,,,,,,
+702,Bartletts Ferry,GA,2359170,,,,,,,,,
+704,Burton,GA,2198500,,,,,,,,,
+706,Flint River,GA,2359170,,,,,,,,,
+707,Goat Rock,GA,2359170,,,,,,,,,
+712,Lloyd Shoals,GA,2226000,,,,,,,,,
+717,Morgan Falls,GA,2359170,,,,,,,,,
+718,Nacoochee,GA,2198500,,,,,,,,,
+719,North Highlands,GA,2359170,,,,,,,,,
+720,Oliver,GA,2359170,,,,,,,,,
+721,Riverview,GA,2359170,,,,,,,,,
+722,Sinclair,GA,2226000,,,,,,,,,
+723,Tallulah Falls,GA,2198500,,,,,,,,,
+724,Terrora,GA,2198500,,,,,,,,,
+725,Tugalo,GA,2198500,,,,,,,,,
+729,Yonah,GA,2198500,,,,,,,,,
+736,Stevens Creek,GA,2198500,,,,,,,,,
+752,Lake Blackshear,GA,2359170,,,,,,,,,
+754,Hartwell Lake,GA,2198500,,,,,,,,,
+757,Blue Ridge,GA,3566000,,,,,,,,,
+758,Nottely,GA,3566000,,,,,,,,,
+759,Buford,GA,2359170,,,,,,,,,
+760,Allatoona,GA,2420000,,,,,,,,,
+761,Walter F George,GA,2359170,,,,,,,,,
+785,Kingsley,NE,6674500,,,,,,,,,
+788,East Barnet,VT,1170500,,,,,,,,,
+791,Canyon,TX,8176500,,,,,,,,,
+794,Lewisville,TX,8067070,,,,,,,,,
+805,Charles E Monty,ME,1059000,,,,,,,,,
+808,Jarvis (Hinckley),NY,1358000,,,,,,,,,
+899,Moline,IL,5474500,,,,,,,,,
+903,Rockton,IL,5446500,,,,,,,,,
+955,Peru,IL,5586100,,,,,,,,,
+986,Elkhart,IN,4119000,,,,,,,,,
+989,Twin Branch,IN,4119000,,,,,,,,,
+998,Norway,IN,3377500,,,,,,,,,
+999,Oakdale,IN,3377500,,,,,,,,,
+1005,Markland,IN,3277200,,,,,,,,,
+1053,Anamosa,IA,5474500,,,,,,,,,
+1065,Iowa Falls,IA,5474500,,,,,,,,,
+1067,Maquoketa,IA,5418500,,,,,,,,,
+1109,Keokuk,IA,5474500,,,,,,,,,
+1173,Ottumwa,IA,5490600,,,,,,,,,
+1196,East Hydro,IA,5474500,,,,,,,,,
+1354,Dix Dam,KY,3290500,,,,,,,,,
+1359,Mother Ann Lee,KY,3290500,,,,,,,,,
+1365,Ohio Falls,KY,3381700,,,,,,,,,
+1371,Barkley,KY,3431500,,,,,,,,,
+1377,Kentucky Dam,KY,3603000,,,,,,,,,
+1380,Wolf Creek,KY,3431500,,,,,,,,,
+1469,PPL Ellsworth Hydro Station,ME,1021000,,,,,,,,,
+1475,PPL Milford Hydro Station,ME,1034500,,,,,,,,,
+1478,Stillwater Hydro Station,ME,1034500,,,,,,,,,
+1482,Bonny Eagle,ME,1064140,,,,,,,,,
+1483,Brunswick,ME,1059000,,,,,,,,,
+1486,Cataract,ME,1064140,,,,,,,,,
+1488,Deer Rips,ME,1059000,,,,,,,,,
+1491,Gulf Island,ME,1059000,,,,,,,,,
+1492,Indian Pond,ME,1049265,,,,,,,,,
+1493,Hiram,ME,1064140,,,,,,,,,
+1497,Oakland,ME,1049265,,,,,,,,,
+1498,Rice Rips,ME,1049265,,,,,,,,,
+1500,Union Gas,ME,1049265,,,,,,,,,
+1501,North Gorham,ME,1064140,,,,,,,,,
+1504,Shawmut,ME,1049265,,,,,,,,,
+1505,Skelton,ME,1064140,,,,,,,,,
+1508,West Buxton,ME,1064140,,,,,,,,,
+1509,Weston,ME,1049265,,,,,,,,,
+1510,Williams,ME,1049265,,,,,,,,,
+1511,Wyman Hydro,ME,1049265,,,,,,,,,
+1516,Squa Pan Hydro Station,ME,1017000,,,,,,,,,
+1567,Deep Creek,MD,3085000,,,,,,,,,
+1574,Conowingo,MD,1576000,,,,,,,,,
+1602,Beebe Holbrook,MA,1170500,,,,,,,,,
+1603,Boatlock,MA,1170500,,,,,,,,,
+1604,Chemical,MA,1170500,,,,,,,,,
+1605,Hadley Falls,MA,1170500,,,,,,,,,
+1607,Riverside,MA,1170500,,,,,,,,,
+1608,Skinner,MA,1170500,,,,,,,,,
+1620,Deerfield No. 5,MA,1170500,,,,,,,,,
+1629,Cabot,MA,1170500,,,,,,,,,
+1630,Cobble Mountain,MA,1170500,,,,,,,,,
+1634,Gardners Falls,MA,1170500,,,,,,,,,
+1637,Putts Bridge,MA,1170500,,,,,,,,,
+1638,Redbridge,MA,1170500,,,,,,,,,
+1693,Alcona,MI,4137500,,,,,,,,,
+1694,Calkins Bridge,MI,4119000,,,,,,,,,
+1698,Tippy,MI,4121970,,,,,,,,,
+1700,Cooke,MI,4137500,,,,,,,,,
+1701,Croton,MI,4121970,,,,,,,,,
+1704,Five Channels,MI,4137500,,,,,,,,,
+1705,Foote,MI,4137500,,,,,,,,,
+1707,Hardy,MI,4121970,,,,,,,,,
+1708,Hodenpyl,MI,4121970,,,,,,,,,
+1712,Loud,MI,4137500,,,,,,,,,
+1714,Mio,MI,4137500,,,,,,,,,
+1716,Rogers,MI,4121970,,,,,,,,,
+1722,Webber,MI,4119000,,,,,,,,,
+1751,Edison Sault,MI,4137500,,,,,,,,,
+1753,Berrien Springs,MI,4119000,,,,,,,,,
+1754,Buchanan,MI,4119000,,,,,,,,,
+1756,Saxon Falls,MI,4024000,,,,,,,,,
+1757,Superior Falls,MI,4024000,,,,,,,,,
+1760,Constantine,MI,4119000,,,,,,,,,
+1761,Mottville,MI,4119000,,,,,,,,,
+1771,Escanaba No 1,MI,4067500,,,,,,,,,
+1773,Prickett,MI,4040000,,,,,,,,,
+1774,Victoria,MI,4040000,,,,,,,,,
+1775,Brule,WI,4067500,,,,,,,,,
+1776,Chalk Hill,MI,4067500,,,,,,,,,
+1777,Hemlock Falls,MI,4067500,,,,,,,,,
+1778,Kingsford,MI,4067500,,,,,,,,,
+1779,Lower Paint,MI,4067500,,,,,,,,,
+1780,Michigamme Falls,MI,4067500,,,,,,,,,
+1781,Peavy Falls,MI,4067500,,,,,,,,,
+1785,Way Dam,MI,4067500,,,,,,,,,
+1786,White Rapids,MI,4067500,,,,,,,,,
+1787,Grand Rapids,MI,4067500,,,,,,,,,
+1821,Crystal Falls,MI,4067500,,,,,,,,,
+1828,Hart Lake,MI,4121970,,,,,,,,,
+1833,Moores Park,MI,4119000,,,,,,,,,
+1839,Tourist Park,MI,4040000,,,,,,,,,
+1842,Marquette,MI,4040000,,,,,,,,,
+1844,Marshall,MI,4119000,,,,,,,,,
+1848,Sturgeon Falls,MI,4067500,,,,,,,,,
+1852,St Louis,MI,4156000,,,,,,,,,
+1856,Sturgis,MI,4119000,,,,,,,,,
+1863,Riley,MI,4119000,,,,,,,,,
+1865,Saint Marys Falls,MI,4137500,,,,,,,,,
+1871,Kleber,MI,4137500,,,,,,,,,
+1892,Blanchard,MN,5288500,,,,,,,,,
+1894,Fond Du Lac,MN,4024000,,,,,,,,,
+1895,Knife Falls,MN,4024000,,,,,,,,,
+1896,Little Falls,MN,5288500,,,,,,,,,
+1898,Pillager,MN,5288500,,,,,,,,,
+1899,Scanlon,MN,4024000,,,,,,,,,
+1900,Sylvan,MN,5288500,,,,,,,,,
+1901,Thomson,MN,4024000,,,,,,,,,
+1902,Winton,MN,5133500,,,,,,,,,
+1911,Hennepin Island,MN,5288500,,,,,,,,,
+1938,Bemidji Hydro,MN,5288500,,,,,,,,,
+1941,Dayton Hollow,MN,5092000,,,,,,,,,
+1943,Hoot Lake,MN,5092000,,,,,,,,,
+1947,Pisgah,MN,5092000,,,,,,,,,
+1949,Wright,MN,5092000,,,,,,,,,
+1977,Granite Falls,MN,5330000,,,,,,,,,
+1987,Lanesboro,MN,5378500,,,,,,,,,
+2007,Rochester Hydro,MN,5378500,,,,,,,,,
+2009,Redwood Falls,MN,5330000,,,,,,,,,
+2014,Thief River Falls,MN,5092000,,,,,,,,,
+2099,Niangua,MO,6926510,,,,,,,,,
+2106,Osage,MO,6926510,,,,,,,,,
+2124,Stockton,MO,6926510,,,,,,,,,
+2166,Table Rock,MO,7074850,,,,,,,,,
+2227,Jeffrey,NE,6796000,,,,,,,,,
+2228,Johnson 1,NE,6796000,,,,,,,,,
+2229,Johnson 2,NE,6796000,,,,,,,,,
+2260,Columbus,NE,6796000,,,,,,,,,
+2268,Kearney,NE,6796000,,,,,,,,,
+2273,Monroe,NE,6793000,,,,,,,,,
+2274,North Platte,NE,6764880,,,,,,,,,
+2303,Spalding,NE,NA,,,,,,,,,
+2349,Comerford,NH,1170500,,,,,,,,,
+2351,S C Moore,NH,1170500,,,,,,,,,
+2352,Vernon,NH,1170500,,,,,,,,,
+2353,Wilder,NH,1170500,,,,,,,,,
+2354,Amoskeag,NH,1100000,,,,,,,,,
+2355,Ayers Island,NH,1100000,,,,,,,,,
+2356,Eastman Falls,NH,1100000,,,,,,,,,
+2357,Garvins Falls,NH,1100000,,,,,,,,,
+2358,Gorham,NH,1059000,,,,,,,,,
+2359,Hooksett,NH,1100000,,,,,,,,,
+2360,Jackman,NH,1100000,,,,,,,,,
+2368,Smith,NH,1059000,,,,,,,,,
+2481,Dashville,NY,1358000,,,,,,,,,
+2483,Neversink,NY,1463500,,,,,,,,,
+2486,Sturgeon,NY,1358000,,,,,,,,,
+2522,Cadyville,NY,4268000,,,,,,,,,
+2530,High Falls,NY,4268000,,,,,,,,,
+2532,Kent Falls,NY,4268000,,,,,,,,,
+2540,Allens Falls,NY,4268000,,,,,,,,,
+2543,Beardslee,NY,1358000,,,,,,,,,
+2544,Belfort,NY,4268000,,,,,,,,,
+2545,Bennetts Bridge,NY,4260500,,,,,,,,,
+2546,Black River,NY,4268000,,,,,,,,,
+2547,Blake,NY,4268000,,,,,,,,,
+2548,Browns Falls,NY,4268000,,,,,,,,,
+2550,Chasm,NY,4268000,,,,,,,,,
+2551,Colton,NY,4268000,,,,,,,,,
+2552,Deferiet,NY,4268000,,,,,,,,,
+2555,Eagle,NY,4268000,,,,,,,,,
+2556,Eel Weir,NY,4268000,,,,,,,,,
+2557,Effley,NY,4268000,,,,,,,,,
+2559,Elmer,NY,4268000,,,,,,,,,
+2560,Ephratah,NY,1358000,,,,,,,,,
+2561,East Norfolk,NY,4268000,,,,,,,,,
+2562,Five Falls,NY,4268000,,,,,,,,,
+2563,Flat Rock,NY,4268000,,,,,,,,,
+2564,Franklin,NY,4268000,,,,,,,,,
+2566,Fulton,NY,4260500,,,,,,,,,
+2568,Glenwood,NY,4231600,,,,,,,,,
+2569,Granby,NY,4260500,,,,,,,,,
+2571,Hannawa,NY,4268000,,,,,,,,,
+2572,Herrings,NY,4268000,,,,,,,,,
+2573,Heuvelton,NY,4268000,,,,,,,,,
+2574,High Dam,NY,4260500,,,,,,,,,
+2575,High Falls,NY,4268000,,,,,,,,,
+2576,Higley,NY,4268000,,,,,,,,,
+2578,Hydraulic Race,NY,4231600,,,,,,,,,
+2579,Inghams,NY,1358000,,,,,,,,,
+2580,Johnsonville,NY,1358000,,,,,,,,,
+2581,Kamargo,NY,4268000,,,,,,,,,
+2582,Lighthouse Hill,NY,4260500,,,,,,,,,
+2583,Macomb,NY,4268000,,,,,,,,,
+2586,Minetto,NY,4260500,,,,,,,,,
+2588,Moshier,NY,4268000,,,,,,,,,
+2590,Norfolk,NY,4268000,,,,,,,,,
+2591,Norwood,NY,4268000,,,,,,,,,
+2595,Oswego Falls East,NY,4260500,,,,,,,,,
+2596,Oswego Falls West,NY,4260500,,,,,,,,,
+2597,Parishville,NY,4268000,,,,,,,,,
+2598,Piercefield,NY,4268000,,,,,,,,,
+2599,Prospect,NY,1358000,,,,,,,,,
+2600,Rainbow,NY,4268000,,,,,,,,,
+2601,Raymondville,NY,4268000,,,,,,,,,
+2604,South Edwards,NY,4268000,,,,,,,,,
+2605,School Street,NY,1358000,,,,,,,,,
+2606,Schaghticoke,NY,1358000,,,,,,,,,
+2607,Schuylerville,NY,1358000,,,,,,,,,
+2608,Sewalls,NY,4268000,,,,,,,,,
+2609,Sherman Island,NY,1358000,,,,,,,,,
+2610,Soft Maple,NY,4268000,,,,,,,,,
+2611,South Colton,NY,4268000,,,,,,,,,
+2612,Spier Falls,NY,1358000,,,,,,,,,
+2613,Stark,NY,4268000,,,,,,,,,
+2614,Stewarts Bridge,NY,1358000,,,,,,,,,
+2616,Sugar Island,NY,4268000,,,,,,,,,
+2617,Taylorville,NY,4268000,,,,,,,,,
+2619,Trenton Falls,NY,1358000,,,,,,,,,
+2621,Varick,NY,4260500,,,,,,,,,
+2623,Waterport,NY,4231600,,,,,,,,,
+2624,Yaleville,NY,4268000,,,,,,,,,
+2627,Grahamsville,NY,1463500,,,,,,,,,
+2630,Mongaup,NY,1463500,,,,,,,,,
+2631,Rio,NY,1463500,,,,,,,,,
+2634,Swinging Bridge 2,NY,1463500,,,,,,,,,
+2638,Rochester 26,NY,4231600,,,,,,,,,
+2639,Rochester 2,NY,4231600,,,,,,,,,
+2641,Rochester 5,NY,4231600,,,,,,,,,
+2646,Wiscoy 170,NY,4231600,,,,,,,,,
+2685,Crescent,NY,1358000,,,,,,,,,
+2686,Vischer Ferry,NY,1358000,,,,,,,,,
+2693,Robert Moses Niagara,NY,4213500,,,,,,,,,
+2694,Robert Moses - St. Lawrence,NY,4268000,,,,,,,,,
+2700,Watertown,NY,4268000,,,,,,,,,
+2707,Blewett,NC,2135200,,,,,,,,,
+2710,Marshall,NC,3455000,,,,,,,,,
+2714,Tillery,NC,2135200,,,,,,,,,
+2715,Walters,NC,3455000,,,,,,,,,
+2719,Bridgewater,NC,2171500,,,,,,,,,
+2722,Cowans Ford,NC,2171500,,,,,,,,,
+2726,Lookout Shoals,NC,2171500,,,,,,,,,
+2728,Mountain Island,NC,2171500,,,,,,,,,
+2729,Oxford,NC,2171500,,,,,,,,,
+2730,Rhodhiss,NC,2171500,,,,,,,,,
+2735,Turner Shoals,NC,2171500,,,,,,,,,
+2736,Tuxedo,NC,2171500,,,,,,,,,
+2741,Bear Creek,NC,3455000,,,,,,,,,
+2742,Bryson,NC,3455000,,,,,,,,,
+2743,Cedar Cliff,NC,3455000,,,,,,,,,
+2745,Franklin,NC,3455000,,,,,,,,,
+2746,Mission,NC,3566000,,,,,,,,,
+2747,Nantahala,NC,3455000,,,,,,,,,
+2749,East Fork,NC,3455000,,,,,,,,,
+2750,Thorpe,NC,3455000,,,,,,,,,
+2751,Tuckasegee,NC,3455000,,,,,,,,,
+2756,Gaston,NC,2080500,,,,,,,,,
+2758,Roanoke Rapids,NC,2080500,,,,,,,,,
+2773,Lake Lure,NC,2171500,,,,,,,,,
+2778,Chatuge,NC,3566000,,,,,,,,,
+2779,Fontana Dam,NC,3455000,,,,,,,,,
+2780,Hiwassee Dam,NC,3566000,,,,,,,,,
+2815,Garrison,ND,6342500,,,,,,,,,
+2980,Markham Ferry,OK,7185000,,,,,,,,,
+2981,Pensacola,OK,7185000,,,,,,,,,
+2984,Keystone,OK,7152500,,,,,,,,,
+2985,Robert S Kerr,OK,7263451,,,,,,,,,
+2987,Webbers Falls,OK,7263451,,,,,,,,,
+3003,Fort Gibson,OK,7185000,,,,,,,,,
+3004,Tenkiller Ferry,OK,7263451,,,,,,,,,
+3117,York Haven,PA,1576000,,,,,,,,,
+3124,Piney,PA,3049500,,,,,,,,,
+3145,Holtwood,PA,1576000,,,,,,,,,
+3153,Wallenpaupack,PA,1463500,,,,,,,,,
+3175,Safe Harbor,PA,1576000,,,,,,,,,
+3253,Boyds Mill Hydro,SC,2171500,,,,,,,,,
+3254,Buzzard Roost,SC,2171500,,,,,,,,,
+3255,Cedar Creek,SC,2171500,,,,,,,,,
+3256,Dearborn,SC,2171500,,,,,,,,,
+3257,Fishing Creek,SC,2171500,,,,,,,,,
+3258,Gaston Shoals,SC,2171500,,,,,,,,,
+3259,Great Falls,SC,2171500,,,,,,,,,
+3261,Hollidays Bridge,SC,2171500,,,,,,,,,
+3267,Saluda,SC,2171500,,,,,,,,,
+3270,Wateree,SC,2171500,,,,,,,,,
+3271,Wylie,SC,2171500,,,,,,,,,
+3272,99 Islands,SC,2171500,,,,,,,,,
+3275,Lockhart,SC,2171500,,,,,,,,,
+3283,Columbia Canal,SC,2171500,,,,,,,,,
+3289,Neal Shoals,SC,2171500,,,,,,,,,
+3290,Parr,SC,2171500,,,,,,,,,
+3293,Saluda,SC,2171500,,,,,,,,,
+3305,Rocky River,SC,2198500,,,,,,,,,
+3319,Jefferies,SC,2171500,,,,,,,,,
+3321,Santee,SC,2171500,,,,,,,,,
+3323,J Strom Thurmond,SC,2198500,,,,,,,,,
+3356,Oahe,SD,6452000,,,,,,,,,
+3373,Fort Randall,SD,6485500,,,,,,,,,
+3375,Big Bend,SD,6452000,,,,,,,,,
+3394,Apalachia,TN,3566000,,,,,,,,,
+3395,Boone Dam,TN,3455000,,,,,,,,,
+3397,Cherokee Dam,TN,3455000,,,,,,,,,
+3398,Chickamauga,TN,3566000,,,,,,,,,
+3400,Douglas Dam,TN,3455000,,,,,,,,,
+3401,Fort Patrick Henry,TN,3455000,,,,,,,,,
+3402,Fort Loudoun,TN,3455000,,,,,,,,,
+3404,Great Falls,TN,3431500,,,,,,,,,
+3408,Melton Hill,TN,3455000,,,,,,,,,
+3409,Nickajack,TN,3566000,,,,,,,,,
+3411,Norris Dam,TN,3455000,,,,,,,,,
+3412,Ocoee 1,TN,3566000,,,,,,,,,
+3413,Ocoee 2,TN,3566000,,,,,,,,,
+3414,Ocoee 3,TN,3566000,,,,,,,,,
+3415,Pickwick Landing Dam,TN,3603000,,,,,,,,,
+3416,South Holston,TN,3455000,,,,,,,,,
+3417,Tims Ford,TN,3584600,,,,,,,,,
+3418,Watauga,TN,3455000,,,,,,,,,
+3420,Watts Bar Hydro,TN,3566000,,,,,,,,,
+3421,Wilbur,TN,3455000,,,,,,,,,
+3423,Cordell Hull,TN,3431500,,,,,,,,,
+3424,Dale Hollow,TN,3431500,,,,,,,,,
+3426,Old Hickory,TN,3431500,,,,,,,,,
+3428,J P Priest,TN,3431500,,,,,,,,,
+3437,Eagle Pass,TX,NA,,,,,,,,,
+3581,Abbott TP 3,TX,8176500,,,,,,,,,
+3582,Dunlap TP 1,TX,8176500,,,,,,,,,
+3583,H 4,TX,8176500,,,,,,,,,
+3584,H 5,TX,8176500,,,,,,,,,
+3585,Nolte,TX,8176500,,,,,,,,,
+3586,TP 4,TX,8176500,,,,,,,,,
+3594,Austin,TX,8162500,,,,,,,,,
+3595,Buchanan,TX,8162500,,,,,,,,,
+3597,Granite Shoals,TX,8162500,,,,,,,,,
+3598,Inks,TX,8162500,,,,,,,,,
+3599,Marble Falls,TX,8162500,,,,,,,,,
+3600,Marshall Ford,TX,8162500,,,,,,,,,
+3707,Arnold Falls,VT,1170500,,,,,,,,,
+3709,Bradford,VT,1170500,,,,,,,,,
+3710,Cavendish,VT,1170500,,,,,,,,,
+3711,Clark Falls,VT,4268000,,,,,,,,,
+3712,Fairfax Falls,VT,4268000,,,,,,,,,
+3713,Gage,VT,1170500,,,,,,,,,
+3714,Glen,VT,4268000,,,,,,,,,
+3716,Lower Middlebury,VT,4268000,,,,,,,,,
+3717,Milton,VT,4268000,,,,,,,,,
+3718,Passumpsic,VT,1170500,,,,,,,,,
+3719,Patch,VT,4268000,,,,,,,,,
+3720,Peterson,VT,4268000,,,,,,,,,
+3721,Pierce Mills,VT,1170500,,,,,,,,,
+3722,Pittsford,VT,4268000,,,,,,,,,
+3724,Salisbury,VT,4268000,,,,,,,,,
+3725,Silver Lake,VT,4268000,,,,,,,,,
+3727,Taftsville,VT,1170500,,,,,,,,,
+3728,Weybridge,VT,4268000,,,,,,,,,
+3731,Newport,VT,4268000,,,,,,,,,
+3737,Essex Junction 19,VT,4268000,,,,,,,,,
+3739,Marshfield 6,VT,4268000,,,,,,,,,
+3740,Middlesex 2,VT,4268000,,,,,,,,,
+3743,West Danville 15,VT,1170500,,,,,,,,,
+3745,Bellows Falls,NH,1170500,,,,,,,,,
+3746,Harriman,VT,1170500,,,,,,,,,
+3750,Canaan,NH,1170500,,,,,,,,,
+3753,Barton Village,VT,4268000,,,,,,,,,
+3757,Kendall,VT,4268000,,,,,,,,,
+3762,Great Falls,VT,1170500,,,,,,,,,
+3763,Vail,VT,1170500,,,,,,,,,
+3764,Morrisville,VT,4268000,,,,,,,,,
+3765,Cadys Falls,VT,4268000,,,,,,,,,
+3772,Buck,VA,3198000,,,,,,,,,
+3773,Byllesby,VA,3198000,,,,,,,,,
+3774,Claytor,VA,3198000,,,,,,,,,
+3777,Leesville,VA,2080500,,,,,,,,,
+3778,Niagara,VA,2080500,,,,,,,,,
+3779,Reusens,VA,2037500,,,,,,,,,
+3780,Smith Mountain,VA,2080500,,,,,,,,,
+3789,Luray,VA,1646500,,,,,,,,,
+3790,Newport,VA,1646500,,,,,,,,,
+3798,Cushaw,VA,2037500,,,,,,,,,
+3821,Bedford,VA,2037500,,,,,,,,,
+3825,Pinnacles,VA,2080500,,,,,,,,,
+3826,Martinsville,VA,2080500,,,,,,,,,
+3827,Radford,VA,3198000,,,,,,,,,
+3833,John H Kerr,VA,2080500,,,,,,,,,
+3834,Philpott Lake,VA,2080500,,,,,,,,,
+3971,Biron,WI,5407000,,,,,,,,,
+3972,Du Bay,WI,5407000,,,,,,,,,
+3973,Stevens Point,WI,5407000,,,,,,,,,
+3974,Wisconsin Rapids,WI,5407000,,,,,,,,,
+3975,Whiting,WI,5407000,,,,,,,,,
+3983,Big Falls,WI,5369500,,,,,,,,,
+3985,Hayward Hydro,WI,5340500,,,,,,,,,
+3986,Ladysmith,WI,5369500,,,,,,,,,
+3988,Thornapple,WI,5369500,,,,,,,,,
+3989,White River,WI,4024000,,,,,,,,,
+3995,Arpin Dam,WI,5369500,,,,,,,,,
+3997,Winter,WI,5369500,,,,,,,,,
+3998,Cedar Falls,WI,5369500,,,,,,,,,
+4000,Chippewa Falls,WI,5369500,,,,,,,,,
+4002,Dells,WI,5369500,,,,,,,,,
+4007,Holcombe,WI,5369500,,,,,,,,,
+4008,Jim Falls,WI,5369500,,,,,,,,,
+4009,Menomonie,WI,5369500,,,,,,,,,
+4010,Riverdale,WI,5340500,,,,,,,,,
+4011,St Croix Falls,WI,5340500,,,,,,,,,
+4012,Trego,WI,5340500,,,,,,,,,
+4015,Wissota,WI,5369500,,,,,,,,,
+4018,Clam River,WI,5340500,,,,,,,,,
+4043,Appleton,WI,4067500,,,,,,,,,
+4044,Oconto Falls,WI,4067500,,,,,,,,,
+4045,Pine,WI,4067500,,,,,,,,,
+4053,Kilbourn,WI,5407000,,,,,,,,,
+4056,Prairie Du Sac,WI,5407000,,,,,,,,,
+4060,Alexander,WI,5407000,,,,,,,,,
+4061,Caldron Falls,WI,4067500,,,,,,,,,
+4063,Grandfather Falls,WI,5407000,,,,,,,,,
+4064,Hat Rapids,WI,5407000,,,,,,,,,
+4065,High Falls,WI,4067500,,,,,,,,,
+4066,Jersey,WI,5407000,,,,,,,,,
+4067,Johnson Falls,WI,4067500,,,,,,,,,
+4068,Merrill,WI,5407000,,,,,,,,,
+4069,Otter Rapids,WI,5407000,,,,,,,,,
+4070,Peshtigo,WI,4067500,,,,,,,,,
+4071,Potato Rapids,WI,4067500,,,,,,,,,
+4074,Sandstone Rapids,WI,4067500,,,,,,,,,
+4075,Tomahawk,WI,5407000,,,,,,,,,
+4077,Wausau,WI,5407000,,,,,,,,,
+4079,Castle Rock,WI,5407000,,,,,,,,,
+4080,Petenwell,WI,5407000,,,,,,,,,
+4102,Barron,WI,5369500,,,,,,,,,
+4104,Black River Falls,WI,5378500,,,,,,,,,
+4119,Little Chute,WI,4067500,,,,,,,,,
+4122,Rapide Croche,WI,4067500,,,,,,,,,
+4128,Merrillan,WI,5378500,,,,,,,,,
+4133,River Falls,WI,5378500,,,,,,,,,
+4134,Powell Falls,WI,5340500,,,,,,,,,
+4142,Flambeau,WI,5369500,,,,,,,,,
+4147,Stiles,WI,4067500,,,,,,,,,
+4201,Combined Locks,WI,4067500,,,,,,,,,
+4246,Village Plant,VT,4268000,,,,,,,,,
+4248,Elk Rapids,MI,4121970,,,,,,,,,
+4258,Greenup,OH,3277200,,,,,,,,,
+6006,Racine,OH,3107500,,,,,,,,,
+6012,Sherman,MA,1170500,,,,,,,,,
+6047,Deerfield No. 2,MA,1170500,,,,,,,,,
+6083,Deerfield No. 3,MA,1170500,,,,,,,,,
+6086,Cornell,WI,5369500,,,,,,,,,
+6087,Wallace Dam,GA,2226000,,,,,,,,,
+6119,Deerfield No. 4,MA,1170500,,,,,,,,,
+6128,Amistad Dam & Power,TX,NA,,,,,,,,,
+6130,Carters,GA,2420000,,,,,,,,,
+6131,Jones Bluff,AL,2420000,,,,,,,,,
+6132,Richard B Russell,GA,2198500,,,,,,,,,
+6133,West Point,GA,2359170,,,,,,,,,
+6140,Clarence Cannon,MO,5587450,,,,,,,,,
+6142,Ozark,AR,7263451,,,,,,,,,
+6168,Lake Anna,VA,2037500,,,,,,,,,
+6171,Laurel,KY,3431500,,,,,,,,,
+6188,Harris,AL,2420000,,,,,,,,,
+6231,Apple River,WI,5340500,,,,,,,,,
+6280,Ozark Beach,MO,7074850,,,,,,,,,
+6378,Dwight,MA,1170500,,,,,,,,,
+6379,Indian Orchard,MA,1170500,,,,,,,,,
+6388,Turners Falls,MA,1170500,,,,,,,,,
+6410,Falcon Dam & Power,TX,NA,,,,,,,,,
+6413,Sam Rayburn,TX,8040600,,,,,,,,,
+6414,Whitney,TX,8096500,,,,,,,,,
+6415,Broken Bow,OK,7344370,,,,,,,,,
+6416,Denison,TX,7316000,,,,,,,,,
+6417,Center Hill,TN,3431500,,,,,,,,,
+6418,Cheatham,TN,3431500,,,,,,,,,
+6419,Eufaula Dam,OK,7245000,,,,,,,,,
+6438,Queens Creek,NC,3455000,,,,,,,,,
+6440,Wilson Dam,AL,3584600,,,,,,,,,
+6450,Proctor,VT,4268000,,,,,,,,,
+6451,Beldens,VT,4268000,,,,,,,,,
+6453,Center Rutland,VT,4268000,,,,,,,,,
+6454,Upper Weed,WI,4067500,,,,,,,,,
+6456,Carver Falls,VT,4268000,,,,,,,,,
+6475,Gorge 18,VT,4268000,,,,,,,,,
+6477,Wolcott,VT,4268000,,,,,,,,,
+6483,Mcindoes,NH,1170500,,,,,,,,,
+6486,Mill C,NY,4268000,,,,,,,,,
+6517,Keowee,SC,2198500,,,,,,,,,
+6519,Vergennes 9,VT,4268000,,,,,,,,,
+6520,Waterbury 22,VT,4268000,,,,,,,,,
+6526,Rainbow Falls,NY,4268000,,,,,,,,,
+6527,E J West,NY,1358000,,,,,,,,,
+6529,Searsburg,VT,1170500,,,,,,,,,
+6540,Taplin Gorge,MN,5092000,,,,,,,,,
+6543,Dam 4,WV,1646500,,,,,,,,,
+6544,Dam 5,WV,1646500,,,,,,,,,
+6546,Millville,WV,1646500,,,,,,,,,
+6560,London,WV,3198000,,,,,,,,,
+6561,Marmet,WV,3198000,,,,,,,,,
+6562,Winfield,WV,3198000,,,,,,,,,
+6595,Toledo Bend,TX,8030500,,,,,,,,,
+6618,Highgate Falls,VT,4268000,,,,,,,,,
+6624,Gavins Point,NE,6485500,,,,,,,,,
+6636,Lake Lynn Power Station,WV,3085000,,,,,,,,,
+6789,St Stephen,SC,2171500,,,,,,,,,
+7040,James Trimble Lock and Dam,AR,7263451,,,,,,,,,
+7051,North Branch 3,VT,4268000,,,,,,,,,
+7056,Bolton Falls,VT,4268000,,,,,,,,,
+7115,Hoist,MI,4040000,,,,,,,,,
+7116,McClure,MI,4040000,,,,,,,,,
+7117,Autrain,MI,4040000,,,,,,,,,
+7118,Cataract,MI,4067500,,,,,,,,,
+7128,Raystown,PA,1576000,,,,,,,,,
+7135,Arthur Ormond Lock & Dam,AR,7263451,,,,,,,,,
+7166,Murray,AR,7263451,,,,,,,,,
+7191,Tallassee Shoals,GA,2226000,,,,,,,,,
+7200,Robert D Willis,TX,8040600,,,,,,,,,
+7246,Dam 2,AR,NA,,,,,,,,,
+7279,O'Shaughnessy Hydro,OH,3237020,,,,,,,,,
+7394,Gonzales Hydro Plant,TX,8176500,,,,,,,,,
+7474,Upper Sterling,IL,5446500,,,,,,,,,
+7545,Kaw Hydro,OK,7152500,,,,,,,,,
+7583,Talcville,NY,4268000,,,,,,,,,
+7594,Belleville,WV,3107500,,,,,,,,,
+7657,Auglaize Hydro,OH,4193500,,,,,,,,,
+7804,Portland,MI,4119000,,,,,,,,,
+7807,Hamilton,OH,3274000,,,,,,,,,
+7812,Weed,WI,4067500,,,,,,,,,
+7820,Big Quinnesec Falls,MI,4067500,,,,,,,,,
+7821,Old Quinnesec Falls,MI,4067500,,,,,,,,,
+7822,Kaukauna,WI,4067500,,,,,,,,,
+8004,Fife Brook,MA,1170500,,,,,,,,,
+9864,Holyoke No. 1,MA,1170500,,,,,,,,,
+10025,Kodak Park Site,NY,4231600,,,,,,,,,
+10036,Hosiery Mill,NH,1100000,,,,,,,,,
+10051,Lockville Hydropower,NC,2105769,,,,,,,,,
+10054,Middle Appleton,WI,4067500,,,,,,,,,
+10059,Somersworth,NH,1064140,,,,,,,,,
+10063,Derby Hydro,CT,1127000,,,,,,,,,
+10109,Steven Mills,NH,1100000,,,,,,,,,
+10116,Emeryville,NY,4268000,,,,,,,,,
+10121,High Shoals Hydro,GA,2226000,,,,,,,,,
+10124,Hollow Dam Power Partnership,NY,4268000,,,,,,,,,
+10137,Deweys Mill,VT,1170500,,,,,,,,,
+10152,Warrior Ridge Hydro,PA,1576000,,,,,,,,,
+10155,Brasfield,VA,2037500,,,,,,,,,
+10173,Cherokee Falls,SC,2171500,,,,,,,,,
+10181,Craggy Dam,NC,3455000,,,,,,,,,
+10183,Mine Falls Generating Station,NH,1100000,,,,,,,,,
+10196,Moose River,NY,4268000,,,,,,,,,
+10197,Philadlephia,NY,4268000,,,,,,,,,
+10214,Lower Saranac Hydroelectric Facility,NY,4268000,,,,,,,,,
+10218,Warrensburg Hydroelectric,NY,1358000,,,,,,,,,
+10219,Middle Falls,NY,1358000,,,,,,,,,
+10220,Sissonville Hydro,NY,4268000,,,,,,,,,
+10221,New York State Dam Hydro,NY,1358000,,,,,,,,,
+10237,Diana Hydroelectric,NY,4268000,,,,,,,,,
+10238,Dolgeville Hydro,NY,1358000,,,,,,,,,
+10255,West Enfield,ME,1034500,,,,,,,,,
+10258,Saxapahaw,NC,2105769,,,,,,,,,
+10276,Clement Dam Hydro LLC,NH,1100000,,,,,,,,,
+10279,Kansas River,KS,6892350,,,,,,,,,
+10285,Townsend Hydro,PA,3107500,,,,,,,,,
+10286,Cornell Hydro,NY,4260500,,,,,,,,,
+10453,LAC Courte Oreilles Hydroelect,WI,5369500,,,,,,,,,
+10467,Mohawk Paper Mills,NY,1358000,,,,,,,,,
+10487,International Falls Power,MN,5133500,,,,,,,,,
+10490,Upper Beaver Falls,NY,4268000,,,,,,,,,
+10493,Rumford Falls Power,ME,1059000,,,,,,,,,
+10494,Sheldon Springs Hydroelectric,VT,4268000,,,,,,,,,
+10519,Milton Hydro,NH,1064140,,,,,,,,,
+10520,Dayton,IL,5543500,,,,,,,,,
+10523,Benton Falls,ME,1049265,,,,,,,,,
+10526,Dodge Falls Associates,NH,1170500,,,,,,,,,
+10530,Feeder Dam,NY,1358000,,,,,,,,,
+10531,Beebee Island,NY,4268000,,,,,,,,,
+10538,Dexter Plant,NY,4268000,,,,,,,,,
+10539,Theresa Plant,NY,4268000,,,,,,,,,
+10540,Diamond Island Plant,NY,4268000,,,,,,,,,
+10544,Hailesboro 4 Plant,NY,4268000,,,,,,,,,
+10545,High Falls,NY,4268000,,,,,,,,,
+10546,Patterson,PA,3107500,,,,,,,,,
+10547,Pyrites Plant,NY,4268000,,,,,,,,,
+10550,High Shoals Hydro,NC,2171500,,,,,,,,,
+10555,Brassua Hydroelectric Project,ME,1049265,,,,,,,,,
+10556,Boott Hydropower,MA,1100000,,,,,,,,,
+10570,Errol Hydroelectric Project,NH,1059000,,,,,,,,,
+10608,Gilman Mill,VT,1170500,,,,,,,,,
+10613,WoodlandMill,ME,1021000,,,,,,,,,
+10656,French Paper Hydro,MI,4119000,,,,,,,,,
+10686,Grand Rapids,MN,5288500,,,,,,,,,
+10687,Black River Hydro Associates,NY,4268000,,,,,,,,,
+10694,Pepperell Hydro Power Plant,MA,1100000,,,,,,,,,
+10728,Barker Lower,ME,1059000,,,,,,,,,
+10752,Lachute Hydro Lower,NY,4268000,,,,,,,,,
+10753,Lachute Hydro Upper,NY,4268000,,,,,,,,,
+10787,Piedmont Hydro Power Project,SC,2171500,,,,,,,,,
+10798,Fries Hydroelectric Project,VA,3198000,,,,,,,,,
+10799,Pelzer Upper,SC,2171500,,,,,,,,,
+10800,Pelzer Lower,SC,2171500,,,,,,,,,
+10801,Ware Shoals Hydro Project,SC,2171500,,,,,,,,,
+10817,Port Leyden Hydroelectric Project,NY,4268000,,,,,,,,,
+10823,Deer Island Treatment Plant,MA,1112500,,,,,,,,,
+10824,Oakdale Power Station,MA,1100000,,,,,,,,,
+10825,Cosgrove Intake and Power Station,MA,1100000,,,,,,,,,
+10848,Walden,NY,1358000,,,,,,,,,
+10852,Clark Mills Lower,NY,1358000,,,,,,,,,
+10853,Center Falls,NY,1358000,,,,,,,,,
+10872,Kings Falls Hydroelectric,NY,4268000,,,,,,,,,
+10902,Victory Mills,NY,1358000,,,,,,,,,
+10903,Lockport Powerhouse,IL,5543500,,,,,,,,,
+50010,Glen Ferris Hydro,WV,3198000,,,,,,,,,
+50011,Hawks Nest Hydro,WV,3198000,,,,,,,,,
+50031,Mt Ida Hydroelectric,NY,1358000,,,,,,,,,
+50034,James Thompson,NY,1358000,,,,,,,,,
+50036,New Martinsville,WV,3107500,,,,,,,,,
+50047,Jay,ME,1059000,,,,,,,,,
+50079,Colliersville,NY,1576000,,,,,,,,,
+50080,Otis Hydro,ME,1059000,,,,,,,,,
+50081,Riley,ME,1059000,,,,,,,,,
+50082,Livermore Falls,ME,1059000,,,,,,,,,
+50093,Chateaugay High Falls Hydro,NY,4268000,,,,,,,,,
+50103,China Mill Hydro,NH,1100000,,,,,,,,,
+50123,Normanskill Hydro Project,NY,1358000,,,,,,,,,
+50126,Ottauquechee Hydro,VT,1170500,,,,,,,,,
+50158,Edenville,MI,4156000,,,,,,,,,
+50166,Woronoco,MA,1170500,,,,,,,,,
+50175,Emporia,VA,2080500,,,,,,,,,
+50176,Union Falls,NY,4268000,,,,,,,,,
+50177,Tupperware,RI,1112500,,,,,,,,,
+50178,Halifax,VA,2080500,,,,,,,,,
+50190,Rothschild,WI,5407000,,,,,,,,,
+50242,Porterdale Hydro,GA,2226000,,,,,,,,,
+50252,Sartell Dam,MN,5288500,,,,,,,,,
+50268,Hewittville Hydroelectric,NY,4268000,,,,,,,,,
+50269,Unionville Hydro Project 2499 NY,NY,4268000,,,,,,,,,
+50278,Worumbo Hydro Station,ME,1059000,,,,,,,,,
+50280,Dahowa Hydro,NY,1358000,,,,,,,,,
+50285,Lower Village Water Power Project,NH,1170500,,,,,,,,,
+50311,Passaic Valley Water Commission,NJ,1389500,,,,,,,,,
+50312,Pembroke Hydro,NH,1100000,,,,,,,,,
+50315,Chateaugay Chasm,NY,4268000,,,,,,,,,
+50324,Newfound Hydroelectric,NH,1100000,,,,,,,,,
+50328,Byllesby,MN,5378500,,,,,,,,,
+50351,Rolfe Canal Hydro,NH,1100000,,,,,,,,,
+50353,Penacook Lower Falls,NH,1100000,,,,,,,,,
+50354,Newport Hydro,NY,1358000,,,,,,,,,
+50384,Gregg Falls,NH,1100000,,,,,,,,,
+50395,Nekoosa,WI,5407000,,,,,,,,,
+50408,Park Mill,WI,4067500,,,,,,,,,
+50409,Menominee Mill Marinette,MI,4067500,,,,,,,,,
+50414,Penacook Upper Falls Hydro,NH,1100000,,,,,,,,,
+50416,Tannery Island Power,NY,4268000,,,,,,,,,
+50433,Ada Dam,MI,4119000,,,,,,,,,
+50436,Cascade Dam,MI,4119000,,,,,,,,,
+50437,French Landing Dam,MI,4165500,,,,,,,,,
+50439,Oconto Falls Lower,WI,4067500,,,,,,,,,
+50461,Cheboygan,MI,4137500,,,,,,,,,
+50468,Rocky Mount Mills,NC,2084000,,,,,,,,,
+50476,Packaging of America Tomahawk Mill,WI,5407000,,,,,,,,,
+50479,Big Island,VA,2037500,,,,,,,,,
+50512,Glen Park Hydroelectric Project,NY,4268000,,,,,,,,,
+50513,Stillwater Reservoir Hydro,NY,4268000,,,,,,,,,
+50514,Fort Miller Hydroelectric Facility,NY,1358000,,,,,,,,,
+50539,Wells River,VT,1170500,,,,,,,,,
+50545,Lawrence Hydroelectric Associates,MA,1100000,,,,,,,,,
+50601,Riverdale Mills,MA,1112500,,,,,,,,,
+50614,Mosinee,WI,5407000,,,,,,,,,
+50636,Brainerd,MN,5288500,,,,,,,,,
+50639,Cloquet,MN,4024000,,,,,,,,,
+50652,Lyonsdale,NY,4268000,,,,,,,,,
+50688,American Tissue,ME,1049265,,,,,,,,,
+50699,Lowell Tannery,ME,1034500,,,,,,,,,
+50702,Salmon Falls,NH,1064140,,,,,,,,,
+50704,Lower Great Falls,NH,1064140,,,,,,,,,
+50713,Huntington Falls,VT,4268000,,,,,,,,,
+50741,Pontook Hydro Facility,NH,1059000,,,,,,,,,
+50758,Pejepscot Hydroelectric Project,ME,1059000,,,,,,,,,
+50759,Carthage Mill,NY,4268000,,,,,,,,,
+50768,Forestport,NY,4268000,,,,,,,,,
+50832,Chicopee Hydroelectric Station,MA,1170500,,,,,,,,,
+50890,Ivy River Hydro,NC,3455000,,,,,,,,,
+50893,Allegheny 5,PA,3049500,,,,,,,,,
+50894,Allegheny 6,PA,3049500,,,,,,,,,
+50897,Allegheny 8,PA,3049500,,,,,,,,,
+50898,Allegheny 9,PA,3049500,,,,,,,,,
+50933,Rhinelander,WI,5407000,,,,,,,,,
+50999,Aziscohos Hydroelectric Project,ME,1059000,,,,,,,,,
+51033,West Delaware Tunnel Plant,NY,1358000,,,,,,,,,
+51034,Little Falls Hydro,NY,1358000,,,,,,,,,
+52033,Moretown No. 8,VT,4268000,,,,,,,,,
+52036,Youghiogheny,PA,3085000,,,,,,,,,
+52049,Clifton Dam 3 Power Station,SC,2171500,,,,,,,,,
+52054,Rapidan Hydro Facility,MN,5330000,,,,,,,,,
+52057,Herkimer,NY,1358000,,,,,,,,,
+52058,Ogdensburg,NY,4268000,,,,,,,,,
+52067,Clarks Mill Upper,NY,1358000,,,,,,,,,
+52068,Great Falls Hydro Project,NJ,1389500,,,,,,,,,
+52166,Collins Facility,MA,1170500,,,,,,,,,
+52171,Barker Mill Upper,ME,1059000,,,,,,,,,
+52173,Conemaugh,PA,3049500,,,,,,,,,
+54123,Mechanic Falls,ME,1059000,,,,,,,,,
+54124,Burnham,ME,1049265,,,,,,,,,
+54148,Hydro Kennebec Project,ME,1049265,,,,,,,,,
+54202,Upper Androscoggin,ME,1059000,,,,,,,,,
+54283,Lee Creek Water Treatment Facility,AR,7263451,,,,,,,,,
+54285,Hastings Lock & Dam,MN,5288500,,,,,,,,,
+54302,Goodwin Hydroelectric,CT,1170500,,,,,,,,,
+54322,Sibley Mill,GA,2198500,,,,,,,,,
+54340,Norway Point,MI,4137500,,,,,,,,,
+54341,Four Mile,MI,4137500,,,,,,,,,
+54342,Ninth Street,MI,4137500,,,,,,,,,
+54355,Chace Mill Winooski One,VT,4268000,,,,,,,,,
+54384,Hopkinton,NH,1100000,,,,,,,,,
+54385,Kinneytown New Old,CT,1127000,,,,,,,,,
+54391,Alice Falls Hydro Project,NY,4268000,,,,,,,,,
+54395,Stillwater Hydro Electric Project,NY,1358000,,,,,,,,,
+54418,Rollinsford,NH,1064140,,,,,,,,,
+54462,Enterprise,GA,2198500,,,,,,,,,
+54471,Glen,NH,1170500,,,,,,,,,
+54525,Kankakee Hydro Facility,IL,5543500,,,,,,,,,
+54548,Longfalls Facility,NY,4268000,,,,,,,,,
+54572,Lochmere Hydroelectric Plant,NH,1100000,,,,,,,,,
+54573,Wappinger Falls Hydroelectric,NY,1358000,,,,,,,,,
+54655,Schoolfield Dam,VA,2080500,,,,,,,,,
+54675,Spartanburg Water System,SC,2171500,,,,,,,,,
+54678,Sidney A Murray Jr Hydroelectric,LA,7362000,,,,,,,,,
+54688,Thundermist Hydro,RI,1112500,,,,,,,,,
+54691,Lower Beaver Falls,NY,4268000,,,,,,,,,
+54772,South Glens Falls,NY,1358000,,,,,,,,,
+54865,Phoenix Hydro Project,NY,4260500,,,,,,,,,
+54872,Milstead,GA,2226000,,,,,,,,,
+54878,Natural Dam,NY,4268000,,,,,,,,,
+54885,Kimberly Mill,WI,4067500,,,,,,,,,
+54894,Narrows,NC,2135200,,,,,,,,,
+54895,Falls,NC,2135200,,,,,,,,,
+54896,High Rock,NC,2135200,,,,,,,,,
+54897,Tuckertown,NC,2135200,,,,,,,,,
+54898,Santeetlah,NC,3455000,,,,,,,,,
+54899,Cheoah,NC,3455000,,,,,,,,,
+54900,Calderwood,TN,3455000,,,,,,,,,
+54901,Chilhowee,TN,3455000,,,,,,,,,
+54953,Hudson Falls Hydroelectric Project,NY,1358000,,,,,,,,,
+54969,Dixon,IL,5446500,,,,,,,,,
+54981,Nonotuck Mill,MA,1170500,,,,,,,,,
+55288,Medway,ME,1034500,,,,,,,,,
+55684,Flambeau Crowley Rapids Project,WI,5369500,,,,,,,,,
+55685,Flambeau Lower Project,WI,5369500,,,,,,,,,
+55860,Quinebaug Lower Project,CT,1127000,,,,,,,,,
+56313,Coleman Falls,VA,2037500,,,,,,,,,
+56314,Holcomb Rock,VA,2037500,,,,,,,,,
+56333,Summersville,WV,3198000,,,,,,,,,
+56703,Lyons Falls,NY,4268000,,,,,,,,,
+56704,Gouldtown,NY,4268000,,,,,,,,,
+56705,Kosterville,NY,4268000,,,,,,,,,
+56872,Meldahl Hydroelectric Project,KY,3277200,,,,,,,,,
+56936,Glens Falls,NY,1358000,,,,,,,,,
+57069,Twin City,MN,5288500,,,,,,,,,
+57160,White River Lock & Dam NO. 1,AR,7074850,,,,,,,,,
+57161,White River Lock & Dam NO. 2,AR,7074850,,,,,,,,,
+57162,White River Lock & Dam NO. 3,AR,7074850,,,,,,,,,
+57184,Orono,ME,1034500,,,,,,,,,
+57190,Little Quinnesec Falls,WI,4067500,,,,,,,,,
+57399,Cannelton,KY,3381700,,,,,,,,,
+57400,Smithland,KY,3381700,,,,,,,,,
+57401,Willow Island Hydro Station,WV,3107500,,,,,,,,,
+57665,Lower St. Anthony Falls Hydroelectric Project,MN,5288500,,,,,,,,,
+58257,Pacolet,SC,2171500,,,,,,,,,
+58390,Jordan,NC,2105769,,,,,,,,,
+58434,Red Rock,IA,5490600,,,,,,,,,
+58438,Spearfish,SD,NA,,,,,,,,,
+58645,Lake Livingston,TX,8067070,,,,,,,,,
+58678,Oswegatchie,NY,4268000,,,,,,,,,
+58679,Newton Falls Upper,NY,4268000,,,,,,,,,
+58685,Mahoning Creek Hydro Station,PA,3049500,,,,,,,,,
+58712,Stevens Mills Hydroelectric Project,NH,1100000,,,,,,,,,
+58873,Stuyvesant Falls,NY,1358000,,,,,,,,,
+59040,Ball Mountain Dam Hydroelectric Project,VT,1170500,,,,,,,,,
+59437,Stillwater B,ME,1034500,,,,,,,,,
+59438,Orono B,ME,1034500,,,,,,,,,
+59836,Twin Falls (WI),WI,4067500,,,,,,,,,
+61000,King Mill,GA,2198500,,,,,,,,,
+61207,Green Island Hydroelectric Station,NY,1358000,,,,,,,,,
+61355,Arlington Outlet Hydroelectric Generator,TX,NA,,,,,,,,,
+61640,Texon Hydroelectric Project,MA,1170500,,,,,,,,,
+61641,Seneca Falls Hydroelectric Project,NY,4260500,,,,,,,,,
+61642,Waterloo,NY,4260500,,,,,,,,,
+62322,Mechanicville Hydroelectric Station,NY,1358000,,,,,,,,,
+62747,Matilda Hamilton Fee Hydroelectric Station,KY,NA,,,,,,,,,
+64242,St. Cloud Hydro,MN,5288500,,,,,,,,,
+65294,Indian River Hydro,MA,1170500,,,,,,,,,
+65399,Mill Pond Hydro,NY,1358000,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+362,Santa Ana 2,CA,NA,,,11051501,downstream aggregate gauge,,,,,
