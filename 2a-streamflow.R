@@ -13,7 +13,7 @@ source('utilities.R')
 date_start = '2001-01-01'
 date_end = '2023-12-31'
 #- output directory
-dir_data = 'data/'
+dir_data = 'data/gauge/'
 #- ResOpsUS time_series_all data directory
 dir_resops = '/Users/brom374/Library/CloudStorage/OneDrive-PNNL/Documents/Datasets/ResOpsUS/time_series_all/'
 #===========================================================
@@ -382,7 +382,7 @@ for(i in 1:length(flow_file_list)){
 
 }
 #- write out tidy csv
-write_csv(dat_flow, paste0(dir_data, '/proc/flow_all_td.csv'))
+write_csv(dat_flow, paste0(dir_data, '../proc/flow_all_td.csv'))
 
 #- build spread csv
 dat_flow_sp = dat_flow %>%
@@ -391,14 +391,14 @@ dat_flow_sp = dat_flow %>%
   spread(EIA_ID, value, -date)
 
 #- write out spread csv
-write_csv(dat_flow_sp, paste0(dir_data, '/proc/flow_all_sp.csv'))
+write_csv(dat_flow_sp, paste0(dir_data, '../proc/flow_all_sp.csv'))
 
 #- create metadata file
 dat_flow_meta = dat_flow %>%
   dplyr::select(-date, -value) %>%
   distinct()
 
-write_csv(dat_flow_meta, paste0(dir_data, '/proc/flow_metadata.csv'))
+write_csv(dat_flow_meta, paste0(dir_data, '../proc/flow_metadata.csv'))
 
 #===========================================================
 # diagnostic plots
