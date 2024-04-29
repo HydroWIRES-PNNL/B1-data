@@ -51,7 +51,6 @@ get_usgs = function(site_no, date_start, date_end){
   return(dat_fmt)
 }
 
-
 #' get_pnh
 #'
 #' @description downloads data from Reclamation Columbia-Pacific Northwest Region Hydromet
@@ -240,7 +239,7 @@ get_cdec = function(sta_code, sens_code, dur_code = 'D', date_start, date_end){
     mutate(date = as.Date(DateTime)) %>%
     dplyr::select(date, value)
 
-  if(dur_code == 'E'){
+  if(dur_code != 'D'){
     dat_proc = dat_proc %>%
       group_by(date) %>%
       dplyr::summarise(value = mean(value, na.rm = T))

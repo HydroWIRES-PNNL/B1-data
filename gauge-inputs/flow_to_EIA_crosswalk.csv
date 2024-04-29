@@ -1,385 +1,33 @@
 EIA_ID,plant,state,USGS_ID,USGS_ID_turbinerelease,USGS_ID_totalrelease,USGS_ID_update,notes,alt_ID_turbinerelease,alt_source_turbinerelease,alt_ID_totalrelease,alt_source_totalrelease,update_flag
-833,Cabinet Gorge,ID,12433000,,,,12391950; usgs alternative,,,CAB.Flow-Out.Ave.1Hour.1Hour.CBT-RAW;kcfs,NWD,1
-59357,Dorena Lake Dam Project,OR,14211720,,,,,,,DOR.Flow-Out.Inst.0.0.Best;cfs,NWD,1
-7511,McNary Fish,WA,14105700,,,,"main generator flows, but best approximation",,,MCN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,1
-2199,Noxon Rapids,MT,12433000,,,,12391400; usgs alternative,,,NOX.Flow-Out.Ave.1Hour.1Hour.CBT-RAW;kcfs,NWD,1
-7431,The Dalles Fishway,WA,14105700,,,,"main generator flows, but best approximation",,,TDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,1
-851,Albeni Falls,ID,12433000,,,,NWD,ALF.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-3074,Big Cliff,OR,14211720,,,,,BCL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-3075,Bonneville,OR,14246900,,,,,BON.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3076,Cougar,OR,14211720,,,,,CGR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-3921,Chief Joseph,WA,12472800,,,,,CHJ.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3077,Detroit,OR,14211720,,,,,DET.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-3078,Dexter,OR,14211720,,,,,DEX.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-840,Dworshak,ID,13342500,,,,NWD,DWR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-6552,Foster,OR,14211720,,,,,FOS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-6163,Grand Coulee,WA,12472800,,,,,GCL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3080,Green Peter,OR,14211720,,,,,GPR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-3081,Hills Creek,OR,14211720,,14145500,,,HCR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-2203,Hungry Horse,MT,12433000,,,,NWD,HGH.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3925,Ice Harbor,WA,13342500,,,,,IHR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3082,John Day,OR,14105700,,,,,JDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3926,Little Goose,WA,13342500,,,,,LGS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-6172,Libby,MT,12433000,,,,,LIB.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3927,Lower Monumental,WA,13342500,,,,,LMN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3083,Lookout Point,OR,14211720,,,,,LOP.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-6174,Lost Creek,OR,14301000,,,,,LOS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
-6175,Lower Granite,WA,13342500,,,,,LWG.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3084,McNary,OR,14105700,,,,,MCN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3887,Priest Rapids,WA,12472800,,,,,PRD.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-6200,Rock Island,WA,12472800,,,,,RIS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3883,Rocky Reach,WA,12472800,,,,,RRH.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3895,The Dalles,OR,14105700,,,,,TDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3888,Wanapum,WA,12472800,,,,,WAN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-3886,Wells,WA,12472800,,,,,WEL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
-162,Drop No. 9,CA,NA,,,,canal,,,,,0
-7113,Potholes East Canal Headworks,WA,12472800,,,,data in CBP but not accessable,,,,,0
-10707,Cove Hydroelectric,CA,NA,,,,NA;  no gauge,,,,,0
-54142,Hillcrest Pump Station,CO,NA,,,,NA;  no gauge,,,,,0
-10806,Crystal Springs,ID,NA,,,,NA;  no gauge,,,,,0
-10809,Rock Creek II,ID,NA,,,,NA;  no gauge,,,,,0
-50323,N-32 Canal,ID,NA,,,,NA;  no gauge,,,,,0
-50891,El Dorado Hydro Elk Creek,ID,NA,,,,NA;  no gauge,,,,,0
-54394,Dry Creek Project,ID,NA,,,,NA;  no gauge,,,,,0
-54514,Blind Canyon Hydro,ID,NA,,,,NA;  no gauge,,,,,0
-50360,Michell Butte Power Project,OR,NA,,,,NA;  no gauge,,,,,0
-52155,Lacomb Irrigation District,OR,NA,,,,NA;  no gauge,,,,,0
-52039,Quail Creek Hydro Plant #1,UT,9402300,,,,NA;  no gauge,,,,,0
-50091,Big Sheep Creek,WA,NA,,,,NA;  no gauge,,,,,0
-50228,Rocky Brook Hydroelectric,WA,NA,,,,NA;  no gauge,,,,,0
-50382,Twin Reservoirs,WA,NA,,,,NA;  no gauge,,,,,0
-50421,Orchard Avenue 1,WA,NA,,,,NA;  no gauge,,,,,0
-50423,Cowiche,WA,NA,,,,NA;  no gauge,,,,,0
-50700,Lilliwaup Falls Generating,WA,NA,,,,NA;  no gauge,,,,,0
-54267,Koma Kulshan,WA,NA,,,,NA;  no gauge,,,,,0
-54652,Mirror Lake,WA,NA,,,,NA;  no gauge,,,,,0
+34,Rollins,CA,11425500,11421900,,,,,,,,1
 72,Venice,CA,NA,,,,NA; MWD network,,,,,0
-161,Drop No. 1 Powerhouse (Turlock Lake),CA,11303500,,,,NA; no gauge,,,,,0
-215,Angels,CA,11303500,,,,NA; no gauge,,,,,0
-242,Hamilton Branch,CA,11425500,,,,NA; no gauge,,,,,0
-261,Murphys,CA,11303500,,,,NA; no gauge,,,,,0
-359,San Gorgonio 2,CA,NA,,,,NA; no gauge,,,,,0
-457,Bear Valley,CA,11078000,,,,NA; no gauge,,,,,0
-839,Scott Flat,CA,11425500,,,,NA; no gauge,,,,,0
-846,Combie South,CA,11425500,,,,NA; no gauge,,,,,0
-847,Combie North,CA,11425500,,,,NA; no gauge,,,,,0
-6449,Azusa,CA,NA,,,,NA; no gauge,,,,,0
-6479,San Francisquito 1,CA,11078000,,,,NA; no gauge,,,,,0
-6480,San Francisquito 2,CA,11078000,,,,NA; no gauge,,,,,0
-6644,Lake Mathews,CA,NA,,,,NA; no gauge,,,,,0
-6645,Foothill Feeder,CA,NA,,,,NA; no gauge,,,,,0
-6646,San Dimas,CA,NA,,,,NA; no gauge,,,,,0
-6647,Yorba Linda,CA,NA,,,,NA; no gauge,,,,,0
-7077,Sawtelle,CA,11078000,,,,NA; no gauge,,,,,0
-7151,Stony Gorge,CA,11425500,,,,NA; no gauge,,,,,0
-7942,Diamond Valley Lake,CA,11078000,,,,NA; no gauge,,,,,0
-10162,Whitewater Hydro Plant,CA,NA,,,,NA; no gauge,,,,,0
-10282,Big Creek Water Works,CA,NA,,,,NA; no gauge,,,,,0
-55009,Montgomery Creek Hydro,CA,NA,,,,NA; no gauge,,,,,0
-59428,Baker Creek Diversion,CA,NA,,,,NA; no gauge,,,,,0
-50147,R E Badger Filtration Plant,CA,NA,,,,NA; no gauge,,,,,0
-50156,Nichols,CA,NA,,,,NA; no gauge,,,,,0
-50218,Woodward Power Plant,CA,11303500,,,,NA; no gauge,,,,,0
-50219,Frankenheimer Power Plant,CA,NA,,,,NA; no gauge,,,,,0
-50233,San Dimas Wash Generating Station,CA,NA,,,,NA; no gauge,,,,,0
-50322,Madera Canal (Site 980 65),CA,NA,,,,NA; no gauge,,,,,0
-50375,East Portal Generator,CA,NA,,,,NA; no gauge,,,,,0
-50492,Point Loma,CA,NA,,,,NA; no gauge,,,,,0
-50961,Slate Creek,CA,NA,,,,NA; no gauge,,,,,0
-54017,San Gabriel Hydro Project,CA,11078000,,,,NA; no gauge,,,,,0
-54308,Three Forks Water Power Project,CA,NA,,,,NA; no gauge,,,,,0
-474,Salida No. 1,CO,7134180,,,,NA; no gauge,,,,,0
-475,Salida No. 2,CO,NA,,,,NA; no gauge,,,,,0
-54680,Betasso,CO,NA,,,,NA; no gauge,,,,,0
-55931,Boulder City Silver Lake Hydro,CO,6764880,,,,NA; no gauge,,,,,0
-814,Clear Lake,ID,NA,,,,NA; no gauge,,,,,0
-820,Thousand Springs,ID,NA,,,,NA; no gauge,,,,,0
-830,Paris,ID,NA,,,,NA; no gauge,,,,,0
-845,Soda Spgs-Hooper,ID,10068500,,,,NA; no gauge,,,,,0
-7150,Soda Creek,ID,10068500,,,,NA; no gauge,,,,,0
-7718,Buffalo,ID,13154500,,,,NA; no gauge,,,,,0
-10049,Little Mac Project,ID,NA,,,,NA; no gauge,,,,,0
-10140,Birch Creek Power,ID,NA,,,,NA; no gauge,,,,,0
-10296,Lowline Canal Drop Hydro,ID,NA,,,,NA; no gauge,,,,,0
-10325,Mink Creek Hydro,ID,NA,,,,NA; no gauge,,,,,0
-54674,Ford Hydro LP,ID,NA,,,,NA; no gauge,,,,,0
-54753,Lateral No. 10,ID,NA,,,,NA; no gauge,,,,,0
-56498,Mora Drop Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
-10781,Koyle Ranch Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
-10138,South Dry Creek Hydro,MT,NA,,,,NA; no gauge,,,,,0
-159,Lake Creek,UT,NA,,,,NA; no gauge,,,,,0
-925,Ephraim City,UT,NA,,,,NA; no gauge,,,,,0
-3651,Granite,UT,NA,,,,NA; no gauge,,,,,0
-3658,Snake Creek,UT,NA,,,,NA; no gauge,,,,,0
-3659,Stairs,UT,NA,,,,NA; no gauge,,,,,0
-3666,Brigham City,UT,10068500,,,,NA; no gauge,,,,,0
-3668,Ephraim City No. 3,UT,NA,,,,NA; no gauge,,,,,0
-3673,Snake Creek,UT,NA,,,,NA; no gauge,,,,,0
-3679,Lower Monroe,UT,NA,,,,NA; no gauge,,,,,0
-3680,Upper Monroe,UT,NA,,,,NA; no gauge,,,,,0
-3681,Lower-Unit,UT,10217000,,,,NA; no gauge,,,,,0
-3682,Upper-Unit,UT,10217000,,,,NA; no gauge,,,,,0
-3685,Center Creek,UT,NA,,,,NA; no gauge,,,,,0
-3688,Bartholomew,UT,NA,,,,NA; no gauge,,,,,0
-3689,Hobble Creek,UT,NA,,,,NA; no gauge,,,,,0
-3690,Spring Creek,UT,10172630,,,,NA; no gauge,,,,,0
-3692,Payson,UT,NA,,,,NA; no gauge,,,,,0
-3699,Boulder Creek,UT,NA,,,,NA; no gauge,,,,,0
-6537,Little Cottonwood,UT,NA,,,,NA; no gauge,,,,,0
-6538,Red Creek,UT,10217000,,,,NA; no gauge,,,,,0
-7015,Unit 4,UT,10217000,,,,NA; no gauge,,,,,0
-7016,Unit 3,UT,10172630,,,,NA; no gauge,,,,,0
-7027,Upper Bartholomew,UT,NA,,,,NA; no gauge,,,,,0
-7362,Pine Valley,UT,NA,,,,NA; no gauge,,,,,0
-7590,Lower Boulder,UT,9333500,,,,NA; no gauge,,,,,0
-3892,Calispel,WA,12433000,,,,NA; no gauge,,,,,0
-3929,Packwood,WA,14246900,,,,NA; no gauge,,,,,0
-54860,Black Creek,WA,NA,,,,NA; no gauge,,,,,0
-57763,Youngs Creek,WA,NA,,,,NA; no gauge,,,,,0
-60418,Calligan Creek,WA,NA,,,,NA; no gauge,,,,,0
-60517,Hancock Creek,WA,NA,,,,NA; no gauge,,,,,0
-6393,Strawberry Creek,WY,NA,,,,NA; no gauge,,,,,0
-6394,Swift Creek,WY,NA,,,,NA; no gauge,,,,,0
-56694,Russell D Smith,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
-56695,Summer Falls Power Plant,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
-56696,Eltopia Branch Canal 4.6,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
-56697,Potholes East Canal 66.0,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
-56698,Dry Falls Dam (Main Canal Headworks),WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
-391,Big Pine,CA,10261500,,,,NA; no gauge; LDWP pp,,,,,0
-397,Franklin,CA,11078000,,,,NA; no gauge; LDWP pp,,,,,0
-403,San Fernando,CA,11078000,,,,NA; no gauge; LDWP pp,,,,,0
-466,Boulder Canyon Hydro,CO,6764880,,,,NA; no gauge; on Boulder municipal supply,,,,,0
-509,Longmont,CO,NA,,,,NA; no gauge; on Boulder municipal supply,,,,,0
-58384,Fargo No. 1,ID,NA,,,,NA; no gauge; on canal,,,,,0
-61688,North Gooding Main Hydroelectric Project,ID,NA,,,,NA; no gauge; on canal,,,,,0
-64607,MC6 Hydro Facility,ID,NA,,,,NA; no gauge; on canal,,,,,0
-58120,Lower South Fork Irrigation Project,MT,NA,,,,NA; no gauge; on canal,,,,,0
-917,Quincy Chute,WA,NA,,,,NA; no gauge; on CBP network,,,,,0
-332,Fontana,CA,NA,,,,NA; no gauge; on conveyance network,,,,,0
-494,Manitou Springs,CO,NA,,,,NA; no gauge; on CSU network,,,,,0
-495,Ruxton Park,CO,NA,,,,NA; no gauge; on CSU network,,,,,0
-7233,Tesla,CO,7134180,,,,NA; no gauge; on CSU network,,,,,0
-10070,Foothills Hydro Plant,CO,6764880,,,,NA; no gauge; on CSU network,,,,,0
-3024,Eagle Point,OR,NA,,,,NA; no gauge; on EPID network,,,,,0
-314,Drop 5,CA,NA,,,,NA; no gauge; on IID canal,,,,,0
-586,East Highline,CA,NA,,,,NA; no gauge; on IID network,,,,,0
-6370,Turnip,CA,NA,,,,NA; no gauge; on IID network,,,,,0
-392,Castaic,CA,11078000,,,,NA; no gauge; on LA aqueduct,,,,,0
-394,Cottonwood,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
-395,Division Creek,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
-396,Foothill,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
-398,Haiwee,CA,10261500,,,,NA; no gauge; on LA aqueduct,,,,,0
-393,Control Gorge,CA,NA,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
-401,Middle Gorge,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
-50393,Friant Hydro Facility,CA,11303500,,,,assumes power generation from river outlet works,,,10806,RISE,1
-402,Pleasant Valley,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
-407,Upper Gorge,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
-459,Papazian (Fairfield),CA,NA,,,,NA; no gauge; on MID canal,,,,,0
-461,Reta (Canal Creek),CA,NA,,,,NA; no gauge; on MID canal,,,,,0
-499,Stone Drop,CA,NA,,,,NA; no gauge; on MID network,,,,,0
-428,Parker,CA,NA,,,,NA; no gauge; on MIDcanal,,,,,0
-316,Sepulveda Canyon,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-479,Temescal,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-480,Corona,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-481,Perris,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
-482,Rio Hondo,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-483,Coyote Creek,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-484,Red Mountain,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
-487,Valley View,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-745,Etiwanda,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-6196,W E Warne,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
-56125,Springville Hydroelectric,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-56615,Rancho Penasquitos,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-57854,North Hollywood,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
-65033,Kings River Syphon,CA,NA,,,,NA; no gauge; on OCID canal,,,,,0
 100,South Consolidated,AZ,NA,,,,NA; SRP network,,,,,0
 143,Crosscut,AZ,NA,,,,NA; SRP network,,,,,0
-380,Dion R Holm,CA,11303500,,11278400,,1km downstream,,,,,1
-385,Drop 2,CA,NA,,9527700,,1km downstream,,,,,1
-825,Ashton,ID,13154500,,13046000,,1km downstream,,,,,1
-3053,Sullivan,OR,14211720,,14197900,,36km upstream,,,,,1
-339,Kern River No. 3,CA,NA,11185500,,,diversion to powerhouse in canal/conduit,,,,,1
-3037,Soda Springs,OR,14301000,,14316500-14316495,,3km downstream; remove Boulder Creek inflow,,,,,1
-3646,Cutler,UT,10068500,,,10126000,40km downstream,,,,,1
-818,Shoshone Falls,ID,13154500,,13090500,,6km downstream,,,,,1
-3636,Sand Cove,UT,9402300,,9409880,,above Gunlock; includes Santa Clara River flows,,,,,1
-3866,Little Falls,WA,12433000,,12433000,,above pp,,,,,1
-54249,Smith Creek,ID,NA,,,12321500,adjacent creek,,,,,1
-6424,Chelan,WA,12472800,,12452500,,at diversion; I believe contains the diversion and river flow,,,,,1
-386,Drop 3,CA,NA,,,9527700,below Drop 2,,,,,1
-387,Drop 4,CA,NA,,,9527700,below Drop 2,,,,,1
-841,City Power Plant,ID,13154500,,13060000,,below Gem State,,,,,1
-843,Lower No 2,ID,13154500,,13060000,,below Gem State,,,,,1
-844,Upper Power Plant,ID,13154500,,13060000,,below Gem State,,,,,1
-3635,Veyo,UT,9402300,,9409880,,below Gunlock return,,,,,1
-3675,Hydro III,UT,10068500,,10109000,,below Hydro II,,,,,1
-439,Don Pedro,CA,11303500,,,11289650,below La Grange dam,,,,,1
-154,Hoover Dam (NV),NV,9404200,,9421500,,combined with Hoover Dam (AZ),6125,RISE,,,1
-8902,Hoover Dam (AZ),AZ,9404200,,,,combined with Hoover Dam (NV),6125,RISE,,,1
-3913,Alder,WA,12200500,,12086500,,below LaGrande,,,,,1
-3869,Nine Mile,WA,12433000,,12433000,,below Long Lake; storage effects,,,,,1
-3861,Upper Baker,WA,12200500,,12193400,,below Lower Baker,,,,,1
-3643,Upper Beaver,UT,10217000,,10234500,,below Lower Beaver,,,,,1
-3664,Beaver Mid Hydro 2,UT,NA,,10234500,,below Lower Beaver,,,,,1
-3918,Mossyrock,WA,14246900,,14238000,,below Mayfield,,,,,1
-3850,Swift 1,WA,14246900,,,14220500,below Merwin,,,,,1
-54812,Mile 28 Water Power Project,ID,NA,,,,diversion quite upstream,,,MIII;QJ,PNH,1
-3852,Yale,WA,14246900,,,14220500,below Merwin,,,,,1
-6265,Swift 2,WA,14246900,,,14220500,below Merwin,,,,,1
-50380,Upriver Dam Hydro Plant,WA,12433000,,12422500,,below Monroe Street,,,,,1
-9096,Upper Falls,WA,12433000,,12422500,,below Monroe Street,,,,,1
-3854,Electron,WA,NA,,12093500,,below pp; ignores effect of afterbay,,,,,1
-3050,Round Butte,OR,14105700,,14092500,,below Reregulating,,,,,1
-622,South Fork Tolt,WA,12200500,,12148300,,below reregulating basin,,,,,1
-3045,Faraday,OR,14211720,,14210000,,below River Mill,,,,,1
-3047,North Fork,OR,14211720,,14210000,,below River Mill,,,,,1
-827,Grace,ID,10068500,,,10079500,below Soda,,,,,1
-3036,Slide Creek,OR,14301000,,14316500-14316495,,below Soda Springs,,,,,1
-3040,Toketee,OR,14301000,,14316500-14316495,,below Soda Springs,,,,,1
-3067,Carmen Smith,OR,14211720,,14158850,,below Trail Bridge reservoir; includes McKenzie River effects,,,,,1
-6513,Fleish,NV,NA,,10347460,,below Washoe,,,,,1
-6531,Verdi,NV,NA,,10347460,,below Washoe,,,,,1
-7069,Gunlock Hydro,UT,9402300,,9410100,,below Winsor Dam,,,,,1
 145,Horse Mesa,AZ,9514100,,,9502000,better than original; contacted SRP for release data,,,,,1
 148,Mormon Flat,AZ,9514100,,,9502000,better than original; contacted SRP for release data,,,,,1
 149,Roosevelt,AZ,9514100,,,9502000,better than original; contacted SRP for release data,,,,,1
-714,Toadtown,CA,11425500,11389800,,,canal downstream of pp,,,,,1
-58696,Nooksack,WA,NA,,12205000,,Cascade Creek included in flow,,,,,1
-239,Electra,CA,11303500,,,11319500,combined river flow and pp flow 5km downstream,,,,,1
-218,Balch 2,CA,11189500,11216300,,,combined with Balch 1,,,,,1
-217,Balch 1,CA,11189500,11216300,,,combined with Balch 2,,,,,1
-223,Caribou 2,CA,11425500,11401110,,,combined with Caribou 1,,,,,1
-222,Caribou 1,CA,11425500,11401110,,,combined with Caribou 2,,,,,1
-336,Kaweah 2,CA,NA,11208818,,,conduit at pp,,,,,1
-337,Kaweah 1,CA,NA,11208800,,,conduit at pp,,,,,1
-338,Kaweah 3,CA,NA,11208565,,,conduit at pp,,,,,1
-365,Lower Tule,CA,NA,11202838,,,conduit at pp,,,,,1
-3034,Prospect 3,OR,14301000,,,14332000,only South Fork Flow,,,,,1
-381,Moccasin,CA,11303500,11276600-11276900,,,difference should give diversion to pp,,,,,1
-751,Moccasin Low Head Hydro Project,CA,11303500,11276600-11276900,,,difference; miss some effect of afterbay,,,,,1
-323,Bishop Creek 2,CA,10261500,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
-324,Bishop Creek 3,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
-325,Bishop Creek 4,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
-326,Bishop Creek 5,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
-253,Kilarc,CA,NA,11372325,,,diversion to powerhouse in canal/conduit,,,,,1
-264,Phoenix,CA,11303500,11297500,,,diversion to powerhouse in canal/conduit,,,,,1
-284,Spring Gap,CA,11303500,11297000,,,diversion to powerhouse in canal/conduit,,,,,1
-327,Bishop Creek 6,CA,NA,10271060,,,diversion to powerhouse in canal/conduit,,,,,1
-340,Kern River No. 1,CA,11189500,11192000,,,diversion to powerhouse in canal/conduit,,,,,1
-343,Lytle Creek,CA,NA,11060900,11062000,,diversion to powerhouse in canal/conduit,,,,,1
-412,Chicago Park,CA,11425500,11421780,,,diversion to powerhouse in canal/conduit,,,,,1
-413,Dutch Flat 2,CA,11425500,11421760,,,diversion to powerhouse in canal/conduit,,,,,1
-815,Lower Malad,ID,NA,,13153500,,downstream of pp,,,,,1
-3020,Clearwater 1,OR,14301000,14314400,,,diversion to powerhouse in canal/conduit,,,,,1
-50718,Notch Butte Hydro,ID,NA,,,,gauge upstream of pp,,,WODI;QD,PNH,1
-3021,Clearwater 2,OR,14301000,14314600,,,diversion to powerhouse in canal/conduit,,,,,1
-3026,Fish Creek,OR,14301000,14315900,,,diversion to powerhouse in canal/conduit,,,,,1
-3029,Lemolo 1,OR,14301000,14312900,,,diversion to powerhouse in canal/conduit,,,,,1
-10222,Success,CA,11189500,,,,includes other release works; misses water pumped from tailrace to Pioneer Canal,,,SCC;23;D,CDEC,1
-6421,Lemolo 2,OR,14301000,14313600,,,diversion to powerhouse in canal/conduit,,,,,1
-3878,Yelm,WA,12200500,12089208,,,diversion to powerhouse in canal/conduit,,,,,1
-674,Pilot Butte,WY,6294500,,,,inflow to offstream reservoir through pp,,,PBR;IN,MBH,1
-361,Santa Ana 1,CA,NA,,,11051501,downstream aggregate gauge,,,,,1
-6507,Drop 2,WA,NA,,,,main canal diversion,,,WOPW;QJ,PNH,1
-6508,Drop 3,WA,NA,,,,main canal diversion,,,WOPW;QJ,PNH,1
-363,Santa Ana 3,CA,NA,,,11051501,downstream aggregate gauge,,,,,1
-7079,Upper Salmon B,ID,13154500,,13135000,,downstream of Lower Salmon,,,,,1
-2181,Black Eagle,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
-2182,Cochrane,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
-2193,Rainbow,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
-2194,Ryan,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
-4213,Portland No. 1,OR,14246900,,,14140000,downstream of Portland No. 2,,,,,1
-3704,Uintah,UT,NA,,9301500,,downstream of pp,,,,,1
-520,Lower Molina,CO,9106150,,,9105000,downstream of pp; additional flow from plateau creek,,,,,1
-54306,Wilson Lake Hydroelectric Project,ID,13154500,,,,misses reservoir effects,,,TCNI;QJ,PNH,1
-521,Upper Molina,CO,9106150,,,9105000,downstream of pp; additional flow from plateau creek,,,,,1
-7224,High Line,CA,NA,,,,NA; no gauge,,,SDV;110;E,CDEC,1
-3855,Lower Baker,WA,12200500,,12193400,,earlier gauge prior to 2007,,,,,1
-278,San Joaquin 1A,CA,NA,11246570,,,flow from San Joaquin 2 is conveyed to San Joaquin 1A,,,,,1
-585,Drop 1,CA,NA,,9527700,,gauge below Drop 2,,,,,1
-294,Copco 1,CA,11530500,,,11516530,gauge below Iron Gate (reregulating) so some influence of storage,,,,,1
-295,Copco 2,CA,11530500,,,11516530,gauge below Iron Gate (reregulating) so some influence of storage,,,,,1
-410,McSwain,CA,11303500,,11270900,,gauge downsteam of Merced Falls,,,,,1
-3014,Oxbow,OR,13269000,,13290450,,gauge downstream of Hells Canyon,,,,,1
-822,Upper Salmon A,ID,13154500,,13135000,,gauge downstream of Lower Salmon,,,,,1
-9842,Newhalem,WA,NA,,,12178100,gauge may be below diversion,,,,,1
-415,Donnells,CA,11303500,,11292700,,gauge may be just above pp (supplied by conduit),,,,,1
-4176,Fremont Canyon,WY,6674500,,,,Pathfinder total release,,,647,RISE,1
-823,Upper Malad,ID,NA,,13153500,,gauge missing diversion to Lower Malad,,,,,1
-436,Devil Canyon,CA,11078000,11063682,,,gauge on CA Aqueduct but I think representative of pp flow,,,,,1
-54729,Taylor Draw Hydroelectric Facility,CO,9306500,,,9306500,gauge quite downstream,,,,,1
-4229,Fish Power,CA,11425500,,11413517;11413520,,gauge replaced 2004,,,,,1
-987,Last Chance,ID,NA,,10079500,,gauge upstream 5km,,,,,1
-10081,Strontia Springs Hydro Plant,CO,6764880,,,,unclear if turbine discharges water into conduit or river,,,PLASTRCO,CDSS,1
-3025,East Side,OR,11530500,,11507500,,gauge upstream of diversion return,,,,,1
-3042,West Side,OR,11530500,,11507500,,gauge upstream of diversion return,,,,,1
-6359,Felt,ID,NA,,13052200,,gauge upstream of pp,,,,,1
-6506,Moyie Springs,ID,12433000,,12306500,,gauge upstream of pp,,,,,1
-3656,Pioneer,UT,10172630,,,10140100,gauge upstream of pp,,,,,1
-3634,Gunlock,UT,9402300,,9409880,,includes Santa Clara River flows,,,,,1
-7179,Headgate Rock,AZ,9404200,,9428500,,inflow,,,,,1
-832,St Anthony,ID,13154500,,13050500,,inflow upstream of pp,,,,,1
-57551,Garland Canal,WY,NA,,,,upstream of pp,,,BBR;QJ,MBH,1
-489,Upper Dawson,CA,11303500,,11289500,,may miss some storage effects,,,,,1
-4214,Portland No. 2,OR,14246900,,,14140000,may miss water supply diversion,,,,,1
-1020,Manti Canyon Lower,UT,NA,,10215900,,may not be representative as source water is springs and water system,,,,,1
-3676,Manti Canyon Upper,UT,NA,,10215900,,may not be representative as source water is springs and water system,,,,,1
-7147,Mill Creek 3,CA,NA,11052500,,,Mill Creek 2 and 3,,,,,1
+150,Stewart Mountain,AZ,9514100,,9502000,,,,,,,1
 152,Davis,AZ,9404200,,9423000,,,,,6135,RISE,1
 153,Glen Canyon,AZ,9333500,,9380000,,,507,RISE,,,1
-438,Thermalito,CA,11425500,,11407000,,misses effect of Thermalito afterbay,,,,,1
-258,Merced Falls,CA,11303500,,11270900,,misses irrigation diversions,,,,,1
-214,Alta,CA,NA,11421725,,,NA; no gauge,,,,,1
-819,Swan Falls,ID,13269000,,13172500,,NA; no gauge,,,,,1
-6206,Tacoma,CO,9379500,,,9362520,no gauge on diversion from Elektra Lake; includes Animas River flow,,,,,1
-50917,Middle Fork Irrigation District,OR,14105700,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
-10323,Farmers ID No. 2,OR,NA,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
-10324,Farmers ID No. 3,OR,NA,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
-7127,Wynoochee,WA,14301000,,12035400,,"NWD data also exists, but messy",,,,,1
-54654,Kekawaka Power House,CA,NA,,,11474780,gauge below diversion,,,,,1
-50755,New Hogan,CA,11303500,,,,,,,NHG;23;D,CDEC,1
-388,Pilot Knob,CA,NA,,9527000,,"potential just turbine flow, but unclear from gauge description",,,,,1
-54261,Warm Springs,CA,11530500,,,,,,,WRS;23;D,CDEC,1
-54343,Terminus Hydroelectric Project,CA,11189500,,,,,,,TRM;23;D,CDEC,1
-50546,Bowman,CA,11425500,,11416000+11416500,,release to Spaulding 3 plus river release,,,,,1
-255,Lime Saddle,CA,11425500,,,11405200,upstream of pp; only WB Feather,,,,,1
-472,Georgetown,CO,6764880,,,6715000,below Georgetown Lake,,,,,1
-230,Crane Valley,CA,11303500,,11243500+11244000,,total dam release is combination of canal flow release and river release,,,,,1
-2195,Thompson Falls,MT,12433000,,12389000+12389500,,upstream gauges; sum approximates inflow; misses effect of storage,,,,,1
-476,Shoshone,CO,NA,,,9070500,upstream of diversion,,,,,1
-3068,Leaburg,OR,14211720,,14162500,,upstream of diversion,,,,,1
-3071,Walterville,OR,14211720,,14162500,,upstream of diversion,,,,,1
-353,Poole,CA,10261500,10287762,,,upstream of pp,,,,,1
-50987,Rock Creek,ID,NA,,13092747,,upstream of pp,,,,,1
-54524,Horseshoe Bend Hydro Partners,ID,13269000,,13247500,,upstream of pp,,,,,1
-3661,Weber,UT,10172630,,10136500,,upstream of pp,,,,,1
-50972,Marsh Valley Development,ID,NA,,13073000,,upstream of pp and canal diversion,,,,,1
-3914,Cushman 1,WA,12200500,,,12056500,upstream of pp and storage,,,,,1
-3915,Cushman 2,WA,12200500,,,12056500,upstream of pp and storage,,,,,1
-6397,Boise R Diversion,ID,13269000,,13202000,,upstream release from Lucky Peak,,,,,1
-150,Stewart Mountain,AZ,9514100,,9502000,,,,,,,1
-354,Portal,CA,11303500,11235500,,,,,,,,1
-357,Rush Creek,CA,10261500,10287300,,,,,,,,1
-50037,Rio Bravo Hydro Project,CA,11189500,11193010,,,,,,,,1
-50076,Santa Felicia Dam,CA,11078000,,11109800,,,,,,,1
-50128,Clear Lake Hydro Project,CA,11425500,,11451000,,,,,,,1
-50129,Indian Valley Dam Hydro Project,CA,11425500,,11451300,,,,,,,1
-50179,Lake Siskiyou,CA,11425500,,,11342000,50km downstream,,,,,1
-50350,Forks of Butte Hydro Project,CA,NA,11389747,,,,,,,,1
-50352,Nacimiento Hydro Project,CA,11143250,,11149400,,,,,,,1
-50400,Sand Bar Power Plant,CA,NA,11292860,,,,,,,,1
-50892,Rock Creek LP,CA,NA,11444280,,,,,,,,1
-54554,Spicer Meadow Project,CA,11303500,11293760,,,,,,,,1
-54555,Collierville Powerhouse,CA,11303500,11295250,,,,,,,,1
-34,Rollins,CA,11425500,11421900,,,,,,,,1
+154,Hoover Dam (NV),NV,9404200,,9421500,,combined with Hoover Dam (AZ),6125,RISE,,,1
+159,Lake Creek,UT,NA,,,,NA; no gauge,,,,,0
+161,Drop No. 1 Powerhouse (Turlock Lake),CA,11303500,,,,NA; no gauge,,,,,0
+162,Drop No. 9,CA,NA,,,,canal,,,,,0
 180,Volta 2,CA,NA,11376046,,,,,,,,1
+214,Alta,CA,NA,11421725,,,NA; no gauge,,,,,1
+215,Angels,CA,11303500,,,,NA; no gauge,,,,,0
+217,Balch 1,CA,11189500,11216300,,,combined with Balch 2,,,,,1
+218,Balch 2,CA,11189500,11216300,,,combined with Balch 1,,,,,1
 219,Belden,CA,11425500,11403050,,,,,,,,1
 220,Bucks Creek,CA,11425500,11403700,,,,,,,,1
 221,Butt Valley,CA,11425500,11400600,,,,,,,,1
+222,Caribou 1,CA,11425500,11401110,,,combined with Caribou 2,,,,,1
+223,Caribou 2,CA,11425500,11401110,,,combined with Caribou 1,,,,,1
 224,Centerville,CA,NA,11389775,,,,,,,,1
 225,Chili Bar,CA,11425500,,11444500,,,,,,,1
 227,Coleman,CA,11425500,11376458,,,,,,,,1
 229,Cow Creek,CA,NA,11372080,,,,,,,,1
+230,Crane Valley,CA,11303500,,11243500+11244000,,total dam release is combination of canal flow release and river release,,,,,1
 231,Cresta,CA,11425500,11404360,,,,,,,,1
 232,De Sabla,CA,11425500,11389750,,,,,,,,1
 233,Deer Creek,CA,NA,11414205,,,,,,,,1
@@ -387,89 +35,158 @@ EIA_ID,plant,state,USGS_ID,USGS_ID_turbinerelease,USGS_ID_totalrelease,USGS_ID_u
 236,Drum 2,CA,11425500,11414195,,,,,,,,1
 237,Dutch Flat,CA,11425500,11421750,,,,,,,,1
 238,El Dorado,CA,11425500,,11439000,,canal upstream of pp; misses effect of forebay,,,,,1
+239,Electra,CA,11303500,,,11319500,combined river flow and pp flow 5km downstream,,,,,1
 240,Haas,CA,11189500,11216050,,,,,,,,1
 241,Halsey,CA,11425500,11425310,,,,,,,,1
+242,Hamilton Branch,CA,11425500,,,,NA; no gauge,,,,,0
 243,Hat Creek 1,CA,NA,11358800,,,,,,,,1
 244,Hat Creek 2,CA,11189500,11359300,,,,,,,,1
 248,Inskip,CA,NA,11376430,,,,,,,,1
 249,James B Black,CA,11425500,11363910,,,,,,,,1
 250,Kerckhoff,CA,11303500,11246950,,,,,,,,1
+253,Kilarc,CA,NA,11372325,,,diversion to powerhouse in canal/conduit,,,,,1
 254,Kings River,CA,11189500,11218700,,,,,,,,1
+255,Lime Saddle,CA,11425500,,,11405200,upstream of pp; only WB Feather,,,,,1
+258,Merced Falls,CA,11303500,,11270900,,misses irrigation diversions,,,,,1
+261,Murphys,CA,11303500,,,,NA; no gauge,,,,,0
 262,Narrows,CA,11425500,11417970,,,,,,,,1
+264,Phoenix,CA,11303500,11297500,,,diversion to powerhouse in canal/conduit,,,,,1
 265,Pit 1,CA,11425500,11355010,,,,,,,,1
 266,Pit 3,CA,11425500,11362300,,,,,,,,1
 267,Pit 4,CA,11425500,11362600,,,,,,,,1
 268,Pit 5,CA,11425500,11362700,,,,,,,,1
 269,Pit 6,CA,11425500,11364150,,,,,,,,1
-376,Pardee,CA,11303500,,,,,,,PAR;23;D,CDEC,1
-382,R C Kirkwood,CA,11303500,,,,,,,HTH;110;D,CDEC,1
 270,Pit 7,CA,11425500,11364800,,,,,,,,1
 272,Poe,CA,11425500,11404900,11404901,,,,,,,1
 274,Potter Valley,CA,11530500,11471099,,,,,,,,1
 275,Rock Creek,CA,11425500,11403800,,,,,,,,1
 276,San Joaquin 2,CA,NA,11246570,,,,,,,,1
 277,San Joaquin 3,CA,11303500,11244100,,,,,,,,1
+278,San Joaquin 1A,CA,NA,11246570,,,flow from San Joaquin 2 is conveyed to San Joaquin 1A,,,,,1
 279,Salt Springs,CA,11303500,11313510,,,,,,,,1
 280,South,CA,NA,11376410,,,,,,,,1
 281,Spaulding 1,CA,11425500,11414154,,,,,,,,1
 282,Spaulding 2,CA,11425500,11414155,,,,,,,,1
 283,Spaulding 3,CA,11425500,11416200,,,,,,,,1
+284,Spring Gap,CA,11303500,11297000,,,diversion to powerhouse in canal/conduit,,,,,1
 285,Stanislaus,CA,11303500,11295505,,,,,,,,1
 287,Tiger Creek,CA,11303500,11316610,,,,,,,,1
 289,Tule River,CA,NA,11201700,,,,,,,,1
 290,Volta 1,CA,NA,11376043,,,,,,,,1
 291,West Point,CA,11303500,,11316700,,,,,,,1
 292,Wise,CA,11425500,11425415,,,,,,,,1
-441,Folsom,CA,11425500,,,,,10779,RISE,10772,RISE,1
 293,A G Wishon,CA,11303500,11246610,,,,,,,,1
-443,Keswick,CA,11425500,,11370500,,,,,10792,RISE,1
-444,Nimbus,CA,11425500,,11446500,,,10823,RISE,10817,RISE,1
-445,Shasta,CA,11425500,,,,,10866,RISE,10869,RISE,1
-447,Parker,CA,9404200,,9427520,,,,,6130,RISE,1
-450,Spring Creek,CA,11425500,11371600,,,,,,10839,RISE,1
-451,Trinity,CA,11530500,,,,,10856,RISE,10859,RISE,1
+294,Copco 1,CA,11530500,,,11516530,gauge below Iron Gate (reregulating) so some influence of storage,,,,,1
+295,Copco 2,CA,11530500,,,11516530,gauge below Iron Gate (reregulating) so some influence of storage,,,,,1
 296,Fall Creek,CA,NA,,11512000,,,,,,,1
+297,Iron Gate,OR,11530500,,11516530,,,,,,,1
+314,Drop 5,CA,NA,,,,NA; no gauge; on IID canal,,,,,0
+316,Sepulveda Canyon,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
 317,Big Creek 1,CA,11303500,11238100,,,,,,,,1
 318,Big Creek 2,CA,11303500,11238380,,,,,,,,1
 319,Big Creek 3,CA,11303500,11241800,,,,,,,,1
 320,Big Creek 4,CA,11303500,11246530,,,,,,,,1
 321,Big Creek 8,CA,11303500,11238550,,,,,,,,1
 322,Big Creek 2A,CA,11303500,11238400,,,,,,,,1
+323,Bishop Creek 2,CA,10261500,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+324,Bishop Creek 3,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+325,Bishop Creek 4,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+326,Bishop Creek 5,CA,NA,,,10271060,diversion to Bishop Creek 6; plants in series so a reasonable approximation,,,,,1
+327,Bishop Creek 6,CA,NA,10271060,,,diversion to powerhouse in canal/conduit,,,,,1
+332,Fontana,CA,NA,,,,NA; no gauge; on conveyance network,,,,,0
+336,Kaweah 2,CA,NA,11208818,,,conduit at pp,,,,,1
+337,Kaweah 1,CA,NA,11208800,,,conduit at pp,,,,,1
+338,Kaweah 3,CA,NA,11208565,,,conduit at pp,,,,,1
+339,Kern River No. 3,CA,NA,11185500,,,diversion to powerhouse in canal/conduit,,,,,1
+340,Kern River No. 1,CA,11189500,11192000,,,diversion to powerhouse in canal/conduit,,,,,1
 342,Lundy,CA,10261500,10287195,,,,,,,,1
+343,Lytle Creek,CA,NA,11060900,11062000,,diversion to powerhouse in canal/conduit,,,,,1
 344,Mammoth Pool,CA,11303500,11235100,,,,,,,,1
 346,Mill Creek 1,CA,NA,,,11052500,Mill Creek 2 and 3 diversion as surrogate,,,,,1
+353,Poole,CA,10261500,10287762,,,upstream of pp,,,,,1
+354,Portal,CA,11303500,11235500,,,,,,,,1
+357,Rush Creek,CA,10261500,10287300,,,,,,,,1
+359,San Gorgonio 2,CA,NA,,,,NA; no gauge,,,,,0
+361,Santa Ana 1,CA,NA,,,11051501,downstream aggregate gauge,,,,,1
+363,Santa Ana 3,CA,NA,,,11051501,downstream aggregate gauge,,,,,1
+365,Lower Tule,CA,NA,11202838,,,conduit at pp,,,,,1
+376,Pardee,CA,11303500,,,,,,,PAR;23;D,CDEC,1
+380,Dion R Holm,CA,11303500,,11278400,,1km downstream,,,,,1
+381,Moccasin,CA,11303500,11276600-11276900,,,difference should give diversion to pp,,,,,1
+382,R C Kirkwood,CA,11303500,,,,,,,HTH;110;D,CDEC,1
+385,Drop 2,CA,NA,,9527700,,1km downstream,,,,,1
+386,Drop 3,CA,NA,,,9527700,below Drop 2,,,,,1
+387,Drop 4,CA,NA,,,9527700,below Drop 2,,,,,1
+388,Pilot Knob,CA,NA,,9527000,,"potential just turbine flow, but unclear from gauge description",,,,,1
+391,Big Pine,CA,10261500,,,,NA; no gauge; LDWP pp,,,,,0
+392,Castaic,CA,11078000,,,,NA; no gauge; on LA aqueduct,,,CAS;23;H,CDEC,1
+393,Control Gorge,CA,NA,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+394,Cottonwood,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
+395,Division Creek,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
+396,Foothill,CA,NA,,,,NA; no gauge; on LA aqueduct,,,,,0
+397,Franklin,CA,11078000,,,,NA; no gauge; LDWP pp,,,,,0
+398,Haiwee,CA,10261500,,,,NA; no gauge; on LA aqueduct,,,,,0
+401,Middle Gorge,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+402,Pleasant Valley,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
+403,San Fernando,CA,11078000,,,,NA; no gauge; LDWP pp,,,,,0
+407,Upper Gorge,CA,10261500,,,,NA; no gauge; on LDWP upper Owens River conveyance,,,,,0
 409,Exchequer,CA,11303500,11269700,,,,,,,,1
+410,McSwain,CA,11303500,,11270900,,gauge downsteam of Merced Falls,,,,,1
+412,Chicago Park,CA,11425500,11421780,,,diversion to powerhouse in canal/conduit,,,,,1
+413,Dutch Flat 2,CA,11425500,11421760,,,diversion to powerhouse in canal/conduit,,,,,1
 414,Beardsley,CA,11303500,11292820,,,,,,,,1
-977,Lewiston,CA,11530500,,11525500,,,10801,RISE,10796,RISE,1
-6158,New Melones,CA,11303500,,,,,10845,RISE,,,1
+415,Donnells,CA,11303500,,11292700,,gauge may be just above pp (supplied by conduit),,,,,1
 416,Tulloch,CA,11303500,11299996,,,,,,,,1
-7066,Stampede,CA,10301755,,,,,,,STP;23;D,CDEC,1
 417,Forbestown,CA,11425500,11396290,,,,,,,,1
-7129,Thermalito Diverson Dam,CA,11425500,,,,,,,TDV;48;D,CDEC,1
-7189,Whiskeytown,CA,11425500,,,,,,,10825,RISE,1
-7229,Black Butte,CA,11425500,,,,,,,BLB;23;D,CDEC,1
 418,Kelly Ridge,CA,11425500,11396329,,,,,,,,1
-7489,Lake Mendocino,CA,11530500,,,,,,,COY;23;D,CDEC,1
 419,Woodleaf,CA,11425500,11396090,,,,,,,,1
 424,French Meadows,CA,11425500,11427200,,,,,,,,1
-7907,Pine Flat,CA,11189500,,,,,,,PNF;23;D,CDEC,1
 425,Middle Fork,CA,11425500,11428600,,,,,,,,1
 426,Oxbow,CA,11425500,11433212,,,,,,,,1
-10139,Isabella Hydro Project,CA,11189500,,,,,,,ISB;23;D,CDEC,1
 427,Ralston,CA,11425500,11427765,,,,,,,,1
+428,Parker,CA,NA,,,,NA; no gauge; on MIDcanal,,,,,0
 430,Camino,CA,11425500,11441895,,,,,,,,1
 431,Jaybird,CA,11425500,11441780,,,,,,,,1
 432,Loon Lake,CA,11425500,11429340,,,,,,,,1
 433,Robbs Peak,CA,11425500,11429300,,,,,,,,1
 435,White Rock/Slab Creek,CA,11425500,11443460,,,,,,,,1
+436,Devil Canyon,CA,11078000,11063682,,,gauge on CA Aqueduct but I think representative of pp flow,,,,,1
 437,Edward C Hyatt,CA,11425500,11406818,11406820,,,,,,,1
+438,Thermalito,CA,11425500,,11407000,,misses effect of Thermalito afterbay,,,,,1
+439,Don Pedro,CA,11303500,,,,,,,DNP;23;D,CDEC,1
 440,La Grange,CA,11303500,,11289650,,,,,,,1
+441,Folsom,CA,11425500,,,,,10779,RISE,10772,RISE,1
 442,Judge F Carr,CA,11530500,11525430,,,,,,,,1
+443,Keswick,CA,11425500,,11370500,,,,,10792,RISE,1
+444,Nimbus,CA,11425500,,11446500,,,10823,RISE,10817,RISE,1
+445,Shasta,CA,11425500,,,,,10866,RISE,10869,RISE,1
+447,Parker,CA,9404200,,9427520,,,,,6130,RISE,1
+450,Spring Creek,CA,11425500,11371600,,,10839 (total outflow in RISE),,,,,1
+451,Trinity,CA,11530500,,,,,10856,RISE,10859,RISE,1
 454,Colgate,CA,11425500,11413510,,,,,,,,1
-50206,Vallecito,CO,9379500,,,,,,,4323,RISE,1
-50267,Redlands Water & Power,CO,9152500,,,,,,,RLCGRJCO,CDSS,1
-50435,Sugarloaf Hydro Plant,CO,7134180,,,,,,,TURQ;QD,MBH,1
+455,Narrows 2,CA,11425500,11417980,,,,,,,,1
+457,Bear Valley,CA,11078000,,,,NA; no gauge,,,,,0
+459,Papazian (Fairfield),CA,NA,,,,NA; no gauge; on MID canal,,,,,0
+461,Reta (Canal Creek),CA,NA,,,,NA; no gauge; on MID canal,,,,,0
+466,Boulder Canyon Hydro,CO,6764880,,,,NA; no gauge; on Boulder municipal supply,,,,,0
+472,Georgetown,CO,6764880,,,6715000,below Georgetown Lake,,,,,1
 473,Palisade,CO,NA,,,,,GRDVALCO,CDSS,,,1
+474,Salida No. 1,CO,7134180,,,,NA; no gauge,,,,,0
+475,Salida No. 2,CO,NA,,,,NA; no gauge,,,,,0
+476,Shoshone,CO,NA,,,9070500,upstream of diversion,,,,,1
+479,Temescal,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+480,Corona,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+481,Perris,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
+482,Rio Hondo,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+483,Coyote Creek,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+484,Red Mountain,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
+487,Valley View,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+489,Upper Dawson,CA,11303500,,11289500,,may miss some storage effects,,,,,1
+494,Manitou Springs,CO,NA,,,,NA; no gauge; on CSU network,,,,,0
+495,Ruxton Park,CO,NA,,,,NA; no gauge; on CSU network,,,,,0
+499,Stone Drop,CA,NA,,,,NA; no gauge; on MID network,,,,,0
+505,Boysen,WY,6294500,,6259000,,,BOYR;QED,MBH,,,1
+509,Longmont,CO,NA,,,,NA; no gauge; on Boulder municipal supply,,,,,0
 512,Blue Mesa,CO,9152500,,,,,4302,RISE,4310,RISE,1
 513,Estes,CO,6764880,,,,,,,OLYTUNCO;QJ,MBH,1
 514,Morrow Point,CO,9152500,,,,,4303,RISE,4311,RISE,1
@@ -478,173 +195,456 @@ EIA_ID,plant,state,USGS_ID,USGS_ID_turbinerelease,USGS_ID_totalrelease,USGS_ID_u
 517,Marys Lake,CO,6764880,,,,,,MBH,MARYSR;QD,MBH,1
 518,Flatiron,CO,6764880,,,,alt FLARESCO;QED1+QED2+QED3,,,FLARESCO;QD,MBH,1
 519,Pole Hill,CO,NA,,,,,OLYTUNCO;QJ,MBH,,,1
-6159,Crystal,CO,9152500,,,,,4304,RISE,4312,RISE,1
-455,Narrows 2,CA,11425500,11417980,,,,,,,,1
-7372,McPhee,CO,9185600,,,,,,,4342,RISE,1
-7373,Towaoc,CO,9185600,,,,,,,DOLTUNCO,CDSS,1
-7458,Ruedi,CO,9106150,,,,,,,RUERESCO;QD,MBH,1
+520,Lower Molina,CO,9106150,,,9105000,downstream of pp; additional flow from plateau creek,,,,,1
+521,Upper Molina,CO,9106150,,,9105000,downstream of pp; additional flow from plateau creek,,,,,1
 522,Slab Creek,CA,11425500,11443460,,,,,,,,1
 531,Camp Far West,CA,11425500,,11423800,,,,,,,1
-10423,North Fork Hydro Plant,CO,NA,,,,,,,ROBTUNCO,CDSS,1
-10424,Gross,CO,6764880,,,,,,,BOCBGRCO,CDSS,1
-58622,Carter Hydro,CO,6764880,,,,,,,CARCONCO;QJ,MBH,1
-58783,South Canal Hydro-1,CO,NA,,,,,,,SOUCANCO,CDSS,1
-58784,South Canal Hydro-3,CO,NA,,,,,,,SOUCANCO,CDSS,1
-58901,Ridgway,CO,9152500,,,,,,,4837,RISE,1
-60119,Granby Dam,CO,9106150,,,,,,,386,RISE,1
-61189,Shavano Falls Hydro,CO,NA,,,,,,,SOUCANCO,CDSS,1
-61190,Shavano Falls Hydro Drop 4,CO,NA,,,,,,,SOUCANCO,CDSS,1
-61191,Drop 5,CO,NA,,,,,,,SOUCANCO,CDSS,1
-64123,Pueblo Dam,CO,7134180,,,,,,,684,RISE,1
-10807,Dietrich Drop,ID,NA,,,,,,,MIII;QJ,PNH,1
-10808,Lower Low Line,ID,NA,,,,,,,TCSI;QJ,PNH,1
-50895,Bypass,ID,NA,,,,,,,TCNI;QJ,PNH,1
-50896,S E Hazelton A,ID,NA,,,,,,,TCNI;QJ,PNH,1
 534,Jones Fork,CA,11425500,11440900,,,,,,,,1
-54558,Hazelton B Hydro,ID,13154500,,,,,,,TCNI;QJ,PNH,1
 537,Camanche,CA,11303500,,11323500,,,,,,,1
+584,Navajo Dam,NM,9379500,,,,,,,4316,RISE,1
+585,Drop 1,CA,NA,,9527700,,gauge below Drop 2,,,,,1
+586,East Highline,CA,NA,,,,NA; no gauge; on IID network,,,,,0
+622,South Fork Tolt,WA,12200500,,12148300,,below reregulating basin,,,,,1
 626,Oak Flat,CA,11425500,,11401112,,,,,,,1
 632,Newcastle,CA,11425500,11425416,,,,,,,,1
+674,Pilot Butte,WY,6294500,,,,inflow to offstream reservoir through pp,,,PBR;IN,MBH,1
 682,Kerckhoff 2,CA,11303500,11247050,,,,,,,,1
+714,Toadtown,CA,11425500,11389800,,,canal downstream of pp,,,,,1
+745,Etiwanda,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+751,Moccasin Low Head Hydro Project,CA,11303500,11276600-11276900,,,difference; miss some effect of afterbay,,,,,1
 763,Hell Hole,CA,11425500,,11428800,,,,,,,1
 776,Sly Creek,CA,11425500,11396000+11396090,,,,,,,,1
-905,Alamo,CA,11078000,10260776,,,,,,,,1
-6612,Union Valley,CA,11425500,11441002,,,,,,,,1
-7072,Mojave Siphon,CA,10261500,,10260780,,,,,,,1
-7338,Grizzly,CA,11425500,11404240,,,,,,,,1
-7507,Deadwood Creek,CA,NA,11413326,,,,,,,,1
-7646,Monticello,CA,11425500,,11454000,,,,,,,1
-7911,Kern Canyon,CA,11189500,,11192940,,,,,,,1
-4204,Island Park,ID,13154500,,,,,,,ISL;QD,PNH,1
-6395,Anderson Ranch,ID,13269000,,,,,AND;QV,PNH,,,1
-10128,R.W. Matthews,CA,11530500,,11480410,,,,,,,1
-10458,Muck Valley Hydroelectric,CA,11425500,11351700,,,,,,,,1
-10706,Burney Creek,CA,NA,,,,NA; no gauge,,,,,0
-10708,Lost Creek I,CA,NA,11358010,,,,,,,,1
-10014,Lucky Peak,ID,13269000,,,,,LUC;QT,PNH,,,1
-10709,Ponderosa Bailey Creek,CA,NA,11376110,,,,,,,,1
-10880,Bidwell Ditch Project,CA,NA,11364155,,,,,,,,1
-10881,Roaring Creek Water Power,CA,NA,11364155,,,,,,,,1
-56893,Chester Diversion Hydroelectric Project,ID,13154500,,,,,,,CHCI;QJ,PNH,1
-56997,Arrowrock,ID,13269000,,,,,,,ARKI;QD,PNH,1
-10882,Hatchet Creek Project,CA,NA,11364250,,,,,,,,1
-50180,Olsen,CA,11180700,11372350,,,,,,,,1
-50223,Nelson Creek,CA,NA,11362800,,,,,,,,1
-57364,Siphon Drop,CA,NA,9524000,,,,,,,,1
-6207,Ames,CO,9185600,,9171310,,,,,,,1
-10421,Dillon Hydro Plant,CO,9106150,,9050700,,,,,,,1
-10422,Williams Fork Hydro Plant,CO,9106150,,9038500,,,,,,,1
-2204,Yellowtail,MT,6294500,,,,,,,167,RISE,1
-54386,Little Wood Hydro Project,ID,13154500,,13148500,,,,,,,1
-6400,Canyon Ferry,MT,6108800,,,,,CFR;QED,MBH,,,1
 790,Gem State,ID,13154500,,13060000,,,,,,,1
 809,American Falls,ID,13154500,,13077000,,,,,,,1
 810,Bliss,ID,13154500,,13153776,,,,,,,1
 811,Brownlee,ID,13269000,,13290450,,,,,,,1
 812,C J Strike,ID,13269000,,13171620,,,,,,,1
-584,Navajo Dam,NM,9379500,,,,,,,4316,RISE,1
-6402,Elephant Butte,NM,8361000,,,,,,,4377,RISE,1
-7593,El Vado Dam,NM,8359500,,,,,,,4502,RISE,1
 813,Cascade,ID,13269000,,13245000,,,,,,,1
+814,Clear Lake,ID,NA,,,,NA; no gauge,,,,,0
+815,Lower Malad,ID,NA,,13153500,,downstream of pp,,,,,1
 816,Lower Salmon,ID,13154500,,13135000,,,,,,,1
+818,Shoshone Falls,ID,13154500,,13090500,,6km downstream,,,,,1
+819,Swan Falls,ID,13269000,,13172500,,NA; no gauge,,,,,1
+820,Thousand Springs,ID,NA,,,,NA; no gauge,,,,,0
 821,Twin Falls,ID,13154500,,13090000,,,,,,,1
+822,Upper Salmon A,ID,13154500,,13135000,,gauge downstream of Lower Salmon,,,,,1
+823,Upper Malad,ID,NA,,13153500,,gauge missing diversion to Lower Malad,,,,,1
+825,Ashton,ID,13154500,,13046000,,1km downstream,,,,,1
+827,Grace,ID,10068500,,,10079500,below Soda,,,,,1
 829,Oneida,ID,10068500,,10086500,,,,,,,1
-50361,Owyhee Dam Power Project,OR,13269000,,,,,,,OWY;QD,PNH,1
-50362,Tunnel 1 Power Project,OR,13269000,,,,,,,OWCO;QJ,PNH,1
+830,Paris,ID,NA,,,,NA; no gauge,,,,,0
 831,Soda,ID,10068500,,10079500,,,,,,,1
-50980,Central Oregon Siphon,OR,NA,,,,,,,CENO;QJ,PNH,1
+832,St Anthony,ID,13154500,,13050500,,inflow upstream of pp,,,,,1
+833,Cabinet Gorge,ID,12433000,,,,12391950; usgs alternative,,,CAB.Flow-Out.Ave.1Hour.1Hour.CBT-RAW;kcfs,NWD,1
 835,Post Falls,ID,12433000,,12419000,,,,,,,1
+839,Scott Flat,CA,11425500,,,,NA; no gauge,,,,,0
+840,Dworshak,ID,13342500,,,,NWD,DWR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+841,City Power Plant,ID,13154500,,13060000,,below Gem State,,,,,1
+843,Lower No 2,ID,13154500,,13060000,,below Gem State,,,,,1
+844,Upper Power Plant,ID,13154500,,13060000,,below Gem State,,,,,1
+845,Soda Spgs-Hooper,ID,10068500,,,,NA; no gauge,,,,,0
+846,Combie South,CA,11425500,,,,NA; no gauge,,,,,0
+847,Combie North,CA,11425500,,,,NA; no gauge,,,,,0
 850,Palisades,ID,13154500,,13032500,,,,,,,1
-6396,Black Canyon,ID,13269000,,13249500,,,,,,,1
-6398,Minidoka,ID,13154500,,13081500,,,,,,,1
-7012,Lower No 1,ID,13154500,,13060000,,,,,,,1
-7190,Milner Hydro,ID,13154500,13087505,,,,,,,,1
-10735,Barber Dam,ID,13269000,,13206000,17km downstream,,,,,,1
-10740,Magic Dam Hydroelectric Project,ID,13154500,,13142500,,,,,,,1
-54668,Falls River Hydro,ID,NA,,13047600,,,,,,,1
-54006,Broadwater Power Project,MT,6108800,,6054500,,,,,,,1
+851,Albeni Falls,ID,12433000,,,,NWD,ALF.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+905,Alamo,CA,11078000,10260776,,,,,,,,1
+917,Quincy Chute,WA,NA,,,,NA; no gauge; on CBP network,,,,,0
+925,Ephraim City,UT,NA,,,,NA; no gauge,,,,,0
+977,Lewiston,CA,11530500,,11525500,,,10801,RISE,10796,RISE,1
+987,Last Chance,ID,NA,,10079500,,gauge upstream 5km,,,,,1
+1020,Manti Canyon Lower,UT,NA,,10215900,,may not be representative as source water is springs and water system,,,,,1
+2181,Black Eagle,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+2182,Cochrane,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
 2185,Hauser,MT,6108800,,6065500,,,,,,,1
-6403,Green Springs,OR,11530500,,,,,GSPO;QD,PNH,,,1
-6484,Bend,OR,14105700,,,,,,,DEBO;QD,PNH,1
 2186,Holter,MT,6108800,,6066500,,,,,,,1
 2188,Selis Ksanka Qlispe,MT,12433000,,12372000,,,,,,,1
 2191,Morony,MT,6108800,,6090300,,,,,,,1
 2192,Mystic Lake,MT,6214500,,6204050,,,,,,,1
-57437,Juniper Ridge Hydroelectric Project,OR,NA,,,,,,,NCAO;QJ,PNH,1
-58455,45-Mile Hydroelectric Project,OR,NA,,,,,,,NMCO;QJ,PNH,1
-58470,C Drop,OR,NA,,,,,,,ACHO;QJ,PNH,1
-6422,Madison,MT,6054500,,6041000,,,,,,,1
-6459,Big Fork,MT,NA,,12370000,,,,,,,1
-6623,Fort Peck,MT,6130500,,6132000,,,,,,,1
-56499,Tiber,MT,6108800,,6101500,,,,,,,1
-58392,Flint Creek Hydroelectric Project,MT,12433000,,12325500,,,,,,,1
-7789,Abiquiu Dam,NM,8359500,,8287000,,,,,,,1
-6521,Lahontan,NV,10301755,,10312150,,,,,,,1
-6532,Washoe,NV,NA,,10347460,,,,,,,1
-50261,New Lahontan,NV,10301755,,10312150,,,,,,,1
-50938,Galesville Project,OR,14301000,,14309000,,,,,,,1
-52187,Falls Creek,OR,NA,,,14185000,,,,,,1
-54251,Opal Springs Hydro,OR,14105700,,14087400,,,,,,,1
-297,Iron Gate,OR,11530500,,11516530,,,,,,,1
+2193,Rainbow,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+2194,Ryan,MT,6108800,,6090300,,downstream of Morony in cascade of 5 pp,,,,,1
+2195,Thompson Falls,MT,12433000,,12389000+12389500,,upstream gauges; sum approximates inflow; misses effect of storage,,,,,1
+2199,Noxon Rapids,MT,12433000,,,,12391400; usgs alternative,,,NOX.Flow-Out.Ave.1Hour.1Hour.CBT-RAW;kcfs,NWD,1
+2203,Hungry Horse,MT,12433000,,,,NWD,HGH.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+2204,Yellowtail,MT,6294500,,,,,BHR;QED,,167,MBH,1
 3013,Hells Canyon,OR,13342500,,13290450,,,,,,,1
-6405,Flaming Gorge,UT,9234500,,,,,4306,RISE,,,1
+3014,Oxbow,OR,13269000,,13290450,,gauge downstream of Hells Canyon,,,,,1
+3020,Clearwater 1,OR,14301000,14314400,,,diversion to powerhouse in canal/conduit,,,,,1
+3021,Clearwater 2,OR,14301000,14314600,,,diversion to powerhouse in canal/conduit,,,,,1
+3024,Eagle Point,OR,NA,,,,NA; no gauge; on EPID network,,,,,0
+3025,East Side,OR,11530500,,11507500,,gauge upstream of diversion return,,,,,1
+3026,Fish Creek,OR,14301000,14315900,,,diversion to powerhouse in canal/conduit,,,,,1
 3028,John C Boyle,OR,11530500,,11510700,,,,,,,1
+3029,Lemolo 1,OR,14301000,14312900,,,diversion to powerhouse in canal/conduit,,,,,1
 3032,Prospect 1,OR,NA,,14330000,,,,,,,1
 3033,Prospect 2,OR,NA,,14330000,,,,,,,1
-3698,Wanship,UT,10172630,,10129500,,,,,4335,RISE,1
+3034,Prospect 3,OR,14301000,,,14332000,only South Fork Flow,,,,,1
 3035,Prospect 4,OR,NA,,14330000,,,,,,,1
-4263,Echo Dam,UT,10172630,,,,,,,4330,RISE,1
-6404,Deer Creek,UT,10172630,,,,,4308,RISE,,,1
+3036,Slide Creek,OR,14301000,,14316500-14316495,,below Soda Springs,,,,,1
+3037,Soda Springs,OR,14301000,,14316500-14316495,,3km downstream; remove Boulder Creek inflow,,,,,1
+3040,Toketee,OR,14301000,,14316500-14316495,,below Soda Springs,,,,,1
 3041,Wallowa Falls,OR,NA,,13325000,,,,,,,1
+3042,West Side,OR,11530500,,11507500,,gauge upstream of diversion return,,,,,1
+3045,Faraday,OR,14211720,,14210000,,below River Mill,,,,,1
+3047,North Fork,OR,14211720,,14210000,,below River Mill,,,,,1
 3048,Pelton,OR,14105700,,14092500,,,,,,,1
 3049,River Mill,OR,14211720,,14210000,,,,,,,1
-7548,Causey,UT,10172630,,10137500,,,,,4328,RISE,1
-61853,Jordanelle,UT,10172630,,,,,4542,RISE,4347,RISE,1
-6505,Oak Grove,OR,14211720,,14209500,,,,,,,1
-7508,Stone Creek,OR,NA,,14209000,,,,,,,1
-10737,North Fork Hydro,OR,NA,,11495800,maybe just turbine flow,,,,,,1
-54721,Reregulating,OR,14105700,,14092500,,,,,,,1
+3050,Round Butte,OR,14105700,,14092500,,below Reregulating,,,,,1
+3053,Sullivan,OR,14211720,,14197900,,36km upstream,,,,,1
+3067,Carmen Smith,OR,14211720,,14158850,,below Trail Bridge reservoir; includes McKenzie River effects,,,,,1
+3068,Leaburg,OR,14211720,,14162500,,upstream of diversion,,,,,1
+3071,Walterville,OR,14211720,,14162500,,upstream of diversion,,,,,1
+3074,Big Cliff,OR,14211720,,,,,BCL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3075,Bonneville,OR,14246900,,,,,BON.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3076,Cougar,OR,14211720,,,,,CGR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3077,Detroit,OR,14211720,,,,,DET.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3078,Dexter,OR,14211720,,,,,DEX.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3080,Green Peter,OR,14211720,,,,,GPR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3081,Hills Creek,OR,14211720,,14145500,,,HCR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3082,John Day,OR,14105700,,,,,JDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3083,Lookout Point,OR,14211720,,,,,LOP.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+3084,McNary,OR,14105700,,,,,MCN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3634,Gunlock,UT,9402300,,9409880,,includes Santa Clara River flows,,,,,1
+3635,Veyo,UT,9402300,,9409880,,below Gunlock return,,,,,1
+3636,Sand Cove,UT,9402300,,9409880,,above Gunlock; includes Santa Clara River flows,,,,,1
+3643,Upper Beaver,UT,10217000,,10234500,,below Lower Beaver,,,,,1
+3646,Cutler,UT,10068500,,,10126000,40km downstream,,,,,1
+3651,Granite,UT,NA,,,,NA; no gauge,,,,,0
+3656,Pioneer,UT,10172630,,,10140100,gauge upstream of pp,,,,,1
+3658,Snake Creek,UT,NA,,,,NA; no gauge,,,,,0
+3659,Stairs,UT,NA,,,,NA; no gauge,,,,,0
+3661,Weber,UT,10172630,,10136500,,upstream of pp,,,,,1
+3664,Beaver Mid Hydro 2,UT,NA,,10234500,,below Lower Beaver,,,,,1
+3666,Brigham City,UT,10068500,,,,NA; no gauge,,,,,0
+3668,Ephraim City No. 3,UT,NA,,,,NA; no gauge,,,,,0
+3673,Snake Creek,UT,NA,,,,NA; no gauge,,,,,0
 3674,Hyrum,UT,10068500,,10113500,,,,,,,1
+3675,Hydro III,UT,10068500,,10109000,,below Hydro II,,,,,1
+3676,Manti Canyon Upper,UT,NA,,10215900,,may not be representative as source water is springs and water system,,,,,1
+3679,Lower Monroe,UT,NA,,,,NA; no gauge,,,,,0
+3680,Upper Monroe,UT,NA,,,,NA; no gauge,,,,,0
+3681,Lower-Unit,UT,10217000,,,,NA; no gauge,,,,,0
+3682,Upper-Unit,UT,10217000,,,,NA; no gauge,,,,,0
+3685,Center Creek,UT,NA,,,,NA; no gauge,,,,,0
+3688,Bartholomew,UT,NA,,,,NA; no gauge,,,,,0
+3689,Hobble Creek,UT,NA,,,,NA; no gauge,,,,,0
+3690,Spring Creek,UT,10172630,,,,NA; no gauge,,,,,0
 3691,Spanish Fork,UT,10172630,,10150500,,,,,,,1
+3692,Payson,UT,NA,,,,NA; no gauge,,,,,0
 3697,Gateway,UT,NA,,10136500,,,,,,,1
+3698,Wanship,UT,10172630,,10129500,,,,,4335,RISE,1
+3699,Boulder Creek,UT,NA,,,,NA; no gauge,,,,,0
+3704,Uintah,UT,NA,,9301500,,downstream of pp,,,,,1
 3705,Yellowstone,UT,9315000,,9292000,,,,,,,1
-6536,Beaver City Lower,UT,NA,,10234500,,,,,,,1
-6202,Ross,WA,12200500,,,,,,,41,RO,1
-6406,Chandler,WA,12510500,,,,,CHCW;QJ,PNH,,,1
-6407,Roza,WA,12510500,,,,,RZCW;QJ,PNH,,,1
-7034,Hydro II,UT,NA,,10109000,,,,,,,1
-7132,Pine View Dam,UT,10172630,,10140100,,,,,,,1
-6432,Diablo,WA,12200500,,,,,,,42,RO,1
-50827,Twin Falls Hydro,WA,NA,,,12143600,,,,,,1
-54387,Weeks Falls,WA,NA,,,12143600,,,,,,1
 3847,Merwin,WA,14246900,,14220500,,,,,,,1
+3850,Swift 1,WA,14246900,,,14220500,below Merwin,,,,,1
+3852,Yale,WA,14246900,,,14220500,below Merwin,,,,,1
+3854,Electron,WA,NA,,12093500,,below pp; ignores effect of afterbay,,,,,1
+3855,Lower Baker,WA,12200500,,12193400,,earlier gauge prior to 2007,,,,,1
 3860,Snoqualmie,WA,12200500,,12144500,,,,,,,1
+3861,Upper Baker,WA,12200500,,12193400,,below Lower Baker,,,,,1
+3866,Little Falls,WA,12433000,,12433000,,above pp,,,,,1
 3867,Long Lake,WA,12433000,,12433000,,,,,,,1
 3868,Meyers Falls,WA,NA,,12409000,,,,,,,1
-57496,Tieton,WA,12510500,,,,,,,RIM;QD,PNH,1
+3869,Nine Mile,WA,12433000,,12433000,,below Long Lake; storage effects,,,,,1
+3878,Yelm,WA,12200500,12089208,,,diversion to powerhouse in canal/conduit,,,,,1
+3883,Rocky Reach,WA,12472800,,,,,RRH.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3886,Wells,WA,12472800,,,,,WEL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3887,Priest Rapids,WA,12472800,,,,,PRD.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3888,Wanapum,WA,12472800,,,,,WAN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
 3891,Box Canyon,WA,12433000,,12396500,,,,,,,1
+3892,Calispel,WA,12433000,,,,NA; no gauge,,,,,0
+3895,The Dalles,OR,14105700,,,,,TDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3913,Alder,WA,12200500,,12086500,,below LaGrande,,,,,1
+3914,Cushman 1,WA,12200500,,,12056500,upstream of pp and storage,,,,,1
+3915,Cushman 2,WA,12200500,,,12056500,upstream of pp and storage,,,,,1
 3916,LaGrande,WA,12200500,,12086500,,,,,,,1
 3917,Mayfield,WA,14246900,,14238000,,,,,,,1
-6430,Cedar Falls,WA,12200500,12116400,,,,,,,,1
-6431,Gorge,WA,12200500,,12178000,,,,,,,1
-6433,Boundary,WA,12433000,,12398600,,,,,,,1
-7259,Skookumchuck,WA,14301000,,12026150,,,,,,,1
-7427,Cowlitz Falls,WA,14246900,,14233500,,,,,,,1
-7588,Jackson,WA,12200500,,12138160,,,,,,,1
-7867,Snoqualmie 2,WA,12200500,,12144500,,,,,,,1
-9095,Monroe Street,WA,12433000,,12422500,,,,,,,1
-505,Boysen,WY,6294500,,6259000,,,BOYR;QED,MBH,,,1
+3918,Mossyrock,WA,14246900,,14238000,,below Mayfield,,,,,1
+3921,Chief Joseph,WA,12472800,,,,,CHJ.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3925,Ice Harbor,WA,13342500,,,,,IHR.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3926,Little Goose,WA,13342500,,,,,LGS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3927,Lower Monumental,WA,13342500,,,,,LMN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+3929,Packwood,WA,14246900,,,,NA; no gauge,,,,,0
+4176,Fremont Canyon,WY,6674500,,,,Pathfinder total release,,,647,RISE,1
 4177,Glendo,WY,6674500,,,,,,,377,RISE,1
 4178,Guernsey,WY,6674500,,,,,,,377,RISE,1
 4180,Kortes,WY,6674500,,,,,,,KORR;QD,MBH,1
 4182,Seminoe,WY,6674500,,,,,,,735,RISE,1
 4183,Shoshone,WY,6294500,,,,,BBR;QESD,MBH,,,1
 4185,Fontenelle,WY,9234500,,,,,4305,RISE,,,1
+4204,Island Park,ID,13154500,,,,,,,ISL;QD,PNH,1
+4213,Portland No. 1,OR,14246900,,,14140000,downstream of Portland No. 2,,,,,1
+4214,Portland No. 2,OR,14246900,,,14140000,may miss water supply diversion,,,,,1
+4229,Fish Power,CA,11425500,,11413517;11413520,,gauge replaced 2004,,,,,1
+4263,Echo Dam,UT,10172630,,,,,,,4330,RISE,1
+6158,New Melones,CA,11303500,,,,,10845,RISE,,,1
+6159,Crystal,CO,9152500,,,,,4304,RISE,4312,RISE,1
+6163,Grand Coulee,WA,12472800,,,,,GCL.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6172,Libby,MT,12433000,,,,,LIB.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6174,Lost Creek,OR,14301000,,,,,LOS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+6175,Lower Granite,WA,13342500,,,,,LWG.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6196,W E Warne,CA,11078000,,,,NA; no gauge; on MWD network,,,,,0
+6200,Rock Island,WA,12472800,,,,,RIS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,,,1
+6202,Ross,WA,12200500,,,,,,,41,RO,1
+6206,Tacoma,CO,9379500,,,9362520,no gauge on diversion from Elektra Lake; includes Animas River flow,,,,,1
+6207,Ames,CO,9185600,,9171310,,,,,,,1
+6265,Swift 2,WA,14246900,,,14220500,below Merwin,,,,,1
+6359,Felt,ID,NA,,13052200,,gauge upstream of pp,,,,,1
+6370,Turnip,CA,NA,,,,NA; no gauge; on IID network,,,,,0
+6393,Strawberry Creek,WY,NA,,,,NA; no gauge,,,,,0
+6394,Swift Creek,WY,NA,,,,NA; no gauge,,,,,0
+6395,Anderson Ranch,ID,13269000,,,,,AND;QV,PNH,,,1
+6396,Black Canyon,ID,13269000,,13249500,,,,,,,1
+6397,Boise R Diversion,ID,13269000,,13202000,,upstream release from Lucky Peak,,,,,1
+6398,Minidoka,ID,13154500,,13081500,,,,,,,1
+6400,Canyon Ferry,MT,6108800,,,,,CFR;QED,MBH,,,1
+6402,Elephant Butte,NM,8361000,,,,,,,4377,RISE,1
+6403,Green Springs,OR,11530500,,,,,GSPO;QD,PNH,,,1
+6404,Deer Creek,UT,10172630,,,,,4308,RISE,,,1
+6405,Flaming Gorge,UT,9234500,,,,,4306,RISE,,,1
+6406,Chandler,WA,12510500,,,,,CHCW;QJ,PNH,,,1
+6407,Roza,WA,12510500,,,,,RZCW;QJ,PNH,,,1
 6408,Heart Mountain,WY,6294500,,,,,BBR;QEHD,MBH,,,1
 6409,Alcova,WY,6674500,,,,,,,116,RISE,1
+6421,Lemolo 2,OR,14301000,14313600,,,diversion to powerhouse in canal/conduit,,,,,1
+6422,Madison,MT,6054500,,6041000,,,,,,,1
+6424,Chelan,WA,12472800,,12452500,,at diversion; I believe contains the diversion and river flow,,,,,1
+6430,Cedar Falls,WA,12200500,12116400,,,,,,,,1
+6431,Gorge,WA,12200500,,12178000,,,,,,,1
+6432,Diablo,WA,12200500,,,,,,,42,RO,1
+6433,Boundary,WA,12433000,,12398600,,,,,,,1
+6449,Azusa,CA,NA,,,,NA; no gauge,,,,,0
+6459,Big Fork,MT,NA,,12370000,,,,,,,1
+6479,San Francisquito 1,CA,11078000,,,,NA; no gauge,,,,,0
+6480,San Francisquito 2,CA,11078000,,,,NA; no gauge,,,,,0
+6484,Bend,OR,14105700,,,,,,,DEBO;QD,PNH,1
+6505,Oak Grove,OR,14211720,,14209500,,,,,,,1
+6506,Moyie Springs,ID,12433000,,12306500,,gauge upstream of pp,,,,,1
+6507,Drop 2,WA,NA,,,,main canal diversion,,,WOPW;QJ,PNH,1
+6508,Drop 3,WA,NA,,,,main canal diversion,,,WOPW;QJ,PNH,1
+6513,Fleish,NV,NA,,10347460,,below Washoe,,,,,1
+6521,Lahontan,NV,10301755,,10312150,,,,,,,1
+6531,Verdi,NV,NA,,10347460,,below Washoe,,,,,1
+6532,Washoe,NV,NA,,10347460,,,,,,,1
+6536,Beaver City Lower,UT,NA,,10234500,,,,,,,1
+6537,Little Cottonwood,UT,NA,,,,NA; no gauge,,,,,0
+6538,Red Creek,UT,10217000,,,,NA; no gauge,,,,,0
+6552,Foster,OR,14211720,,,,,FOS.Flow-Gen.Ave.~1Day.1Day.CBT-REV;cfs,NWD,,,1
+6612,Union Valley,CA,11425500,11441002,,,,,,,,1
+6623,Fort Peck,MT,6130500,,6132000,,,,,,,1
+6644,Lake Mathews,CA,NA,,,,NA; no gauge,,,,,0
+6645,Foothill Feeder,CA,NA,,,,NA; no gauge,,,,,0
+6646,San Dimas,CA,NA,,,,NA; no gauge,,,,,0
+6647,Yorba Linda,CA,NA,,,,NA; no gauge,,,,,0
+7012,Lower No 1,ID,13154500,,13060000,,,,,,,1
+7015,Unit 4,UT,10217000,,,,NA; no gauge,,,,,0
+7016,Unit 3,UT,10172630,,,,NA; no gauge,,,,,0
+7027,Upper Bartholomew,UT,NA,,,,NA; no gauge,,,,,0
+7034,Hydro II,UT,NA,,10109000,,,,,,,1
 7050,Viva Naughton,WY,9234500,,9223385,,,,,,,1
+7066,Stampede,CA,10301755,,,,,,,STP;23;D,CDEC,1
+7069,Gunlock Hydro,UT,9402300,,9410100,,below Winsor Dam,,,,,1
+7072,Mojave Siphon,CA,10261500,,10260780,,,,,,,1
+7077,Sawtelle,CA,11078000,,,,NA; no gauge,,,,,0
+7079,Upper Salmon B,ID,13154500,,13135000,,downstream of Lower Salmon,,,,,1
+7113,Potholes East Canal Headworks,WA,12472800,,,,data in CBP but not accessable,,,,,0
+7127,Wynoochee,WA,14301000,,12035400,,"NWD data also exists, but messy",,,,,1
+7129,Thermalito Diverson Dam,CA,11425500,,,,,,,TDV;48;D,CDEC,1
+7132,Pine View Dam,UT,10172630,,10140100,,,,,,,1
+7147,Mill Creek 3,CA,NA,11052500,,,Mill Creek 2 and 3,,,,,1
+7150,Soda Creek,ID,10068500,,,,NA; no gauge,,,,,0
+7151,Stony Gorge,CA,11425500,,,,NA; no gauge,,,,,0
+7179,Headgate Rock,AZ,9404200,,9428500,,inflow,,,,,1
+7189,Whiskeytown,CA,11425500,,,,,,,10825,RISE,1
+7190,Milner Hydro,ID,13154500,13087505,,,,,,,,1
+7224,High Line,CA,NA,,,,NA; no gauge,,,SDV;110;E,CDEC,1
+7229,Black Butte,CA,11425500,,,,,,,BLB;23;D,CDEC,1
+7233,Tesla,CO,7134180,,,,NA; no gauge; on CSU network,,,,,0
+7259,Skookumchuck,WA,14301000,,12026150,,,,,,,1
 7317,Buffalo Bill,WY,6294500,,,,,BBR;QEBBD,MBH,,,1
+7338,Grizzly,CA,11425500,11404240,,,,,,,,1
+7362,Pine Valley,UT,NA,,,,NA; no gauge,,,,,0
+7372,McPhee,CO,9185600,,,,,,,4342,RISE,1
+7373,Towaoc,CO,9185600,,,,,,,DOLTUNCO,CDSS,1
+7427,Cowlitz Falls,WA,14246900,,14233500,,,,,,,1
+7431,The Dalles Fishway,WA,14105700,,,,"main generator flows, but best approximation",,,TDA.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,1
+7458,Ruedi,CO,9106150,,,,,,,RUERESCO;QD,MBH,1
+7489,Lake Mendocino,CA,11530500,,,,,,,COY;23;D,CDEC,1
+7507,Deadwood Creek,CA,NA,11413326,,,,,,,,1
+7508,Stone Creek,OR,NA,,14209000,,,,,,,1
+7511,McNary Fish,WA,14105700,,,,"main generator flows, but best approximation",,,MCN.Flow-Gen.Ave.~1Day.1Day.CBT-REV;kcfs,NWD,1
 7541,Spirit Mountain,WY,6294500,,,,,BBR;QESPD,MBH,,,1
+7548,Causey,UT,10172630,,10137500,,,,,4328,RISE,1
+7588,Jackson,WA,12200500,,12138160,,,,,,,1
+7590,Lower Boulder,UT,9333500,,,,NA; no gauge,,,,,0
+7593,El Vado Dam,NM,8359500,,,,,,,4502,RISE,1
+7646,Monticello,CA,11425500,,11454000,,,,,,,1
+7718,Buffalo,ID,13154500,,,,NA; no gauge,,,,,0
+7789,Abiquiu Dam,NM,8359500,,8287000,,,,,,,1
+7867,Snoqualmie 2,WA,12200500,,12144500,,,,,,,1
+7907,Pine Flat,CA,11189500,,,,,,,PNF;23;D,CDEC,1
+7911,Kern Canyon,CA,11189500,,11192940,,,,,,,1
+7942,Diamond Valley Lake,CA,11078000,,,,NA; no gauge,,,,,0
+8902,Hoover Dam (AZ),AZ,9404200,,,,combined with Hoover Dam (NV),6125,RISE,,,1
+9095,Monroe Street,WA,12433000,,12422500,,,,,,,1
+9096,Upper Falls,WA,12433000,,12422500,,below Monroe Street,,,,,1
+9842,Newhalem,WA,NA,,,12178100,gauge may be below diversion,,,,,1
+10014,Lucky Peak,ID,13269000,,,,,LUC;QT,PNH,,,1
+10049,Little Mac Project,ID,NA,,,,NA; no gauge,,,,,0
+10070,Foothills Hydro Plant,CO,6764880,,,,NA; no gauge; on CSU network,,,,,0
+10081,Strontia Springs Hydro Plant,CO,6764880,,,,unclear if turbine discharges water into conduit or river,,,PLASTRCO,CDSS,1
+10128,R.W. Matthews,CA,11530500,,11480410,,,,,,,1
+10138,South Dry Creek Hydro,MT,NA,,,,NA; no gauge,,,,,0
+10139,Isabella Hydro Project,CA,11189500,,,,,,,ISB;23;D,CDEC,1
+10140,Birch Creek Power,ID,NA,,,,NA; no gauge,,,,,0
+10162,Whitewater Hydro Plant,CA,NA,,,,NA; no gauge,,,,,0
+10222,Success,CA,11189500,,,,includes other release works; misses water pumped from tailrace to Pioneer Canal,,,SCC;23;D,CDEC,1
+10282,Big Creek Water Works,CA,NA,,,,NA; no gauge,,,,,0
+10296,Lowline Canal Drop Hydro,ID,NA,,,,NA; no gauge,,,,,0
+10323,Farmers ID No. 2,OR,NA,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
+10324,Farmers ID No. 3,OR,NA,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
+10325,Mink Creek Hydro,ID,NA,,,,NA; no gauge,,,,,0
+10421,Dillon Hydro Plant,CO,9106150,,9050700,,,,,,,1
+10422,Williams Fork Hydro Plant,CO,9106150,,9038500,,,,,,,1
+10423,North Fork Hydro Plant,CO,NA,,,,,,,ROBTUNCO,CDSS,1
+10424,Gross,CO,6764880,,,,,,,BOCBGRCO,CDSS,1
+10458,Muck Valley Hydroelectric,CA,11425500,11351700,,,,,,,,1
+10706,Burney Creek,CA,NA,,,,NA; no gauge,,,,,0
+10707,Cove Hydroelectric,CA,NA,,,,NA;  no gauge,,,,,0
+10708,Lost Creek I,CA,NA,11358010,,,,,,,,1
+10709,Ponderosa Bailey Creek,CA,NA,11376110,,,,,,,,1
+10735,Barber Dam,ID,13269000,,13206000,17km downstream,,,,,,1
+10737,North Fork Hydro,OR,NA,,11495800,maybe just turbine flow,,,,,,1
+10740,Magic Dam Hydroelectric Project,ID,13154500,,13142500,,,,,,,1
+10781,Koyle Ranch Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
+10806,Crystal Springs,ID,NA,,,,NA;  no gauge,,,,,0
+10807,Dietrich Drop,ID,NA,,,,,,,MIII;QJ,PNH,1
+10808,Lower Low Line,ID,NA,,,,,,,TCSI;QJ,PNH,1
+10809,Rock Creek II,ID,NA,,,,NA;  no gauge,,,,,0
+10880,Bidwell Ditch Project,CA,NA,11364155,,,,,,,,1
+10881,Roaring Creek Water Power,CA,NA,11364155,,,,,,,,1
+10882,Hatchet Creek Project,CA,NA,11364250,,,,,,,,1
+50037,Rio Bravo Hydro Project,CA,11189500,11193010,,,,,,,,1
+50076,Santa Felicia Dam,CA,11078000,,11109800,,,,,,,1
+50091,Big Sheep Creek,WA,NA,,,,NA;  no gauge,,,,,0
+50128,Clear Lake Hydro Project,CA,11425500,,11451000,,,,,,,1
+50129,Indian Valley Dam Hydro Project,CA,11425500,,11451300,,,,,,,1
+50147,R E Badger Filtration Plant,CA,NA,,,,NA; no gauge,,,,,0
+50156,Nichols,CA,NA,,,,NA; no gauge,,,,,0
+50179,Lake Siskiyou,CA,11425500,,,11342000,50km downstream,,,,,1
+50180,Olsen,CA,11180700,11372350,,,,,,,,1
+50206,Vallecito,CO,9379500,,,,,,,4323,RISE,1
+50218,Woodward Power Plant,CA,11303500,,,,NA; no gauge,,,,,0
+50219,Frankenheimer Power Plant,CA,NA,,,,NA; no gauge,,,,,0
+50223,Nelson Creek,CA,NA,11362800,,,,,,,,1
+50228,Rocky Brook Hydroelectric,WA,NA,,,,NA;  no gauge,,,,,0
+50233,San Dimas Wash Generating Station,CA,NA,,,,NA; no gauge,,,,,0
+50261,New Lahontan,NV,10301755,,10312150,,,,,,,1
+50267,Redlands Water & Power,CO,9152500,,,,,,,RLCGRJCO,CDSS,1
+50322,Madera Canal (Site 980 65),CA,NA,,,,NA; no gauge,,,,,0
+50323,N-32 Canal,ID,NA,,,,NA;  no gauge,,,,,0
+50350,Forks of Butte Hydro Project,CA,NA,11389747,,,,,,,,1
+50352,Nacimiento Hydro Project,CA,11143250,,11149400,,,,,,,1
+50360,Michell Butte Power Project,OR,NA,,,,NA;  no gauge,,,,,0
+50361,Owyhee Dam Power Project,OR,13269000,,,,,,,OWY;QD,PNH,1
+50362,Tunnel 1 Power Project,OR,13269000,,,,,,,OWCO;QJ,PNH,1
+50375,East Portal Generator,CA,NA,,,,NA; no gauge,,,,,0
+50380,Upriver Dam Hydro Plant,WA,12433000,,12422500,,below Monroe Street,,,,,1
+50382,Twin Reservoirs,WA,NA,,,,NA;  no gauge,,,,,0
+50393,Friant Hydro Facility,CA,11303500,,,,assumes power generation from river outlet works,,,10806,RISE,1
+50400,Sand Bar Power Plant,CA,NA,11292860,,,,,,,,1
+50421,Orchard Avenue 1,WA,NA,,,,NA;  no gauge,,,,,0
+50423,Cowiche,WA,NA,,,,NA;  no gauge,,,,,0
+50435,Sugarloaf Hydro Plant,CO,7134180,,,,,,,TURQ;QD,MBH,1
+50492,Point Loma,CA,NA,,,,NA; no gauge,,,,,0
+50546,Bowman,CA,11425500,,11416000+11416500,,release to Spaulding 3 plus river release,,,,,1
+50700,Lilliwaup Falls Generating,WA,NA,,,,NA;  no gauge,,,,,0
+50718,Notch Butte Hydro,ID,NA,,,,gauge upstream of pp,,,WODI;QD,PNH,1
+50755,New Hogan,CA,11303500,,,,,,,NHG;23;D,CDEC,1
+50827,Twin Falls Hydro,WA,NA,,,12143600,,,,,,1
+50891,El Dorado Hydro Elk Creek,ID,NA,,,,NA;  no gauge,,,,,0
+50892,Rock Creek LP,CA,NA,11444280,,,,,,,,1
+50895,Bypass,ID,NA,,,,,,,TCNI;QJ,PNH,1
+50896,S E Hazelton A,ID,NA,,,,,,,TCNI;QJ,PNH,1
+50917,Middle Fork Irrigation District,OR,14105700,,,14120000,no gauge; dependent on irrigation diversions,,,,,1
+50938,Galesville Project,OR,14301000,,14309000,,,,,,,1
+50961,Slate Creek,CA,NA,,,,NA; no gauge,,,,,0
+50972,Marsh Valley Development,ID,NA,,13073000,,upstream of pp and canal diversion,,,,,1
+50980,Central Oregon Siphon,OR,NA,,,,,,,CENO;QJ,PNH,1
+50987,Rock Creek,ID,NA,,13092747,,upstream of pp,,,,,1
+52039,Quail Creek Hydro Plant #1,UT,9402300,,,,NA;  no gauge,,,,,0
+52155,Lacomb Irrigation District,OR,NA,,,,NA;  no gauge,,,,,0
+52187,Falls Creek,OR,NA,,,14185000,,,,,,1
+54006,Broadwater Power Project,MT,6108800,,6054500,,,,,,,1
+54017,San Gabriel Hydro Project,CA,11078000,,,,NA; no gauge,,,,,0
+54142,Hillcrest Pump Station,CO,NA,,,,NA;  no gauge,,,,,0
+54249,Smith Creek,ID,NA,,,12321500,adjacent creek,,,,,1
+54251,Opal Springs Hydro,OR,14105700,,14087400,,,,,,,1
+54261,Warm Springs,CA,11530500,,,,,,,WRS;23;D,CDEC,1
+54267,Koma Kulshan,WA,NA,,,,NA;  no gauge,,,,,0
+54306,Wilson Lake Hydroelectric Project,ID,13154500,,,,misses reservoir effects,,,TCNI;QJ,PNH,1
+54308,Three Forks Water Power Project,CA,NA,,,,NA; no gauge,,,,,0
+54343,Terminus Hydroelectric Project,CA,11189500,,,,,,,TRM;23;D,CDEC,1
+54386,Little Wood Hydro Project,ID,13154500,,13148500,,,,,,,1
+54387,Weeks Falls,WA,NA,,,12143600,,,,,,1
+54394,Dry Creek Project,ID,NA,,,,NA;  no gauge,,,,,0
+54514,Blind Canyon Hydro,ID,NA,,,,NA;  no gauge,,,,,0
+54524,Horseshoe Bend Hydro Partners,ID,13269000,,13247500,,upstream of pp,,,,,1
+54554,Spicer Meadow Project,CA,11303500,11293760,,,,,,,,1
+54555,Collierville Powerhouse,CA,11303500,11295250,,,,,,,,1
+54558,Hazelton B Hydro,ID,13154500,,,,,,,TCNI;QJ,PNH,1
+54652,Mirror Lake,WA,NA,,,,NA;  no gauge,,,,,0
+54654,Kekawaka Power House,CA,NA,,,11474780,gauge below diversion,,,,,1
+54668,Falls River Hydro,ID,NA,,13047600,,,,,,,1
+54674,Ford Hydro LP,ID,NA,,,,NA; no gauge,,,,,0
+54680,Betasso,CO,NA,,,,NA; no gauge,,,,,0
+54721,Reregulating,OR,14105700,,14092500,,,,,,,1
+54729,Taylor Draw Hydroelectric Facility,CO,9306500,,,9306500,gauge quite downstream,,,,,1
+54753,Lateral No. 10,ID,NA,,,,NA; no gauge,,,,,0
+54812,Mile 28 Water Power Project,ID,NA,,,,diversion quite upstream,,,MIII;QJ,PNH,1
+54860,Black Creek,WA,NA,,,,NA; no gauge,,,,,0
+55009,Montgomery Creek Hydro,CA,NA,,,,NA; no gauge,,,,,0
+55931,Boulder City Silver Lake Hydro,CO,6764880,,,,NA; no gauge,,,,,0
+56125,Springville Hydroelectric,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+56498,Mora Drop Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
+56499,Tiber,MT,6108800,,6101500,,,,,,,1
+56615,Rancho Penasquitos,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+56694,Russell D Smith,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56695,Summer Falls Power Plant,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56696,Eltopia Branch Canal 4.6,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56697,Potholes East Canal 66.0,WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56698,Dry Falls Dam (Main Canal Headworks),WA,12472800,,,,"NA; no gauge; CBP has data, but not accessible",,,,,0
+56893,Chester Diversion Hydroelectric Project,ID,13154500,,,,,,,CHCI;QJ,PNH,1
+56997,Arrowrock,ID,13269000,,,,,,,ARKI;QD,PNH,1
+57364,Siphon Drop,CA,NA,9524000,,,,,,,,1
+57437,Juniper Ridge Hydroelectric Project,OR,NA,,,,,,,NCAO;QJ,PNH,1
+57496,Tieton,WA,12510500,,,,,,,RIM;QD,PNH,1
+57551,Garland Canal,WY,NA,,,,upstream of pp,,,BBR;QJ,MBH,1
+57763,Youngs Creek,WA,NA,,,,NA; no gauge,,,,,0
+57854,North Hollywood,CA,NA,,,,NA; no gauge; on MWD network,,,,,0
+58120,Lower South Fork Irrigation Project,MT,NA,,,,NA; no gauge; on canal,,,,,0
+58384,Fargo No. 1,ID,NA,,,,NA; no gauge; on canal,,,,,0
+58392,Flint Creek Hydroelectric Project,MT,12433000,,12325500,,,,,,,1
+58455,45-Mile Hydroelectric Project,OR,NA,,,,,,,NMCO;QJ,PNH,1
+58470,C Drop,OR,NA,,,,,,,ACHO;QJ,PNH,1
+58622,Carter Hydro,CO,6764880,,,,,,,CARCONCO;QJ,MBH,1
+58696,Nooksack,WA,NA,,12205000,,Cascade Creek included in flow,,,,,1
+58783,South Canal Hydro-1,CO,NA,,,,,,,SOUCANCO,CDSS,1
+58784,South Canal Hydro-3,CO,NA,,,,,,,SOUCANCO,CDSS,1
+58901,Ridgway,CO,9152500,,,,,,,4837,RISE,1
+59357,Dorena Lake Dam Project,OR,14211720,,,,,,,DOR.Flow-Out.Inst.0.0.Best;cfs,NWD,1
+59428,Baker Creek Diversion,CA,NA,,,,NA; no gauge,,,,,0
+60119,Granby Dam,CO,9106150,,,,,,,386,RISE,1
+60418,Calligan Creek,WA,NA,,,,NA; no gauge,,,,,0
+60517,Hancock Creek,WA,NA,,,,NA; no gauge,,,,,0
+61189,Shavano Falls Hydro,CO,NA,,,,,,,SOUCANCO,CDSS,1
+61190,Shavano Falls Hydro Drop 4,CO,NA,,,,,,,SOUCANCO,CDSS,1
+61191,Drop 5,CO,NA,,,,,,,SOUCANCO,CDSS,1
+61688,North Gooding Main Hydroelectric Project,ID,NA,,,,NA; no gauge; on canal,,,,,0
+61853,Jordanelle,UT,10172630,,,,,4542,RISE,4347,RISE,1
+64123,Pueblo Dam,CO,7134180,,,,,,,684,RISE,1
+64607,MC6 Hydro Facility,ID,NA,,,,NA; no gauge; on canal,,,,,0
+65033,Kings River Syphon,CA,NA,,,,NA; no gauge; on OCID canal,,,,,0
 ,,,,,,,,,,,,
 2,Bankhead,AL,2469761,,,,,,,,,
 4,Walter Bouldin Dam,AL,2420000,,,,,,,,,

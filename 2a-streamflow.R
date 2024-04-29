@@ -381,6 +381,7 @@ for(i in 1:length(flow_file_list)){
   dat_flow = bind_rows(dat_flow, dat_flow_temp)
 
 }
+
 #- write out tidy csv
 write_csv(dat_flow, paste0(dir_data, '../proc/flow_all_td.csv'))
 
