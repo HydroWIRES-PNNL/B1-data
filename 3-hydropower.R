@@ -13,6 +13,7 @@ dam_codes <- tribble(
   "MCN", 3084L,
   "PRD", 3887L,
   "TDA", 3895L,
+  "LIB", 6172L,
   "ALF", 851L,
   "BCL", 3074L,
   "CGR", 3076L,
