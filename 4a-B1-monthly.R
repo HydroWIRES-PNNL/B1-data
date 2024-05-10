@@ -9,7 +9,7 @@
 library(tidyverse)
 
 end_year <- 2023
-rectifhyd_fn <- "data/RectifHyd_v1.2.1.csv"
+rectifhyd_fn <- "data/RectifHyd_v1.3.csv"
 eha_fn <- "data/ORNL_EHAHydroPlant_FY2023_rev.xlsx"
 output_dir <- "B1_monthly"
 
@@ -76,7 +76,7 @@ monthly_targets
 
 monthly_targets %>%
   group_by(EIA_ID, month) %>%
-  summarise(p_avg_ = median(p_avg)) %>%
+  summarise(p_avg_ = median(p_avg), .groups = "drop") %>%
   ungroup() %>%
   mutate(month = factor(month, levels = month.abb, ordered = T)) -> replacement_data
 
@@ -114,7 +114,7 @@ readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
   unique() -> modes
 
 read_csv("PNW_28_max_min_ador_parameters.csv", show = F, progress = F) %>%
-  left_join(modes) %>%
+  left_join(modes, by = join_by(EIA_ID)) %>%
   group_by(mode) %>%
   summarise(
     max_param = mean(max_param),
@@ -131,9 +131,9 @@ bind_rows(
   monthly_targets_filled %>%
     left_join(modes, by = "EIA_ID") %>%
     filter(!(EIA_ID %in% mma_params_pnw[["EIA_ID"]])) %>%
-    left_join(mma_params_general),
+    left_join(mma_params_general, by = join_by(mode)),
   monthly_targets_filled %>%
-    left_join(mma_params_pnw) %>%
+    left_join(mma_params_pnw, by = join_by(EIA_ID)) %>%
     filter(EIA_ID %in% mma_params_pnw[["EIA_ID"]])
 ) %>%
   mutate(
@@ -184,3 +184,27 @@ monthly_final %>%
       .[1] -> yr
     write_csv(x, paste0(output_dir, "/B1_monthly_", yr, ".csv"), na = "")
   }) -> shhh
+
+monthly <- list.files(output_dir, full.names = T) |>
+  map(function(x) read_csv(x, progress = F, show = F)) |>
+  bind_rows()
+
+monthly |>
+  filter(Western == TRUE) |>
+  group_by(year, month) |>
+  summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
+  filter(year %in% c(2001, 2009)) |>
+  ggplot(aes(month, energy_mwh / 1000, fill = factor(year))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual("", values = c("orange", "cornflowerblue")) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(x = "", y = "Energy [GWh]")
+
+monthly |>
+  filter(Western == TRUE) |>
+  group_by(year, month) |>
+  summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
+  filter(year %in% c(2001, 2009)) |>
+  pivot_wider(id_cols = month, names_from = year, values_from = energy_mwh) |>
+  mutate(pct_diff = (`2001` - `2009`) / `2009` * 100)

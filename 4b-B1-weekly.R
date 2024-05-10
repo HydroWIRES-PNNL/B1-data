@@ -3,7 +3,13 @@
 # break up monthly B1 datasets into weekly resolution.
 library(tidyverse)
 
-end_year <- 2023
+options(
+  readr.show_progress = FALSE,
+  readr.show_col_types = FALSE,
+  pillar.width = 1e6
+)
+
+end_year <- 2022
 eha_fn <- "data/ORNL_EHAHydroPlant_FY2023_rev.xlsx"
 output_dir <- "B1_weekly"
 
@@ -50,44 +56,53 @@ date_time_sequence %>%
   ) -> sequence_weekly
 
 # read table of EIA ids associated with HUC4
-EIA_and_HUC4 <- read_csv("data/eia_huc4.csv", show = F, progress = F)
+EIA_and_HUC4 <- read_csv("data/eia_huc4.csv")
 
 # read flow data created by `2-streamflow.R`
-all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress = F)
+flow_huc4 <- read_csv("data/HUC4_average_flows_imputed.csv")
+flow_gauge <- read_csv("data/flow/proc/flow_all_td.csv") |>
+  mutate(
+    year = year(date),
+    month = month(date),
+    day = day(date)
+  ) |>
+  rename(av_flow_cfs = value)
 
 # PNW dam data, daily forebay, inflow, outflow, power
-pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
+pnw_dam_data <- read_csv("data/pnw_daily_data.csv") |>
   pivot_wider(id_cols = c(year, month, day, dam, EIA_ID), names_from = "variable") |>
   mutate(inflow_cfs = inflow_kcfs * 1000, outflow_cfs = outflow_kcfs * 1000)
 
 # read monthly B1 data
-2001:end_year %>%
+monthly_all <-
+  2001:end_year %>%
   map_dfr(function(yr) {
     read_csv(paste0("B1_monthly/B1_monthly_", yr, ".csv"), show = F) %>%
       mutate(month = factor(month, levels = month.abb, ordered = T))
-  }) -> monthly_all
+  })
 
 
 # disaggregate to daily and aggregate back to weekly
 2001:end_year %>%
-  map_dfr(function(yr) {
+  map(function(yr) {
     message(yr)
 
     sequence_weekly %>%
       filter(year == yr) %>%
       mutate(month = month(date, label = T)) -> wk_seq
 
-    monthly_all %>% filter(year == yr) %>%
+    monthly_all %>%
+      filter(year == yr) %>%
       # filter(EIA_ID == 314) -> x
-      split(.$EIA_ID) %>% # .[[1]] -> x
-      map_dfr(function(x) {
+      split(.$EIA_ID) %>% # .[[14]] -> x
+      map(function(x) {
         x$EIA_ID %>% unique() -> EIA_ID_
 
-        # message('\t',EIA_ID_)
+        # message("\t", yr, EIA_ID_)
 
-        EIA_and_HUC4 %>%
+        HUC <- EIA_and_HUC4 %>%
           filter(EIA_ID %in% EIA_ID_) %>%
-          .[["HUC4"]] -> HUC
+          .[["HUC4"]]
 
         if (length(HUC) == 0) HUC <- NA_character_
 
@@ -95,9 +110,14 @@ pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
         # but maybe sean decided it was bogus
         if (EIA_ID_ == 314) HUC <- NA_character_
 
+
+        plant_has_associated_huc4 <- EIA_ID_ %in% EIA_and_HUC4$EIA_ID
+        plant_has_release_flow <- nrow(flow_gauge %>% filter(EIA_ID == EIA_ID_, year == yr)) >= 365
+        plant_has_huc4_flow <- nrow(flow_huc4 %>% filter(HUC4 == HUC, year == yr)) >= 365
+
         # if the EIA ID does not have a HUC associated or if the flow
         # data is incomplete then just split evenly across each week
-        if (!(EIA_ID_ %in% EIA_and_HUC4$EIA_ID) | nrow(all_flows %>% filter(HUC4 == HUC, year == yr)) < 365) {
+        if (!plant_has_associated_huc4 | !(plant_has_huc4_flow | plant_has_release_flow)) {
           x %>%
             select(month, target_MWh) %>%
             left_join(wk_seq,
@@ -122,14 +142,26 @@ pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
           return(weekly_targets)
         }
 
-        pnw_dam_data |>
+        dam_data <- pnw_dam_data |>
           filter(EIA_ID == EIA_ID_) |>
-          select(year, month, day, forebay_ft, inflow_cfs, outflow_cfs) ->
-        dam_data
+          select(year, month, day, forebay_ft, inflow_cfs, outflow_cfs)
 
-        all_flows %>%
-          filter(HUC4 == HUC) %>%
-          filter(year == yr) %>%
+        # determine which flows to use, release flows are preferable,
+        # huc4 flows are the fallback
+        flows_for_disag <- if (plant_has_release_flow) {
+          flow_gauge %>%
+            filter(EIA_ID == EIA_ID_) %>%
+            filter(year == yr)
+        } else if (plant_has_huc4_flow) {
+          flow_huc4 %>%
+            filter(HUC4 == HUC) %>%
+            filter(year == yr)
+        } else {
+          # this should not happen since the case should be caught above
+          stop("No flow data to disag")
+        }
+
+        daily_flow_allocation <- flows_for_disag %>%
           arrange(year, month, day) %>%
           group_by(month, year) %>%
           mutate(daily_allocation = av_flow_cfs / sum(av_flow_cfs)) %>%
@@ -138,10 +170,9 @@ pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
           ungroup() %>%
           # join in dam data, might be empty
           left_join(dam_data, by = join_by(year, month, day)) %>%
-          mutate(month = month(month, label = T)) ->
-        daily_flow_allocation
+          mutate(month = month(month, label = T))
 
-        x %>%
+        weekly_targets <- x %>%
           select(month, target_MWh) %>%
           left_join(daily_flow_allocation,
             by = c("month")
@@ -164,13 +195,15 @@ pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
             nameplate = x[["nameplate"]][1],
             plant = x[["plant"]][1],
             state = x[["state"]][1]
-          ) -> weekly_targets
+          )
 
         return(weekly_targets)
-      }) -> all_targets_yr_x
+      }, .progress = TRUE) |>
+      bind_rows() -> all_targets_yr_x
 
     return(all_targets_yr_x)
-  }) |>
+  }, .progress = TRUE) |>
+  bind_rows() |>
   # add HUC4 and USGS_ID
   left_join(EIA_and_HUC4, by = join_by(EIA_ID)) |>
   left_join(all_flows |> distinct(HUC4, USGS_ID), by = join_by(HUC4)) ->
@@ -258,3 +291,33 @@ weekly_final %>%
       .[1] -> yr
     write_csv(x, paste0(output_dir, "/B1_weekly_", yr, ".csv"), na = "")
   }) -> shhh
+
+weekly <- list.files(output_dir, full.names = T) |>
+  map(function(x) read_csv(x, progress = F, show = F)) |>
+  bind_rows()
+
+# weekly |>
+#   filter(Western == TRUE) |>
+#   group_by(year, week_start) |>
+#   summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
+#   filter(year %in% c(2001, 2009)) |>
+#   mutate(week_start = `year<-`(week_start, 2000)) |>
+#   filter(week_start < as.Date("2000-12-31")) |>
+#   ggplot(aes(week_start, energy_mwh / 1000, fill = factor(year))) +
+#   geom_bar(stat = "identity", position = "dodge") +
+#   scale_fill_manual("", values = c("orange", "cornflowerblue")) +
+#   scale_x_date(date_breaks = "month", date_labels = "%b") +
+#   theme_bw() +
+#   scale_y_continuous(expand = c(0, 0)) +
+#   labs(x = "", y = "Energy [GWh]")
+
+#
+# weekly |>
+#   filter(Western == TRUE) |>
+#   group_by(year, week_start) |>
+#   summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
+#   filter(year %in% c(2001, 2009)) |>
+#   mutate(week_start = `year<-`(week_start, 2000)) |>
+#   pivot_wider(id_cols = week_start, names_from = year, values_from = energy_mwh) |>
+#   mutate(pct_diff = (`2001` - `2009`) / `2009` * 100) |>
+#   print(n = 100)
