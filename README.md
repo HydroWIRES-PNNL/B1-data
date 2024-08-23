@@ -1,6 +1,6 @@
 # HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data
 
-Authors: Sean Turner (ORNL), Cameron Bracken (PNNL), Nathlie Voisin (PNNL)
+Authors: Cameron Bracken (PNNL), Sean Turner (ORNL), Daniel Broman (PNNL), Nathlie Voisin (PNNL)
 
 Corresponding author: cameron.bracken@pnnl.gov 
 
