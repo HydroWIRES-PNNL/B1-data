@@ -4,7 +4,7 @@ Authors: Cameron Bracken (PNNL), Sean Turner (ORNL), Daniel Broman (PNNL), Nathl
 
 Corresponding author: cameron.bracken@pnnl.gov 
 
-This repo contains the code to reproduce the dataset: [HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data](https://zenodo.org/records/8408246).
+This repo contains the code to reproduce the dataset: [HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data](https://zenodo.org/records/13351949).
 
 Steps to reproduce:
 
