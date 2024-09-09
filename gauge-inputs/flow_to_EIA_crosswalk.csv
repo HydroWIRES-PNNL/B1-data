@@ -513,8 +513,8 @@ EIA_ID,plant,state,USGS_ID,USGS_ID_turbinerelease,USGS_ID_totalrelease,USGS_ID_u
 10707,Cove Hydroelectric,CA,NA,,,,NA;  no gauge,,,,,0
 10708,Lost Creek I,CA,NA,11358010,,,,,,,,1
 10709,Ponderosa Bailey Creek,CA,NA,11376110,,,,,,,,1
-10735,Barber Dam,ID,13269000,,13206000,17km downstream,,,,,,1
-10737,North Fork Hydro,OR,NA,,11495800,maybe just turbine flow,,,,,,1
+10735,Barber Dam,ID,13269000,,13206000,,17km downstream,,,,,1
+10737,North Fork Hydro,OR,NA,,11495800,,maybe just turbine flow,,,,,1
 10740,Magic Dam Hydroelectric Project,ID,13154500,,13142500,,,,,,,1
 10781,Koyle Ranch Hydroelectric Project,ID,NA,,,,NA; no gauge,,,,,0
 10806,Crystal Springs,ID,NA,,,,NA;  no gauge,,,,,0
