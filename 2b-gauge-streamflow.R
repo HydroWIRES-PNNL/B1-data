@@ -11,7 +11,7 @@ source("utilities.R")
 # TODO move to input file
 #- start and end dates for data retrieval (in YYYY-MM-DD format)
 date_start <- "2001-01-01"
-date_end <- "2023-12-31"
+date_end <- "2024-12-31"
 #- output directory
 dir_data <- "data/flow"
 #- ResOpsUS time_series_all data directory

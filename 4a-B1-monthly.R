@@ -1,22 +1,27 @@
-# B1 datasets
-
+# B1 dataset#
 # Create the hydroWIRES B1 dataset from hydro923plus
-
+#
+# 2024 Update - Nov 3 2025 - Cameron Bracken cameron.bracken@pnnl.gov
+#
 # Approach:
 # 1. For the monthly version, take hydro923plus and add max, min, ador using average of PNW parameters
 # 2. For the weekly version, disaggregate using USGS flows, use same max, min, ador parameters.
 
 library(tidyverse)
 
-end_year <- 2023
-rectifhyd_fn <- "data/RectifHyd_v1.3.csv"
-eha_fn <- "data/ORNL_EHAHydroPlant_FY2023_rev.xlsx"
-output_dir <- "B1_monthly"
+end_year <- 2024
+rectifhyd_fn <- "data/RectifHyd_v1.4.csv"
+eha_fn <- "data/ORNL_EHAHydroPlant_PublicFY2024.xlsx"
+output_prefix <- "B1_data"
+version <- "1.4.0"
 
+output_dir <- paste0(output_prefix, "_", version)
 dir.create(output_dir, showWarnings = FALSE)
 
 # get hours per month for converting MWh to MW average
-tibble(date = seq(ISOdate(2001, 1, 1), to = ISOdate(end_year, 12, 31), by = "day")) %>%
+tibble(
+  date = seq(ISOdate(2001, 1, 1), to = ISOdate(end_year, 12, 31), by = "day")
+) %>%
   mutate(
     date = lubridate::date(date),
     year = lubridate::year(date),
@@ -31,14 +36,23 @@ tibble(date = seq(ISOdate(2001, 1, 1), to = ISOdate(end_year, 12, 31), by = "day
   select(year, month, n_hours) -> hours_per_month
 
 readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
-  select(EHA_PtID, plant = PtName, EIA_ID = EIA_PtID, nameplate_MW = CH_MW) ->
-HS
+  select(
+    EHA_PtID,
+    plant = PtName,
+    EIA_ID = EIA_PtID,
+    nameplate_MW = CH_MW,
+    BA = BACode
+  ) -> HS
 
 # read table of EIA ids associated with HUC4
 EIA_and_HUC4 <- read_csv("data/eia_huc4.csv", show = F, progress = F)
 
 # flows
-all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress = F)
+all_flows <- read_csv(
+  "data/HUC4_average_flows_imputed.csv",
+  show = F,
+  progress = F
+)
 all_flows_monthly <- all_flows |>
   group_by(year, month, HUC4, USGS_ID) |>
   summarise(av_flow_cfs = mean(av_flow_cfs), .groups = "drop") |>
@@ -46,7 +60,10 @@ all_flows_monthly <- all_flows |>
 
 # PNW dam data, daily forebay, inflow, outflow, power
 pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
-  pivot_wider(id_cols = c(year, month, day, dam, EIA_ID), names_from = "variable") |>
+  pivot_wider(
+    id_cols = c(year, month, day, dam, EIA_ID),
+    names_from = "variable"
+  ) |>
   mutate(inflow_cfs = inflow_kcfs * 1000, outflow_cfs = outflow_kcfs * 1000) |>
   group_by(year, month, EIA_ID) |>
   summarise(
@@ -63,47 +80,76 @@ hydro923plus <- read_csv(rectifhyd_fn, show = F, progress = F)
 hydro923plus %>%
   left_join(HS, by = c("EIA_ID", "plant")) %>%
   # left_join(EIA_and_HUC4, by = c('EIA_ID')) %>%
-  mutate(target_MWh = if_else(recommended_data == "RectifHyd",
-    RectifHyd_MWh,
-    EIA_MWh
-  )) %>%
-  select(EIA_ID, plant, EHA_PtID, state, year, month, target_MWh, nameplate_MW) %>%
+  mutate(
+    target_MWh = if_else(
+      recommended_data == "RectifHyd",
+      RectifHyd_MWh,
+      EIA_MWh
+    )
+  ) %>%
+  select(
+    EIA_ID,
+    plant,
+    EHA_PtID,
+    state,
+    year,
+    month,
+    target_MWh,
+    nameplate_MW,
+    BA
+  ) %>%
   left_join(hours_per_month, by = c("year", "month")) %>%
   mutate(target_MWh = if_else(target_MWh < 0, 0, target_MWh)) %>%
   mutate(p_avg = target_MWh / n_hours) %>%
-  mutate(p_avg = if_else(p_avg > nameplate_MW, nameplate_MW, p_avg)) ->
-monthly_targets
+  mutate(
+    p_avg = if_else(p_avg > nameplate_MW, nameplate_MW, p_avg)
+  ) -> monthly_targets
 
 monthly_targets %>%
   group_by(EIA_ID, month) %>%
   summarise(p_avg_ = median(p_avg), .groups = "drop") %>%
   ungroup() %>%
-  mutate(month = factor(month, levels = month.abb, ordered = T)) -> replacement_data
+  mutate(
+    month = factor(month, levels = month.abb, ordered = T)
+  ) -> replacement_data
 
 monthly_targets %>%
   pull(EIA_ID) %>%
   unique() -> EIA_IDs
 
 expand.grid(
-  month = month.abb, year = 2001:end_year,
+  month = month.abb,
+  year = 2001:end_year,
   EIA_ID = EIA_IDs
 ) %>%
   as_tibble() -> full_frame
 
 monthly_targets %>%
-  select(EIA_ID, EHA_PtID, plant, state, nameplate_MW) %>%
+  select(EIA_ID, EHA_PtID, plant, state, nameplate_MW, BA) %>%
   unique() %>%
   left_join(full_frame, by = "EIA_ID") %>%
   left_join(hours_per_month, by = c("month", "year")) %>%
-  left_join(monthly_targets,
-    by = join_by(EIA_ID, EHA_PtID, plant, state, nameplate_MW, month, year, n_hours)
+  left_join(
+    monthly_targets,
+    by = join_by(
+      EIA_ID,
+      EHA_PtID,
+      plant,
+      state,
+      nameplate_MW,
+      month,
+      year,
+      n_hours,
+      BA
+    )
   ) %>%
   left_join(replacement_data, by = c("EIA_ID", "month")) %>%
   mutate(p_avg = if_else(is.na(p_avg), p_avg_, p_avg)) %>%
-  mutate(target_MWh = if_else(is.na(target_MWh), p_avg * n_hours, target_MWh)) %>%
+  mutate(
+    target_MWh = if_else(is.na(target_MWh), p_avg * n_hours, target_MWh)
+  ) %>%
   select(-p_avg_) %>%
-  filter(!state %in% c("AK", "HI")) ->
-monthly_targets_filled
+  filter(!state %in% c("AK", "HI")) -> monthly_targets_filled
 
 
 readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
@@ -120,12 +166,10 @@ read_csv("PNW_28_max_min_ador_parameters.csv", show = F, progress = F) %>%
     max_param = mean(max_param),
     min_param = mean(min_param),
     ador_param = mean(ador_param)
-  ) ->
-mma_params_general
+  ) -> mma_params_general
 
 read_csv("PNW_28_max_min_ador_parameters.csv", show = F, progress = F) %>%
-  select(-dam) ->
-mma_params_pnw
+  select(-dam) -> mma_params_pnw
 
 bind_rows(
   monthly_targets_filled %>%
@@ -141,11 +185,23 @@ bind_rows(
     p_min = min_param * p_avg,
     ador = ador_param * (p_max - p_min)
   ) %>%
-  select(EIA_ID, plant, state, year, month, target_MWh, nameplate = nameplate_MW, p_avg, p_min, p_max, ador) %>%
+  select(
+    EIA_ID,
+    plant,
+    state,
+    BA,
+    year,
+    month,
+    target_MWh,
+    nameplate = nameplate_MW,
+    p_avg,
+    p_min,
+    p_max,
+    ador
+  ) %>%
   left_join(EIA_and_HUC4, by = join_by(EIA_ID)) |>
   left_join(all_flows_monthly, by = join_by(year, month, HUC4)) |>
-  rename(HUC4_flow_cfs = av_flow_cfs) ->
-monthly_final
+  rename(HUC4_flow_cfs = av_flow_cfs) -> monthly_final
 
 # perform basic checks
 
@@ -154,8 +210,10 @@ monthly_final %>%
   mutate(month = factor(month, levels = month.abb)) %>%
   mutate(
     EIA_ID = as.integer(EIA_ID),
-    year = as.integer(year)
+    year = as.integer(year),
+    datetime = sprintf('%s-%02d-01', year, `names<-`(1:12,month.abb)[month])
   ) %>%
+  rename(eia_id=EIA_ID) %>%
   # filter(EIA_ID == 3075) %>%
   # ggplot(aes(month, p_avg, group = year)) + geom_line() + facet_wrap(~year) +
   # geom_line(aes(y = p_min), col = "red") +
@@ -171,19 +229,37 @@ monthly_final %>%
   # filter(ador < 0)
   # filter(p_avg < 0)
   mutate_if(is.double, function(x) round(x, 4)) %>%
-  mutate(Western = if_else(state %in% c(
-    "WA", "ID", "CO", "UT",
-    "NM", "WY", "MT", "CA",
-    "OR", "NV", "AZ"
-  ), TRUE, FALSE)) %>%
+  mutate(
+    Western = if_else(
+      state %in%
+        c(
+          "WA",
+          "ID",
+          "CO",
+          "UT",
+          "NM",
+          "WY",
+          "MT",
+          "CA",
+          "OR",
+          "NV",
+          "AZ"
+        ),
+      TRUE,
+      FALSE
+    )
+  ) %>%
   arrange(-Western) %>%
-  split(.$year) %>%
-  map(function(x) {
-    x %>%
-      pull(year) %>%
-      .[1] -> yr
-    write_csv(x, paste0(output_dir, "/B1_monthly_", yr, ".csv"), na = "")
-  }) -> shhh
+  janitor::clean_names(parsing_option=3) |> 
+  write_csv(paste0(output_dir, "/B1_monthly.csv"), na = "") ->
+shh
+# split(.$year) %>%
+# map(function(x) {
+#   x %>%
+#     pull(year) %>%
+#     .[1] -> yr
+#   write_csv(x, paste0(output_dir, "/B1_monthly_", yr, ".csv"), na = "")
+# }) -> shhh
 
 monthly <- list.files(output_dir, full.names = T) |>
   map(function(x) read_csv(x, progress = F, show = F)) |>
@@ -208,3 +284,4 @@ monthly |>
   filter(year %in% c(2001, 2009)) |>
   pivot_wider(id_cols = month, names_from = year, values_from = energy_mwh) |>
   mutate(pct_diff = (`2001` - `2009`) / `2009` * 100)
+

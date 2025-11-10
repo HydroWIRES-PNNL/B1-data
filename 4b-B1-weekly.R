@@ -9,10 +9,12 @@ options(
   pillar.width = 1e6
 )
 
-end_year <- 2022
+end_year <- 2024
 eha_fn <- "data/ORNL_EHAHydroPlant_FY2023_rev.xlsx"
-output_dir <- "B1_weekly"
+output_prefix <- "B1_data"
+version <- "1.4.0"
 
+output_dir <- paste0(output_prefix, "_", version)
 dir.create(output_dir, showWarnings = FALSE)
 
 tibble(
@@ -58,6 +60,9 @@ date_time_sequence %>%
 # read table of EIA ids associated with HUC4
 EIA_and_HUC4 <- read_csv("data/eia_huc4.csv")
 
+# flow data
+all_flows <- read_csv("data/HUC4_average_flows_imputed.csv", show = F, progress = F)
+
 # read flow data created by `2-streamflow.R`
 flow_huc4 <- read_csv("data/HUC4_average_flows_imputed.csv")
 flow_gauge <- read_csv("data/flow/proc/flow_all_td.csv") |>
@@ -75,11 +80,14 @@ pnw_dam_data <- read_csv("data/pnw_daily_data.csv") |>
 
 # read monthly B1 data
 monthly_all <-
-  2001:end_year %>%
-  map_dfr(function(yr) {
-    read_csv(paste0("B1_monthly/B1_monthly_", yr, ".csv"), show = F) %>%
-      mutate(month = factor(month, levels = month.abb, ordered = T))
-  })
+  read_csv(file.path(output_dir, 'B1_monthly.csv')) |> 
+  mutate(month = factor(month, levels = month.abb, ordered = T)) |> 
+  rename(EIA_ID=eia_id, target_MWh=target_mwh)
+  # 2001:end_year %>%
+  # map_dfr(function(yr) {
+  #   read_csv(paste0("B1_monthly/B1_monthly_", yr, ".csv"), show = F) %>%
+  #     mutate(month = factor(month, levels = month.abb, ordered = T))
+  # })
 
 
 # disaggregate to daily and aggregate back to weekly
@@ -261,8 +269,10 @@ weekly_final
 weekly_final %>%
   mutate(
     EIA_ID = as.integer(EIA_ID),
-    year = as.integer(year)
+    year = as.integer(year),
+    datetime = week_start
   ) %>%
+  rename(eia_id=EIA_ID) %>%
   # filter(EIA_ID == 153) %>%
   # ggplot(aes(jweek, p_avg, group = year)) + geom_line() + facet_wrap(~year) +
   # geom_line(aes(y = p_min), col = "red") +
@@ -284,32 +294,36 @@ weekly_final %>%
     "OR", "NV", "AZ"
   ), TRUE, FALSE)) %>%
   arrange(-Western) %>%
-  split(.$year) %>%
-  map(function(x) {
-    x %>%
-      pull(year) %>%
-      .[1] -> yr
-    write_csv(x, paste0(output_dir, "/B1_weekly_", yr, ".csv"), na = "")
-  }) -> shhh
+  janitor::clean_names(parsing_option=3) |> 
+  arrange(eia_id, datetime) |> 
+  write_csv(paste0(output_dir, "/B1_weekly.csv"), na = "") ->
+  shh
+  # split(.$year) %>%
+  # map(function(x) {
+  #   x %>%
+  #     pull(year) %>%
+  #     .[1] -> yr
+  #   write_csv(x, paste0(output_dir, "/B1_weekly_", yr, ".csv"), na = "")
+  # }) -> shhh
 
-weekly <- list.files(output_dir, full.names = T) |>
+weekly <- list.files(output_dir, '*weekly*', full.names = T)  |>
   map(function(x) read_csv(x, progress = F, show = F)) |>
   bind_rows()
 
-# weekly |>
-#   filter(Western == TRUE) |>
-#   group_by(year, week_start) |>
-#   summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
-#   filter(year %in% c(2001, 2009)) |>
-#   mutate(week_start = `year<-`(week_start, 2000)) |>
-#   filter(week_start < as.Date("2000-12-31")) |>
-#   ggplot(aes(week_start, energy_mwh / 1000, fill = factor(year))) +
-#   geom_bar(stat = "identity", position = "dodge") +
-#   scale_fill_manual("", values = c("orange", "cornflowerblue")) +
-#   scale_x_date(date_breaks = "month", date_labels = "%b") +
-#   theme_bw() +
-#   scale_y_continuous(expand = c(0, 0)) +
-#   labs(x = "", y = "Energy [GWh]")
+weekly |>
+  filter(western == TRUE) |>
+  group_by(year, week_start) |>
+  summarise(energy_mwh = sum(target_mwh), .groups = "drop") |>
+  filter(year %in% c(2001, 2009)) |>
+  mutate(week_start = `year<-`(week_start, 2000)) |>
+  filter(week_start < as.Date("2000-12-31")) |>
+  ggplot(aes(week_start, energy_mwh / 1000, fill = factor(year))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual("", values = c("orange", "cornflowerblue")) +
+  scale_x_date(date_breaks = "month", date_labels = "%b") +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(x = "", y = "Energy [GWh]")
 
 #
 # weekly |>

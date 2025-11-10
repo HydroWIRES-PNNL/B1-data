@@ -43,8 +43,9 @@ dam_codes <- tribble(
 # }
 
 start_year <- 2001
+end_year <- 2024
 url_base <- "https://www.nwd-wc.usace.army.mil/dd/common/web_service/webexec/ecsv?id="
-period <- "lookforward=0h0m&startdate=01/01/%s&enddate=01/25/2024" |> sprintf(start_year)
+period <- "lookforward=0h0m&startdate=01/01/%s&enddate=12/31/%s" |> sprintf(start_year, end_year)
 out_dir <- "data/usace"
 
 dir.create(out_dir, showWarnings = F)
@@ -155,7 +156,7 @@ cbt_data |>
   filter(year >= start_year) ->
 cbt_data_daily
 
-write_csv(cbt_data_daily, "data/pnw_daily_data.csv")
+# write_csv(cbt_data_daily, "data/pnw_daily_data.csv")
 
 # "https://www.nwd-wc.usace.army.mil/dd/common/web_service/webexec/ecsv?id="
 # "BON.Elev-Forebay.Inst.1Hour.0.CBT-REV:units=ft&headers=true&filename=&timezone=PST&"

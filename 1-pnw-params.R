@@ -2,6 +2,7 @@
 ## Create final RectifHyd file
 ## Author: Sean Turner sean.turner@pnnl.gov
 ## 2023 Update - Cameron Bracken cameron.bracken@pnnl.gov
+## 2024 Update - Cameron Bracken cameron.bracken@pnnl.gov
 library(tidyverse)
 
 # prepare continuous date_time sequence for 2022 of length 8760

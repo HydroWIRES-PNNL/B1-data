@@ -2,7 +2,8 @@ library(tidyverse)
 library(dataRetrieval)
 library(missRanger)
 
-eha_fn <- "data/ORNL_EHAHydroPlant_FY2023_rev.xlsx"
+end_year = 2024
+eha_fn <- "data/ORNL_EHAHydroPlant_PublicFY2024.xlsx"
 hilarri_fn <- "data/HILARRI_v1_1/HILARRI_v1_1_Public_SubsetHydropowerDams_Plants.csv"
 
 # read in HILARRI database
