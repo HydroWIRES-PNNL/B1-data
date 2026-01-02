@@ -1,27 +1,47 @@
+# 1-pnw-params.R
+#
 # USACE monthly and weekly parameters!
-## Create final RectifHyd file
-## Author: Sean Turner sean.turner@pnnl.gov
-## 2023 Update - Cameron Bracken cameron.bracken@pnnl.gov
-## 2024 Update - Cameron Bracken cameron.bracken@pnnl.gov
-library(tidyverse)
+#
+# Created by Sean Turner, 2022
+#
+# 2022 Original Version - Sean Turner sean.turner@ornl.gov
+# 2023 Update - Cameron Bracken cameron.bracken@pnnl.gov
+# 2024 Update - Cameron Bracken cameron.bracken@pnnl.gov
+# 2025 Update - Cameron Bracken cameron.bracken@pnnl.gov
 
-# prepare continuous date_time sequence for 2022 of length 8760
-tibble(
-  date_time = seq(as.POSIXct("2001-01-01 00:00:00"),
+library(conflicted)
+# devtools::install_github("pnnl/hydrofixr")
+library(hydrofixr)
+library(tidyverse)
+conflicted::conflicts_prefer(dplyr::filter)
+
+options(
+  readr.show_progress = FALSE,
+  readr.show_col_types = FALSE,
+  pillar.width = 1000,
+  dplyr.summarise.inform = FALSE
+)
+
+
+# prepare continuous date_time sequence
+date_time_sequence = tibble(
+  date_time = seq(
+    as.POSIXct("2001-01-01 00:00:00"),
     as.POSIXct("2022-12-31 23:00:00"),
     by = "hour"
   )
-) -> date_time_sequence
+)
 
 date_time_sequence %>%
   mutate(
-    year = year(date_time), month = month(date_time, label = T),
+    year = year(date_time),
+    month = month(date_time, label = T),
     date = date(date_time)
   ) %>%
   select(year, month, date) %>%
   unique() -> sequence_2001_2020_monthly
 
-date_time_sequence %>%
+sequence_weekly = date_time_sequence %>%
   mutate(year = year(date_time)) %>%
   split(.$year) %>%
   map_dfr(
@@ -30,22 +50,26 @@ date_time_sequence %>%
 
       x %>%
         mutate(week_commencing = floor_date(date(date_time), "week", 7)) %>%
-        mutate(week_commencing = if_else(year(week_commencing) < yr,
-          ymd(paste0(yr, "-01-01")), week_commencing
-        )) %>%
+        mutate(
+          week_commencing = if_else(
+            year(week_commencing) < yr,
+            ymd(paste0(yr, "-01-01")),
+            week_commencing
+          )
+        ) %>%
         mutate(date = date(date_time)) %>%
         select(-date_time) %>%
         unique()
     }
-  ) -> sequence_2001_2020_weekly
+  )
 
 hydrofixr::read_EIA_capabilities(data_dir = "data/hydrofixr/") %>%
   select(EIA_ID, nameplate) %>%
   unique() -> nameplates
 
-hydrofixr:::dam_codes %>%
+EIA_ID_and_nameplate = hydrofixr:::dam_codes %>%
   bind_rows(tibble(dam = "LIB", EIA_ID = 6172)) %>%
-  left_join(nameplates) -> EIA_ID_and_nameplate
+  left_join(nameplates)
 
 
 "data/hydrofixr/USACE_hourly_gen_raw_27_plants_MST_2001_2022.csv" |>
@@ -74,14 +98,12 @@ hourly_all_plants %>%
     MWh = sum(power, na.rm = T),
     max = max(power, na.rm = T),
     min = min(power, na.rm = T),
-    dor = max - min, .groups = "drop"
-  ) ->
-daily_stats
+    dor = max - min,
+    .groups = "drop"
+  ) -> daily_stats
 
 daily_stats %>%
-  left_join(sequence_2001_2020_monthly,
-    by = "date"
-  ) %>%
+  left_join(sequence_2001_2020_monthly, by = "date") %>%
   mutate(
     max = if_else(is.infinite(max), NA_real_, max),
     min = if_else(is.infinite(min), NA_real_, min),
@@ -93,22 +115,21 @@ daily_stats %>%
     max = max(max, na.rm = T),
     min = min(min, na.rm = T),
     ador = mean(dor, na.rm = T),
-    n_hours = n() * 24, .groups = "drop"
-  ) ->
-monthly_stats_PNW
+    n_hours = n() * 24,
+    .groups = "drop"
+  ) -> monthly_stats_PNW
 
 daily_stats %>%
-  left_join(sequence_2001_2020_weekly,
-    by = "date"
-  ) %>%
+  left_join(sequence_weekly, by = "date") %>%
   group_by(year, week_commencing, dam) %>%
   summarise(
-    MWh = sum(MWh), max = max(max, na.rm = T),
+    MWh = sum(MWh),
+    max = max(max, na.rm = T),
     min = min(min, na.rm = T),
     ador = mean(dor),
-    n_hours = n() * 24, .groups = "drop"
-  ) ->
-weekly_stats_PNW
+    n_hours = n() * 24,
+    .groups = "drop"
+  ) -> weekly_stats_PNW
 
 weekly_stats_PNW %>%
   mutate(
@@ -158,13 +179,15 @@ monthly_stats_PNW %>%
   # geom_line(aes(y = p_min), col = "red") +
   # geom_line(aes(y = ador), col = "blue") +
   # geom_line(aes(y = p_ador), col = "hotpink")
-  select(dam, EIA_ID,
+  select(
+    dam,
+    EIA_ID,
     max_param = max_param_,
     min_param = min_param_,
     ador_param = ador_param_
   ) %>%
   unique() %>%
-  write_csv("PNW_28_max_min_ador_parameters.csv")
+  write_csv("data/PNW_28_max_min_ador_parameters.csv")
 
 
 weekly_stats_PNW %>%
@@ -199,16 +222,15 @@ weekly_stats_PNW %>%
   # geom_line(aes(y = p_min), col = "red") +
   # geom_line(aes(y = ador), col = "blue") +
   # geom_line(aes(y = p_ador), col = "hotpink")
-  select(dam, EIA_ID,
+  select(
+    dam,
+    EIA_ID,
     max_param = max_param_,
     min_param = min_param_,
     ador_param = ador_param_
   ) %>%
   unique() %>%
-  write_csv("PNW_28_max_min_ador_parameters_WEEKLY_BASED.csv")
-
-
-
+  write_csv("data/PNW_28_max_min_ador_parameters_WEEKLY_BASED.csv")
 
 
 #
@@ -226,13 +248,13 @@ hourly_all_plants %>%
   filter(year(date_time) == 2001) %>%
   mutate(
     week_commencing = if_else(
-      day(date(date_time)) <= 6, ymd("2001-01-01"),
+      day(date(date_time)) <= 6,
+      ymd("2001-01-01"),
       floor_date(date(date_time), "week", 7)
     ),
     week = as.integer(factor(week_commencing))
     # week = format(date_time, '%U')
-  ) ->
-hourly_with_weeks
+  ) -> hourly_with_weeks
 
 hourly_with_weeks %>%
   filter(week < 53) %>%
@@ -240,8 +262,7 @@ hourly_with_weeks %>%
   group_by(dam, date, week, week_commencing) %>%
   summarise(daily_range = max(power) - min(power), .groups = "drop") %>%
   group_by(dam, week, week_commencing) %>%
-  summarise(ador = mean(daily_range), .groups = "drop") ->
-ador
+  summarise(ador = mean(daily_range), .groups = "drop") -> ador
 
 
 hourly_with_weeks %>%
@@ -250,7 +271,8 @@ hourly_with_weeks %>%
     p_max = max(power),
     p_min = min(power),
     p_avg = mean(power),
-    n_hours = n(), .groups = "drop"
+    n_hours = n(),
+    .groups = "drop"
   ) %>%
   left_join(ador, c("dam", "week", "week_commencing")) %>%
   # ggplot(aes(week_commencing, p_avg)) +
@@ -259,15 +281,27 @@ hourly_with_weeks %>%
   # geom_line(aes(y = p_max), col = "blue") +
   # geom_line(aes(y = p_min), col = "red") +
   # geom_line(aes(y = ador), col = "pink")
-  left_join(hydrofixr:::dam_codes %>% bind_rows(tibble(dam = "LIB", EIA_ID = 6172L)), by = "dam") %>%
+  left_join(
+    hydrofixr:::dam_codes %>% bind_rows(tibble(dam = "LIB", EIA_ID = 6172L)),
+    by = "dam"
+  ) %>%
   mutate(target_MWh = p_avg * n_hours) %>%
-  select(EIA_ID, week, week_commencing, n_hours, target_MWh, p_avg, p_max, p_min, ador) %>%
-  mutate_if(is.numeric, function(x) round(x, 4)) ->
-USACE_weekly_parameters
+  select(
+    EIA_ID,
+    week,
+    week_commencing,
+    n_hours,
+    target_MWh,
+    p_avg,
+    p_max,
+    p_min,
+    ador
+  ) %>%
+  mutate_if(is.numeric, function(x) round(x, 4)) -> USACE_weekly_parameters
 
 
 # USACE_weekly_parameters %>%
 # filter(EIA_ID == 3076) %>%
 # print(n = 53)
 
-readr::write_csv(USACE_weekly_parameters, "USACE_weekly_parameters_28.csv")
+readr::write_csv(USACE_weekly_parameters, "data/USACE_weekly_parameters_28.csv")

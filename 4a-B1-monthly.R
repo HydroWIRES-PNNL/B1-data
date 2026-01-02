@@ -19,7 +19,7 @@ output_dir <- paste0(output_prefix, "_", version)
 dir.create(output_dir, showWarnings = FALSE)
 
 # get hours per month for converting MWh to MW average
-tibble(
+hours_per_month = tibble(
   date = seq(ISOdate(2001, 1, 1), to = ISOdate(end_year, 12, 31), by = "day")
 ) %>%
   mutate(
@@ -33,16 +33,16 @@ tibble(
   mutate(n_hours = n_days * 24) %>%
   left_join(tibble(month = 1:12, month_abb = month.abb), by = "month") %>%
   mutate(month = factor(month_abb, levels = month.abb)) %>%
-  select(year, month, n_hours) -> hours_per_month
+  select(year, month, n_hours)
 
-readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
+hydrosource = readxl::read_xlsx(eha_fn, sheet = "Operational") %>%
   select(
     EHA_PtID,
     plant = PtName,
     EIA_ID = EIA_PtID,
     nameplate_MW = CH_MW,
     BA = BACode
-  ) -> HS
+  )
 
 # read table of EIA ids associated with HUC4
 EIA_and_HUC4 <- read_csv("data/eia_huc4.csv", show = F, progress = F)
@@ -78,7 +78,7 @@ pnw_dam_data <- read_csv("data/pnw_daily_data.csv", show = F, progress = F) |>
 hydro923plus <- read_csv(rectifhyd_fn, show = F, progress = F)
 
 hydro923plus %>%
-  left_join(HS, by = c("EIA_ID", "plant")) %>%
+  left_join(hydrosource, by = c("EIA_ID", "plant")) %>%
   # left_join(EIA_and_HUC4, by = c('EIA_ID')) %>%
   mutate(
     target_MWh = if_else(
@@ -211,9 +211,9 @@ monthly_final %>%
   mutate(
     EIA_ID = as.integer(EIA_ID),
     year = as.integer(year),
-    datetime = sprintf('%s-%02d-01', year, `names<-`(1:12,month.abb)[month])
+    datetime = sprintf('%s-%02d-01', year, `names<-`(1:12, month.abb)[month])
   ) %>%
-  rename(eia_id=EIA_ID) %>%
+  rename(eia_id = EIA_ID) %>%
   # filter(EIA_ID == 3075) %>%
   # ggplot(aes(month, p_avg, group = year)) + geom_line() + facet_wrap(~year) +
   # geom_line(aes(y = p_min), col = "red") +
@@ -250,25 +250,18 @@ monthly_final %>%
     )
   ) %>%
   arrange(-Western) %>%
-  janitor::clean_names(parsing_option=3) |> 
-  write_csv(paste0(output_dir, "/B1_monthly.csv"), na = "") ->
-shh
-# split(.$year) %>%
-# map(function(x) {
-#   x %>%
-#     pull(year) %>%
-#     .[1] -> yr
-#   write_csv(x, paste0(output_dir, "/B1_monthly_", yr, ".csv"), na = "")
-# }) -> shhh
+  janitor::clean_names(parsing_option = 3) |>
+  write_csv(paste0(output_dir, "/B1_monthly.csv"), na = "") -> shh
 
-monthly <- list.files(output_dir, full.names = T) |>
+
+monthly <- list.files(output_dir, '*monthly*', full.names = T) |>
   map(function(x) read_csv(x, progress = F, show = F)) |>
   bind_rows()
 
 monthly |>
-  filter(Western == TRUE) |>
+  filter(western == TRUE) |>
   group_by(year, month) |>
-  summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
+  summarise(energy_mwh = sum(target_mwh), .groups = "drop") |>
   filter(year %in% c(2001, 2009)) |>
   ggplot(aes(month, energy_mwh / 1000, fill = factor(year))) +
   geom_bar(stat = "identity", position = "dodge") +
@@ -278,10 +271,9 @@ monthly |>
   labs(x = "", y = "Energy [GWh]")
 
 monthly |>
-  filter(Western == TRUE) |>
+  filter(western == TRUE) |>
   group_by(year, month) |>
-  summarise(energy_mwh = sum(target_MWh), .groups = "drop") |>
+  summarise(energy_mwh = sum(target_mwh), .groups = "drop") |>
   filter(year %in% c(2001, 2009)) |>
   pivot_wider(id_cols = month, names_from = year, values_from = energy_mwh) |>
   mutate(pct_diff = (`2001` - `2009`) / `2009` * 100)
-

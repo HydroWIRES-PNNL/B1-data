@@ -1,38 +1,24 @@
+# 3-hydropower.R
+#
+# stuff
+#
+# Created by Cameron Bracken, Dec 2023
+# Updated by Cameron Bracken, Jan 02, 2026
+#
+
+library(conflicted)
 library(tidyverse)
 
-dam_codes <- tribble(
-  ~dam, ~EIA_ID,
-  "BON", 3075L,
-  "CHJ", 3921L,
-  "GCL", 6163L,
-  "IHR", 3925L,
-  "JDA", 3082L,
-  "LGS", 3926L,
-  "LMN", 3927L,
-  "LWG", 6175L,
-  "MCN", 3084L,
-  "PRD", 3887L,
-  "TDA", 3895L,
-  "LIB", 6172L,
-  "ALF", 851L,
-  "BCL", 3074L,
-  "CGR", 3076L,
-  "DET", 3077L,
-  "DEX", 3078L,
-  "DWR", 840L,
-  "FOS", 6552L,
-  "GPR", 3080L,
-  "HCR", 3081L,
-  "HGH", 2203L,
-  "LOP", 3083L,
-  "LOS", 6174L,
-  "RIS", 6200L,
-  "RRH", 3883L,
-  "WAN", 3888L,
-  "WEL", 3886L
+options(
+  readr.show_progress = FALSE,
+  readr.show_col_types = FALSE,
+  pillar.width = 1000,
+  dplyr.summarise.inform = FALSE
 )
 
-#
+dam_codes <- read_csv('data/columbia_plants_eia_id.csv') |>
+  rename(dam = usace_name, dam_name = usace)
+
 # if (dam %in% c(
 #   'BCL', 'CGR', 'DET',
 #   'DEX', 'FOS', 'GPR',
@@ -45,7 +31,8 @@ dam_codes <- tribble(
 start_year <- 2001
 end_year <- 2024
 url_base <- "https://www.nwd-wc.usace.army.mil/dd/common/web_service/webexec/ecsv?id="
-period <- "lookforward=0h0m&startdate=01/01/%s&enddate=12/31/%s" |> sprintf(start_year, end_year)
+period <- "lookforward=0h0m&startdate=01/01/%s&enddate=12/31/%s" |>
+  sprintf(start_year, end_year)
 out_dir <- "data/usace"
 
 dir.create(out_dir, showWarnings = F)
@@ -70,40 +57,60 @@ cbt_units <- c(
   inflow = "kcfs"
 )
 
-willamette_projects <- c("BCL", "CGR", "DET", "DEX", "FOS", "GPR", "HCR", "LOP", "LOS")
+willamette_projects <- c(
+  "BCL",
+  "CGR",
+  "DET",
+  "DEX",
+  "FOS",
+  "GPR",
+  "HCR",
+  "LOP",
+  "LOS"
+)
 
 # set up the query strings, some damn use different naming conventions
 data_query <- expand.grid(dam = dam_codes$dam, variable = names(data_string)) |>
   left_join(dam_codes, by = "dam") |>
-  left_join(data.frame(
-    variable = names(data_string),
-    data_string = data_string,
-    cbt_type = cbt_type,
-    cbt_units = cbt_units
-  ), by = "variable") |>
+  left_join(
+    data.frame(
+      variable = names(data_string),
+      data_string = data_string,
+      cbt_type = cbt_type,
+      cbt_units = cbt_units
+    ),
+    by = "variable"
+  ) |>
   mutate(
     # Willamettes use a different postfix
     cbt_type = if_else(
       variable == "power" & dam %in% c(willamette_projects, "HGH"),
-      "CBT-REV", cbt_type
+      "CBT-REV",
+      cbt_type
     ),
     cbt_type = if_else(
-      variable %in% c("inflow", "outflow", "forebay") & dam %in% willamette_projects,
-      "Best", cbt_type
+      variable %in%
+        c("inflow", "outflow", "forebay") &
+        dam %in% willamette_projects,
+      "Best",
+      cbt_type
     ),
     # Bonneville only has instantaneous forebay
     data_string = if_else(
       variable == "forebay" & dam == "BON",
-      ".Elev-Forebay.Inst.~1Day.0.", data_string
+      ".Elev-Forebay.Inst.~1Day.0.",
+      data_string
     ),
     cbt_type = if_else(
       variable == "forebay" & dam == "BON",
-      "CBT-RAW", cbt_type
+      "CBT-RAW",
+      cbt_type
     ),
     # these dams only have daily outflow
     data_string = if_else(
       variable == "outflow" & dam %in% c("DET", "GPR", "LOP"),
-      ".Flow-Out.Ave.~1Day.1Day.", data_string
+      ".Flow-Out.Ave.~1Day.1Day.",
+      data_string
     )
   )
 
@@ -113,9 +120,12 @@ data_query %>%
   map(function(r) {
     cbt_string <- with(r, paste0(dam, data_string, cbt_type))
     url <- paste0(
-      url_base, cbt_string,
-      ":units=", r$cbt_units,
-      "&headers=true&timezone=GMT&", period
+      url_base,
+      cbt_string,
+      ":units=",
+      r$cbt_units,
+      "&headers=true&timezone=GMT&",
+      period
     )
     # message(url)
     message(cbt_string)
@@ -153,10 +163,9 @@ cbt_data |>
   select(year, month, day, dam, variable, value) |>
   arrange(dam, variable, year, month, day, value) |>
   left_join(dam_codes, by = join_by(dam)) |>
-  filter(year >= start_year) ->
-cbt_data_daily
+  filter(year >= start_year) -> cbt_data_daily
 
-# write_csv(cbt_data_daily, "data/pnw_daily_data.csv")
+write_csv(cbt_data_daily, "data/pnw_daily_data.csv")
 
 # "https://www.nwd-wc.usace.army.mil/dd/common/web_service/webexec/ecsv?id="
 # "BON.Elev-Forebay.Inst.1Hour.0.CBT-REV:units=ft&headers=true&filename=&timezone=PST&"
