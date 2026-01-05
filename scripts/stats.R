@@ -12,7 +12,9 @@ b1_monthly <- "~/Downloads/B1_data/B1_MONTHLY/" |>
   list.files("*", full.names = T) |>
   map(read_csv) |>
   bind_rows() |>
-  mutate(datetime = fast_strptime(sprintf("%s-%s-01", year, month), "%Y-%b-%d") |> as.Date()) |>
+  mutate(
+    datetime = fast_strptime(sprintf("%s-%s-01", year, month), "%Y-%b-%d") |> as.Date()
+  ) |>
   rename_all(tolower) |>
   mutate(power_mwh = target_mwh) |>
   # all the values for this plant are zero
@@ -49,14 +51,18 @@ b1_monthly_west <- b1_monthly |>
 b1_west <- bind_rows(
   b1_weekly_west |> mutate(type = "weekly"),
   b1_monthly_west |> mutate(type = "monthly"),
-  b1_monthly_west |> mutate(type = "monthly") |>
+  b1_monthly_west |>
+    mutate(type = "monthly") |>
     filter(month(datetime) == 12) |>
     mutate(datetime = datetime + months(1) - days(1))
 )
 
 y <- 2015
 ggplot() +
-  geom_step(aes(datetime, p_avg / 1000, color = type), data = b1_west |> filter(year(datetime) == y)) +
+  geom_step(
+    aes(datetime, p_avg / 1000, color = type),
+    data = b1_west |> filter(year(datetime) == y)
+  ) +
   theme_bw() +
   scale_x_date(date_breaks = "month", date_labels = "%b") +
   theme(panel.grid.minor = element_blank()) +
@@ -65,7 +71,10 @@ ggplot() +
 
 y <- 2015
 ggplot() +
-  geom_step(aes(datetime, p_avg / 1000, color = type), data = b1_west |> filter(year(datetime) == y)) +
+  geom_step(
+    aes(datetime, p_avg / 1000, color = type),
+    data = b1_west |> filter(year(datetime) == y)
+  ) +
   theme_bw() +
   scale_x_date(date_breaks = "month", date_labels = "%b") +
   theme(panel.grid.minor = element_blank()) +
@@ -78,9 +87,13 @@ b1_weekly_west |>
   filter(year %in% c(2001, 2009)) |>
   mutate(datetime = ymd(sprintf("2000-%s-%s", month(datetime), day(datetime)))) |>
   ggplot() +
-  geom_bar(aes(datetime, energy_mwh / 1000, fill = factor(year), group = year), stat = "identity", position = "dodge") +
-  theme_bw()+
-  theme(legend.position = 'top')+
-  scale_fill_manual('',values=colorblind_pal()(8)[2:3])+
-  scale_x_date(date_labels = '%b', date_breaks='month')+
-  labs(x='',y='Energy [GWh]')
+  geom_bar(
+    aes(datetime, energy_mwh / 1000, fill = factor(year), group = year),
+    stat = "identity",
+    position = "dodge"
+  ) +
+  theme_bw() +
+  theme(legend.position = 'top') +
+  scale_fill_manual('', values = colorblind_pal()(8)[2:3]) +
+  scale_x_date(date_labels = '%b', date_breaks = 'month') +
+  labs(x = '', y = 'Energy [GWh]')

@@ -304,12 +304,14 @@ target_eia_ids_hilarri_additional =
   distinct(plant_id_eia, generator_id, .keep_all = T)
 
 # some eia ids do not have pudl data, but we still want to include them to reconstruct with proxies
-target_eia_ids = c(
-  target_eia_ids_eia_pudl,
-  target_eia_ids_hilarri_additional$plant_id_eia
-) |>
+target_eia_ids =
+  c(
+    target_eia_ids_eia_pudl,
+    target_eia_ids_hilarri_additional$plant_id_eia
+  ) |>
   unique() |>
-  sort()
+  sort() |>
+  as.character()
 
 
 # %% setup for filling missing data and combining plants
@@ -400,7 +402,7 @@ message('\nReading and formatting eia spreadsheets.')
 eia_raw_complete_fn =
   file.path(
     data_dir,
-    s('complete_gen_eia_pudl_{start_year}_to_{end_year}.csv')
+    s('complete_gen_eia_raw_{start_year}_to_{end_year}.csv')
   )
 if (!file.exists(eia_raw_complete_fn)) {
   eia_hydro_gen_monthly_1980_2022_complete =
@@ -421,6 +423,7 @@ if (!file.exists(eia_raw_complete_fn)) {
     write_csv(eia_raw_complete_fn)
 } else {
   eia_hydro_gen_monthly_1980_2022_complete = read_csv(eia_raw_complete_fn)
+  message(s('Loaded cached file: {eia_raw_complete_fn}'))
 }
 
 # %%
@@ -444,6 +447,7 @@ if (!file.exists(eia_pudl_complete_fn)) {
     write_csv(eia_pudl_complete_fn)
 } else {
   eia_hydro_gen_monthly_pudl_complete = read_csv(eia_pudl_complete_fn)
+  message(s('Loaded cached file: {eia_pudl_complete_fn}'))
 }
 
 
@@ -468,6 +472,7 @@ if (!file.exists(rf_complete_fn)) {
     write_csv(rf_complete_fn)
 } else {
   rf_hydro_gen_monthly_complete = read_csv(rf_complete_fn)
+  message(s('Loaded cached file: {rf_complete_fn}'))
 }
 
 
@@ -492,6 +497,7 @@ if (!file.exists(rfp_complete_fn)) {
     write_csv(rfp_complete_fn)
 } else {
   rfp_hydro_gen_monthly_complete = read_csv(rfp_complete_fn)
+  message(s('Loaded cached file: {rfp_complete_fn}'))
 }
 
 # ---------------------------------------------------------------------------
@@ -500,24 +506,30 @@ if (!file.exists(rfp_complete_fn)) {
 
 # %% Combine all the monthly data sources, rfp, rf, eia, eia_pudl
 message('\nCombinining data sources.')
+
+# joining all the data manually to check for errors
 hydro_gen_data_complete =
   eia_hydro_gen_monthly_pudl_complete |>
   left_join(
     rfp_hydro_gen_monthly_complete,
     by = join_by(eia_id, datetime),
-    suffix = c('.pudl_eia', s('.rfp_{rfp_version}'))
+    suffix = c('-pudl_eia', s('-rfp_{rfp_version}'))
   ) |>
   inner_join(
     eia_hydro_gen_monthly_1980_2022_complete |>
       inner_join(
         rf_hydro_gen_monthly_complete,
         by = join_by(eia_id, datetime),
-        suffix = c('.eia', s('.rf_{rf_version}'))
+        suffix = c('-eia', s('-rf_{rf_version}'))
       ),
     by = join_by(datetime, eia_id)
   ) |>
   # data source columns are now redundant
   select(-starts_with('data_source'))
+
+wide_fn = s('{data_dir}/hydro_gen_multisource_monthly_{start_year}_{end_year}_wide.csv')
+hydro_gen_data_complete |> write_csv(wide_fn)
+message(s('Wrote {wide_fn}'))
 
 hydro_gen_data_long = bind_rows(
   eia_hydro_gen_monthly_pudl_complete,
@@ -531,6 +543,10 @@ hydro_gen_data_long = bind_rows(
     nameplate_mwh = nameplate_mw * n_hours
   )
 
+long_fn = s('{data_dir}/hydro_gen_multisource_monthly_{start_year}_{end_year}_long.csv')
+hydro_gen_data_long |> write_csv(long_fn)
+message(s('Wrote {long_fn}'))
+
 # ----------------------------------------------------------------------------
 # diagnostics ----------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -538,45 +554,48 @@ hydro_gen_data_long = bind_rows(
 #%% diagnostics
 message()
 message("The following plants have mutiple eia_id's for one plant:")
-hydro_gen_data_complete |>
-  ungroup() |>
+hydro_gen_data_long |>
   filter(if_any(starts_with("n_eia_ids_combined"), ~ . > 1)) |>
-  distinct(eia_id, across(starts_with("plant_id_pudl"))) |>
+  distinct(
+    eia_id,
+    across(starts_with("plant_id_pudl")),
+    across(starts_with("eia_id"))
+  ) |>
   # arrange(eia_id) |>
   print(n = 100)
 
+# to double check, this should should be the same as above
+# hydro_gen_data_complete |>
+#   filter(if_any(starts_with("n_eia_ids_combined"), ~ . > 1)) |>
+#   distinct(
+#     eia_id,
+#     across(starts_with("plant_id_pudl")),
+#     across(starts_with("eia_id"))
+#   ) |>
+#   select(eia_id,ends_with('-eia')) %>%
+#   set_names(names(.) %>% gsub('-eia', '', .)) |>
+#   print(n = 100)
+
 # %%
 message()
-message('reftifhyd plus combines eia plants, check these:')
-# TODO Check rfp combined plants
+message('These plants were combined in rfp:')
 
 rfpids_combined = read_csv(rfp_data_fn) |>
   filter(str_detect(RHPID, '/')) |>
   distinct(RHPID, .keep_all = T)
 print(rfpids_combined |> select(1))
 
-rfp_eia_pudl_combined_ids = tibble(
-  eia_id = rfpids_combined |>
-    pull(RHPID) |>
-    str_split_i('_', 1) |>
-    str_replace('/', '_'),
-  eia_id1 = eia_id |> str_split_i('/', 1),
-  eia_id2 = eia_id |> str_split_i('/', 2)
-) |>
-  left_join(eia_hydro_generators)
-
 #%%
 message()
 message('If the eia ids were combined properly then this should have no rows:')
-hydro_gen_data_complete |>
-  group_by(plant_id_pudl.pudl_eia) |>
+hydro_gen_data_long |>
+  group_by(data_source, eia_id) |>
   mutate(
-    has_change_eia = length(unique(n_eia_ids_combined.eia)),
-    has_change_pudl_eia = length(unique(n_eia_ids_combined.pudl_eia)),
-    has_change_rf = length(unique(n_eia_ids_combined.rf_1.3)),
-    has_change_rfp = length(unique(n_eia_ids_combined.rfp_1.1))
+    has_change = length(unique(n_eia_ids_combined)),
+    has_change2 = length(unique(n_eia_ids_combined))
   ) |>
-  filter(if_any(starts_with("has_change"), ~ . > 1))
+  filter(has_change > 1 | has_change2 > 1)
+
 
 # %%
 message()
@@ -621,14 +640,13 @@ message(
   'Checking target plants -- pudl should contain every target plant (should return zero rows):'
 )
 eia_hydro_generators_raw |> filter(!(plant_id_eia %in% target_eia_ids)) |> print()
-eia_hydro_generators |> filter(!(plant_id_eia %in% target_eia_ids)) |> print()
-hydro_gen_data_complete |> filter(!(plant_id_eia %in% target_eia_ids)) |> print()
+# eia_hydro_generators |> filter(!(eia_id %in% target_eia_ids)) |> print()
 
 message(
   'Checking target plants -- these eia ids are in rfp but not in pudl (should return zero rows):'
 )
 # rectifhyd target plants are based on EIA860, 2022
-rfp_target_eia_ids = identify_target_eia_ids(eia_gen_dir, eia_plant_dir)
+rfp_target_eia_ids = identify_target_plants(eia_gen_dir, eia_plant_dir)
 rfp_target_eia_ids |> filter(!(EIA_ID %in% target_eia_ids))
 
 # TODO check annual vs monthly values all datasets

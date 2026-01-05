@@ -1,8 +1,16 @@
+# scripts/compare_versions.R
+#
+# Compares multiple versions of the B1 data.
+#
+# NOTE: this is intended to be run with the working directory set as
+# the project root, i.e. source('scripts/compare_versions.R')
+#
+# Created by Cameron Bracken, cameron.bracken@pnnl.gov, Jan 31, 2025
+
 library(conflicted)
 conflicts_prefer(dplyr::filter)
 library(tidyverse)
 library(tools)
-library(semver)
 library(janitor)
 
 options(
@@ -11,6 +19,8 @@ options(
   pillar.width = 1000,
   dplyr.summarise.inform = FALSE
 )
+
+source('utilities.R')
 
 data_dir = 'data'
 current_version_dir = 'B1_data_1.4.0/'
@@ -34,85 +44,8 @@ b1_versions = bind_rows(
   data.frame(path = current_version_dir, version = current_version_number)
 )
 
-download_unzip_rename = function(
-  url,
-  zip_fn,
-  exdir = '.',
-  dir_rename_to = NULL,
-  delete_zip = FALSE,
-  cache = TRUE,
-  download_method = 'wget',
-  overwrite = TRUE,
-  ...
-) {
-  zip_path = file.path(exdir, zip_fn)
-  if (cache & file.exists(zip_path)) {
-    message(
-      'download_unzip_rename: ',
-      zip_path,
-      ' exists, not downloading again, set cache=FALSE to re-download.'
-    )
-  } else {
-    download.file(
-      url,
-      zip_path,
-      method = download_method,
-      overwrite = overwrite
-    ) # might fail if not installed
-  }
-  output_dir_name = unzip(zip_path, list = T)$Name[1]
-  unzip(zip_path, exdir = exdir)
-  if (!is.null(dir_rename_to)) {
-    unzipped_output_dir = file.path(exdir, output_dir_name)
-    new_unzipped_output_dir = file.path(exdir, dir_rename_to)
-    if (file.exists(new_unzipped_output_dir) & overwrite) {
-      unlink(new_unzipped_output_dir, recursive = T)
-    }
-    file.rename(unzipped_output_dir, new_unzipped_output_dir)
-  }
-  if (delete_zip) {
-    unlink(zip_path)
-  }
-}
-
 # download previous version data and unzip it
-previous_versions |> pmap(download_unzip_rename) -> shh
-
-read_b1 = function(path, version, timestep = 'monthly', ...) {
-  #
-  message('Reading B1 data version ', version, ' ', timestep)
-
-  sv = parse_version(version)
-  if (sv < parse_version('1.4.0')) {
-    # multiple files, one per year
-    subdir = list.files(path, full.names = TRUE) |>
-      str_subset(regex(timestep, ignore_case = TRUE))
-    # browser()
-    subdir |>
-      list.files('*', full.names = T) |>
-      map(read_csv, .progress = TRUE) |>
-      bind_rows() %>%
-      {
-        # older data did not have a consistent datetime column name
-        if (timestep == 'weekly') {
-          mutate(., datetime = week_start)
-        } else if (timestep == 'monthly') {
-          mutate(., datetime = ymd(sprintf('%s-%s-01', year, month)))
-        } else {
-          stop("Timestep must be 'monthly' or 'weekly'.")
-        }
-      } |>
-      janitor::clean_names(parsing_option = 3) |>
-      mutate(version = version)
-  } else {
-    fn = list.files(path, full.names = TRUE) |>
-      str_subset(regex(timestep, ignore_case = TRUE))
-    # one file for enture period
-    read_csv(fn) |>
-      mutate(version = version)
-  }
-}
-
+previous_versions |> pmap(download_unzip_rename_orig) -> shh
 
 b1m = b1_versions |> pmap(read_b1, timestep = 'monthly') |> bind_rows()
 b1w = b1_versions |> pmap(read_b1, timestep = 'weekly') |> bind_rows()
