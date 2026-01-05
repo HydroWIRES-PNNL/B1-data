@@ -1,0 +1,8 @@
+{
+    "environmentVariables.set": {
+        "ANTHROPIC_AUTH_TOKEN": "sk-JOAM8xwvWulcMJy-W-t1jA",
+        "ANTHROPIC_BASE_URL": "https://ai-incubator-api.pnnl.gov",
+        "ANTHROPIC_MODEL": "claude-sonnet-4-20250514-v1-birthright",
+        "API_USGS_PAT": "rq0E2dfqDOZxTktEyHDbTHIFOtKgP6wqoGN4d4JR"
+    }
+}
