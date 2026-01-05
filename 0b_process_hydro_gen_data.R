@@ -41,202 +41,6 @@ options(
 
 source('utilities.R')
 
-# %% settings
-# directory for all data
-data_dir = 'data'
-# cutoff for excluding low capacity plant, set to zero to include everything
-capacity_cutoff_MW <- 0
-# which version of rfp to download
-rfp_version = '1.1' |> numeric_version()
-rf_version = '1.3' |> numeric_version()
-
-
-# output will be filtered to these years
-# TODO add filtering everywhere
-year_range = 1980:2024
-start_year = min(year_range)
-end_year = max(year_range)
-
-# %% input data files and data tags
-rf_version_tag = rf_version |>
-  as.character() |>
-  str_replace(fixed('.'), '_') %>%
-  s('rf_', .)
-rfp_version_tag = rfp_version |>
-  as.character() |>
-  str_replace(fixed('.'), '_') %>%
-  s('rfp_', .)
-
-# TODO download this as well
-pudl_generators_fn = 'data/out_eia__monthly_generators.parquet'
-pudl_plants_fn = 'data/out_eia__yearly_plants.parquet'
-
-# ----------------------------------------------------------------------------
-# data downloading -----------------------------------------------------------
-# ----------------------------------------------------------------------------
-
-# %%
-message('Getting rectifhydplus data version: ', rfp_version)
-## get the rectifydplus gen data
-## TODO move this to a separate script or functions
-## hydrosource: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-## citation: https://www.nature.com/articles/s41597-025-05323-y
-## v1.0: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-## v1.1 https://hydrosource.ornl.gov/data/datasets/rectifhydplus_v1-1/
-if (rfp_version == numeric_version('1.1')) {
-  # get RectifHydPlus version 1.1
-  rfp_data_url = "https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus_v1-1/RectifHydPlus_NetGen_MWh_v1.1.csv"
-  rfp_fields_url = "https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus_v1-1/RectifHydPlus_v1.1_field_descriptions.csv"
-  rfp_data_fn = file.path(data_dir, basename(rfp_data_url))
-  rfp_fields_fn = file.path(data_dir, basename(rfp_fields_url))
-  if (!file.exists(rfp_data_fn)) {
-    download.file(rfp_data_url, rfp_data_fn)
-  }
-  if (!file.exists(rfp_fields_fn)) {
-    download.file(rfp_fields_url, rfp_fields_fn)
-  }
-} else if (rfp_version == numeric_version('1.0')) {
-  # get the rectifydplus 1.0 data
-  # hydrosource: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-  # citation: https://www.nature.com/articles/s41597-025-05323-y
-  rfp_data_dir = 'rectifhyd_plus_data' # will be a subdir of data_dir
-  rfp_data_url = 'https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus/RectifHydPlus.zip'
-  rfp_data_path = download_unzip_rename(
-    url = rfp_data_url,
-    zip_fn = basename(rfp_data_url),
-    extract_to_dir = data_dir,
-    dir_rename_to = rfp_data_dir
-  )
-}
-
-# %%
-## get the rectifydplus inputs, which includes older EIA data, thanks Sean!
-## hydrosource: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-## citation: https://www.nature.com/articles/s41597-025-05323-y
-## v1.0: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-## v1.1 https://hydrosource.ornl.gov/data/datasets/rectifhydplus_v1-1/
-if (rfp_version == numeric_version('1.0')) {
-  ## version 1.0
-  rfp_inputs_dir = 'rectifhyd_plus_1.0_inputs' # will be a subdir of data_dir
-  rfp_inputs_url = 'https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus/RectifHydPlus_inputs.zip'
-} else if (rfp_version == numeric_version('1.1')) {
-  ## version 1.1
-  rfp_inputs_dir = 'rectifhyd_plus_1.1_inputs' # will be a subdir of data_dir
-  rfp_inputs_url = 'https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus_v1-1/RectifHydPlus_inputs.zip'
-}
-rfp_inputs_zip_fn = rfp_inputs_url |>
-  basename() |>
-  file_path_sans_ext() |>
-  paste0('_', rfp_version, '.zip')
-rfp_inputs_path = download_unzip_rename(
-  url = rfp_inputs_url,
-  zip_fn = rfp_inputs_zip_fn,
-  extract_to_dir = data_dir,
-  dir_rename_to = rfp_inputs_dir
-)
-
-# %%
-## get the rectifydplus misc, which includes older EIA data, thanks Sean!
-## hydrosource: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-## citation: https://www.nature.com/articles/s41597-025-05323-y
-if (rfp_version == numeric_version('1.0')) {
-  ## version 1.0
-  rfp_misc_dir = 'rectifhyd_plus_misc_1.0' # will be a subdir of data_dir
-  rfp_misc_url = 'https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus/RectifHydPlus_misc.zip'
-} else if (rfp_version == numeric_version('1.1')) {
-  ## version 1.1
-  rfp_misc_dir = 'rectifhyd_plus_misc_1.1'
-  # will be a subdir of data_dirsupl
-  rfp_misc_url = 'https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus_v1-1/RectifHydPlus_misc.zip'
-}
-rfp_misc_zip_fn = rfp_misc_url |>
-  basename() |>
-  file_path_sans_ext() |>
-  paste0('_', rfp_version, '.zip')
-rfp_misc_path = download_unzip_rename(
-  url = rfp_misc_url,
-  zip_fn = rfp_misc_zip_fn,
-  extract_to_dir = data_dir,
-  dir_rename_to = rfp_misc_dir
-)
-
-# %%
-## get the rectifydplus supplemental, only in version 1.1
-## hydrosource: https://hydrosource.ornl.gov/data/datasets/rectifhydplus/
-if (rfp_version == numeric_version('1.1')) {
-  rfp_supl_dir = 'rectifhyd_plus_supplemental' # will be a subdir of data_dir
-  # version 1.1
-  rfp_supl_url = 'https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus_v1-1/RectifHydPlus_supplemental.zip'
-  rfp_supl_zip_fn = rfp_supl_url |>
-    basename() |>
-    file_path_sans_ext() |>
-    paste0('_', rfp_version, '.zip')
-  rfp_supl_path = download_unzip_rename(
-    url = rfp_supl_url,
-    zip_fn = rfp_supl_zip_fn,
-    extract_to_dir = data_dir,
-    dir_rename_to = rfp_supl_dir
-  )
-}
-
-# %%
-# get the latest rectifydplus code, which includes functions for reading older EIA data, thanks Sean!
-# repo: https://code.ornl.gov/turnersw/rectifhydplus
-
-if (rfp_version == numeric_version('1.1')) {
-  rfp_code_dir = 'rectifhyd_plus_code_main' # will be a subdir of data_dir
-  # rfp_code_dir = 'rectifhyd_plus_code_1.1' # will be a subdir of data_dir
-  # main brainch of public code repo, use this to pull in latest updates
-  rfp_code_url = "https://code.ornl.gov/turnersw/rectifhydplus/-/archive/main/rectifhydplus-main.zip"
-  # version of code released with the data v 1.1
-  # rfp_code_url = "https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus_v1-1/RectifHydPlus_code.zip"
-} else if (rfp_version == numeric_version('1.0')) {
-  rfp_code_dir = 'rectifhyd_plus_code_1.0' # will be a subdir of data_dir
-  rfp_code_url = "https://hydrosource.s3.us-east-2.amazonaws.com/files/data/datasets/rectifhydplus/RectifHydPlus_code.zip"
-}
-rfp_code_zip_fn = rfp_code_url |>
-  basename() |>
-  file_path_sans_ext() |>
-  paste0('_', rfp_version, '.zip')
-rfp_code_path = download_unzip_rename(
-  url = rfp_code_url,
-  zip_fn = rfp_code_zip_fn,
-  extract_to_dir = data_dir,
-  dir_rename_to = rfp_code_dir
-)
-# remove git folder to avoid confusion, if it exists
-unlink(file.path(rfp_code_path, '.git'), recursive = TRUE)
-
-
-# %% read rectifhyd plus gen data
-# use rectifyhplus functions for reading data, thanks Sean!
-source(file.path(rfp_code_path, '/R/EIA_xl_readers.R'))
-source(file.path(rfp_code_path, '/R/data reading and cleaning.R'))
-
-eia_gen_dir = file.path(data_dir, rfp_inputs_dir, 'EIA/Generation/')
-eia_plant_dir = file.path(data_dir, rfp_inputs_dir, 'EIA/Plant/')
-
-
-# %% download rectifhyd
-message('Getting rectifhyd data version: ', rf_version)
-rf_url =
-  if (rf_version == numeric_version('1.4')) {
-    'RectifHyd_v1.4.csv'
-  } else if (rf_version == numeric_version('1.3')) {
-    'https://zenodo.org/records/11584567/files/RectifHyd_v1.3.csv'
-  } else if (rf_version == numeric_version('1.2.1')) {
-    'https://zenodo.org/records/10011017/files/RectifHyd_v1.2.1.csv'
-  } else if (rf_version < numeric_version('1.2.1')) {
-    stop('Reading older rf versions than 1.2.1 is not supported.')
-  }
-
-rf_fn = file.path(data_dir, basename(rf_url))
-if (!file.exists(rf_fn)) {
-  download.file(rf_url, rf_fn)
-} else {
-  message(s('rectifhyd - {rf_fn} exists, delete it to re-download.'))
-}
-
 
 # ---------------------------------------------------------------------------
 # data ingest ---------------------------------------------------------------
@@ -667,15 +471,15 @@ multipage_pdf_by_group = function(data, group, fn = 'compare_gen.pdf') {
           ggplot() +
           geom_line(aes(
             datetime,
-            net_gen_mwh,
+            net_gen_mw,
             color = data_source,
-            linetype = data_source
+            # linetype = data_source
           )) +
           geom_step(
             aes(datetime, nameplate_mw, linetype = data_source),
-            linetype = 'solid',
+            # linetype = 'solid',
             color = 'black',
-            size = 1
+            size = .2
           ) +
           labs(x = '', y = 'Net Hydro Gen [MWh]', title = title) +
           theme_minimal()
