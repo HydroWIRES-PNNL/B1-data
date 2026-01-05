@@ -22,3 +22,5 @@ data/HUC4_average_flows_imputed.csv
 data/ORNL_EHAHydroPlant_*
 data/pnw_daily_data.csv
 get_eia.R
+data/ResOpsUS*
+data/
