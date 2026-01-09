@@ -3,38 +3,37 @@
 #
 # Author: D. Broman, PNNL
 # Modified by C. Bracken, PNNL, January 2025, v1.4.0 update
-#  - Added caching based on sstart and end date to speed up subsequent runs
+#  - Added caching based on start and end date to speed up subsequent runs
 
-# %%
-library(conflicted)
-library(tidyverse)
-library(missRanger)
+# setup ----------------------------------------------------------------------
+# %% packages and utility functions
+# load common packages and options
+source('packages_and_options.R')
+source('utilities.R')
 
-options(
-  readr.show_progress = FALSE,
-  readr.show_col_types = FALSE,
-  pillar.width = 1000,
-  dplyr.summarise.inform = FALSE
-)
-
-source("utilities.R")
-
-#%%
-check_env_set_usgs_api_key()
 
 # %% GLOBAL SETTINGS
 # TODO move to input file
 #- start and end dates for data retrieval (in YYYY-MM-DD format)
-date_start <- "1980-01-01"
-date_end <- "2024-12-31"
+date_start <- s("{start_year}-01-01")
+date_end <- s("{end_year}-12-31")
 #- output directory
-dir_data <- "data/flow/"
+dir_data <- config::get('eia_flow_dir') #"data/flow/"
 #- diagnostics directory
-dir_diag <- "data/flow/diag/"
+dir_diag <- file.path(dir_data, 'diag') #"data/flow/diag/"
+dir_proc <- file.path(dir_data, 'proc') #"data/flow/diag/"
 #- ResOpsUS time_series_all data directory
-dir_resops <- "data/ResOpsUS/time_series_all/"
+dir_resops <- file.path(dir_data, 'time_series_all')
 # TODO track down where this is from originally and add it to the pipeline
 sta_list_path <- "data/gage-inputs/flow_to_EIA_crosswalk.csv"
+
+#%%
+# output fns
+imputed_flow_fn =
+  s("{dir_proc}/flow_all_eia_hydro_wide_{start_year}_to_{end_year}.csv")
+imputed_flow_long_fn =
+  s("{dir_proc}/flow_all_eia_hydro_long_{start_year}_to_{end_year}.csv")
+metadata_fn = s("{dir_proc}/flow_metadata.csv")
 
 # %%
 #- parse station list
@@ -555,20 +554,18 @@ dat_flow = flow_file_list |>
 
 # %%
 #- build wide csv or read it in if it exists
-imputed_flow_fn = paste0(
-  dir_data,
-  "/proc/flow_all_eia_hydro_wide_%s_to_%s.csv"
-) |>
-  sprintf(date_start, date_end)
 if (!file.exists(imputed_flow_fn)) {
+  message('Imputing missing huc4 flows.')
   dat_flow_wide <- dat_flow %>%
     mutate(EIA_ID = paste0("EIA_", EIA_ID)) %>%
     dplyr::select(date, EIA_ID, value) %>%
     distinct(date, EIA_ID, value) |>
     pivot_wider(id_cols = date, names_from = EIA_ID) |>
     missRanger()
-  write_csv(dat_flow_wide, dat_flow_wide)
+  write_csv(dat_flow_wide, imputed_flow_fn)
+  message(s('Wrote file: {imputed_flow_fn}'))
 } else {
+  message(s('Reading cached file: {imputed_flow_fn}'))
   dat_flow_wide = read_csv(imputed_flow_fn)
 }
 
@@ -576,11 +573,6 @@ if (!file.exists(imputed_flow_fn)) {
 
 # %%
 #- write out tidy (long) csv
-imputed_flow_long_fn = paste0(
-  dir_data,
-  "/proc/flow_all_eia_hydro_long_%s_to_%s.csv"
-) |>
-  sprintf(date_start, date_end)
 dat_flow_wide |>
   pivot_longer(-date, names_to = "EIA_ID") |>
   mutate(EIA_ID = gsub("EIA_", "", EIA_ID)) |>
@@ -588,11 +580,11 @@ dat_flow_wide |>
 
 # %%
 #- create metadata file
-dat_flow_meta <- dat_flow %>%
-  dplyr::select(-date, -value) %>%
+dat_flow_meta <- dat_flow |>
+  select(-date, -value) |>
   distinct_all()
 
-write_csv(dat_flow_meta, paste0(dir_data, "/proc/flow_metadata.csv"))
+write_csv(dat_flow_meta, metadata_fn)
 
 # %%
 # ===========================================================
@@ -615,4 +607,5 @@ unique(dat_flow$EIA_ID) |>
       theme(text = element_text(family = "AvantGarde"))
 
     ggsave(paste0(dir_diag, id_sel, "_ts.png"), height = 4, width = 6)
-  })
+  }) -> shhh
+message(s('Wrote diagnostics plots to: {dir_diag}'))

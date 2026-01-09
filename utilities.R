@@ -1,14 +1,14 @@
 #===========================================================
 # Name: utilities.R
-# Author: D. Broman, PNNL
+# Author: C. Bracken, D. Broman (get_nwd, get_cdss, get_cdec, get_rise, get_mbh, get_pnh, get_usgs), PNNL
 # Last Modified: 2024-04-24
 # Description: [B1-data] utilities
 #===========================================================
 require(tidyverse)
 require(cder)
 require(dataRetrieval)
-
-. = NULL
+require(sf)
+require(janitor)
 
 #' get_usgs
 #'
@@ -18,6 +18,7 @@ require(dataRetrieval)
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse dataRetrieval
 #' @return dat_fmt tibble with columns date (date in 'YYYY-MM-DD') and value (float)
+#' @author D. Broman, C. Bracken
 #' @export none
 #'
 get_usgs = function(site_no, date_start, date_end) {
@@ -33,6 +34,7 @@ get_usgs = function(site_no, date_start, date_end) {
 
   # new USGS function read_waterdata_daily
   # requires environment variable API_USGS_PAT be set with an API key
+  # edit CB, Jan 2025, move to new usgs api
   dat_raw = read_waterdata_daily(
     monitoring_location_id = paste0('USGS-', site_no), # new api needs "USGS-" prefix
     parameter_code = par_cd, # streamflow
@@ -43,15 +45,8 @@ get_usgs = function(site_no, date_start, date_end) {
   ) |>
     st_drop_geometry()
 
-  # TODO if the site has no daily data, check for other data
-
+  # TODO if the site has no daily data, check for other data (eg. hourly or 15 min)
   dat_fmt = tibble(date = seq(from = date_start, to = date_end, by = 'day'))
-
-  # dat_proc = dat_raw %>%
-  #   # dplyr::rename(value = X_00060_00003) %>%
-  #   # mutate(date = as.Date(Date)) %>%
-  #   dplyr::select(date = time, value)
-
   dat_fmt = dat_fmt |>
     left_join(
       dat_raw |> select(date = time, value, unit_of_measure),
@@ -69,9 +64,9 @@ get_usgs = function(site_no, date_start, date_end) {
 #' @param date_start string (or date) start date in 'YYYY-MM-DD' format
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse
+#' @author D. Broman
 #' @return
 #' @export none
-
 get_pnh = function(sta_code, par_code, date_start, date_end) {
   #- daily data
   url_head = 'https://www.usbr.gov/pn-bin/daily.pl?'
@@ -133,9 +128,9 @@ get_pnh = function(sta_code, par_code, date_start, date_end) {
 #' @param date_start string (or date) start date in 'YYYY-MM-DD' format
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse
+#' @author D. Broman
 #' @return dat_fmt tibble with columns date (date in 'YYYY-MM-DD') and value (float)
 #' @export none
-
 get_mbh = function(sta_code, par_code, date_start, date_end) {
   # https://www.usbr.gov/gp/hydromet/automated_retrieval.pdf
   #- daily data
@@ -209,9 +204,9 @@ get_mbh = function(sta_code, par_code, date_start, date_end) {
 #' @param date_start string (or date) start date in 'YYYY-MM-DD' format
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse
+#' @author D. Broman
 #' @return dat_fmt tibble with columns date (date in 'YYYY-MM-DD') and value (float)
 #' @export none
-
 get_rise = function(item_id, date_start, date_end) {
   # type (format) currenly hard-coded to 'csv'
   url_head = 'https://data.usbr.gov/rise/api/result/download?type=csv&itemId='
@@ -255,6 +250,7 @@ get_rise = function(item_id, date_start, date_end) {
 #' @param date_start string (or date) start date in 'YYYY-MM-DD' format
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse cder
+#' @author D. Broman
 #' @return dat_fmt tibble with columns date (date in 'YYYY-MM-DD') and value (float)
 #' @export none
 
@@ -530,7 +526,6 @@ get_nwd = function(item_id, units, dur_code, date_start, date_end) {
 
   return(dat_fmt)
 }
-
 
 #' Title
 #'
@@ -984,7 +979,7 @@ read_eia_spreadsheets_rfp = function(
     message(s('Reading cached eia spreadhseet data from {cache_fn}'))
     eia_hydro_gen_monthly_1980_2022_wide = read_csv(cache_fn)
   } else {
-    # TODO check on warningsabout data names
+    # TODO check on warnings about data names
     eia_hydro_gen_monthly_1980_2022_wide =
       get_EIA_monthly_gen(
         eia_gen_dir,
@@ -1082,7 +1077,7 @@ get_eia_annual_hydro_gen_pudl = function(
   eia_ids,
   pudl_fn = 'data/out_eia__yearly_generators.parquet'
 ) {
-  read_eia_pudl_generators_parquet_existing_hydro(pudl_fn) |>
+  read_eia_pudl_generators_parquet_hydro(pudl_fn) |>
     group_by(eia_id, plant_name_eia, plant_id_pudl, datetime) |>
     summarise(
       net_gen_mwh = agg_na_rm_unless_all_na(net_gen_mwh),
@@ -1352,4 +1347,52 @@ download_unzip_rename_orig = function(
   if (delete_zip) {
     unlink(zip_path)
   }
+}
+
+
+#' Title
+#'
+#' @param data
+#' @param group
+#' @param fn
+#'
+#' @returns
+#'
+#' @export
+#' @examples
+multipage_pdf_by_group = function(data, group, y_var = 'net_gen_mw', fn = 'compare_gen.pdf') {
+  # browser()
+  # set up fixed colors for all the data labels so they dont change between plots
+  data_sources = unique(data$data_source)
+  data_source_colors = ggthemes::colorblind_pal()(8)[1:length(data_sources) + 1]
+  names(data_source_colors) = data_sources
+
+  pdf(fn, 6, 4, onefile = TRUE)
+  data |>
+    group_by(!!as.name(group)) |>
+    group_split() |>
+    map(
+      function(hydro_df) {
+        title = with(hydro_df, eia_id)
+        # browser()
+        p = hydro_df |>
+          ggplot() +
+          geom_line(
+            aes(datetime, !!as.name(y_var), color = data_source, group = 1),
+            size = .8
+          ) +
+          scale_color_manual(values = data_source_colors) +
+          geom_step(
+            aes(datetime, nameplate_mw, color = data_source),
+            size = .4,
+            group = 1
+          ) +
+          labs(x = '', y = 'Net Hydro Gen [aMW]', title = title) +
+          theme_minimal()
+        print(p)
+      },
+      .progress = TRUE
+    ) -> shhhh
+  dev.off()
+  message('Wrote: ', fn)
 }

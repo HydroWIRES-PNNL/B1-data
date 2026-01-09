@@ -8,32 +8,16 @@
 # 2025 Update - Cameron Bracken cameron.bracken@pnnl.gov
 #             - Added data imputation
 
-# %%
-library(conflicted)
-conflicted::conflicts_prefer(dplyr::filter)
-conflicted::conflicts_prefer(dplyr::select)
-library(tidyverse)
-library(dataRetrieval)
-library(missRanger)
-library(janitor)
-
-options(
-  readr.show_progress = FALSE,
-  readr.show_col_types = FALSE,
-  pillar.width = 1000,
-  dplyr.summarise.inform = FALSE
-)
-
+# setup ----------------------------------------------------------------------
+# %% packages and utility functions
+# load common packages and options
+source('packages_and_options.R')
 source('utilities.R')
 
-#%%
+# %% additonal setup
 check_env_set_usgs_api_key()
 
-# %%
-start_year = 1980
-end_year = 2024
-
-usgs_data_dir = "data/usgs_huc4_flow"
+usgs_data_dir = config::get('usgs_data_dir')
 dir.create(usgs_data_dir, showWarnings = F)
 
 # associate EIA plant code with huc4
@@ -41,18 +25,27 @@ dir.create(usgs_data_dir, showWarnings = F)
 # but fall back to HILLARRI v3 with Sean's fixes
 # run this script to regenerate the eia_huc4.csv file
 # source('data/huc4_plants.R')
-hillari = read_csv('data/hillarri_v3.csv') |>
+
+# Read HILLARI v3 data which has been pre-filtered for just CONUS hydro plants
+# see downloading script
+hillari = file.path(data_dir, config::get('hilarri_csv')) |>
+  read_csv() |>
   janitor::clean_names() |>
   mutate(huc4 = substr(huc_12, 1, 4)) |>
   rename(usgs_id_hillari = usgs_gage) |>
   mutate(usgs_id_hillari = str_split_i(usgs_id_hillari, '-', 2))
 
+# eha = read_xlsx(eha_fn, sheet = "Operational") |>
+#   janitor::clean_names(parsing_option = 3)
+
 eia_and_huc4 <- read_csv('data/eia_huc4.csv') |>
+  distinct_all() |>
   janitor::clean_names() |>
   full_join(
     hillari |>
       select(huc4_hillari = huc4, eia_id = eia_ptid) |>
-      drop_na(eia_id),
+      drop_na(eia_id) |>
+      distinct(eia_id, .keep_all = T),
     by = join_by(eia_id)
   ) |>
   mutate(huc4 = ifelse(is.na(huc4), huc4_hillari, huc4)) |>
@@ -60,18 +53,20 @@ eia_and_huc4 <- read_csv('data/eia_huc4.csv') |>
 
 
 # %%
-## CB Oct 2023, had to change line 140 from Data/USGS_Streamgage_huc4.csv
-## 05587455 to 05587450, the gage was returning no streamflow data
-##
 ## get USGS daily flow data averges
-huc4_flow =
+huc4_flow_daily =
   read_csv("data/USGS_Streamgage_huc4.csv") |>
   clean_names() |>
   mutate(huc4 = sprintf('%04d', huc4)) |>
   select(huc4, usgs_id = stream_gage_fea1) |>
+  bind_rows(
+    hillari |>
+      filter(!is.na(usgs_id_hillari)) |>
+      select(huc4, usgs_id = usgs_id_hillari)
+  ) |>
   na.omit() |>
   arrange(huc4) |>
-  pmap(function(huc4, usgs_id) {
+  pmap_dfr(function(huc4, usgs_id) {
     gage_fn <- "%s/%s_%s_to_%s.csv" |>
       sprintf(usgs_data_dir, usgs_id, start_year, end_year)
 
@@ -97,7 +92,7 @@ huc4_flow =
 
       gage_flow |> write_csv(gage_fn, progress = F)
     } else {
-      gage_flow <- read_csv(gage_fn, col_types = "ddddcc") |>
+      gage_flow <- read_csv(gage_fn) |> #, col_types = "ddddcc") |>
         mutate(
           huc4 = sprintf('%04d', as.integer(huc4)),
           usgs_id = sprintf('%08d', as.integer(usgs_id))
@@ -105,40 +100,90 @@ huc4_flow =
     }
     gage_flow
   })
-#bind_rows()
 
-#%%
+#%% monthly
 # impute missing flow data to create complete set
-huc4_flow_imputed_wide_fn = 'data/huc4_flow_usgs_wide_imputed.csv'
-if (!file.exists(huc4_flow_imputed_wide_fn)) {
+if (!file.exists(huc4_flow_imputed_monthly_wide_fn)) {
   huc4_flow_wide =
-    huc4_flow |>
+    huc4_flow_daily |>
+    group_by(year, month, huc4, usgs_id) |>
+    summarise(av_flow_cfs = mean(av_flow_cfs)) |>
+    # distinct(year, month, day, huc4, usgs_id, .keep_all = T) |>
+    pivot_wider(
+      id_cols = c(year, month),
+      names_from = c(huc4, usgs_id),
+      values_from = av_flow_cfs
+    ) |>
+    ungroup()
+
+  ymd_label = huc4_flow_wide |> select(year, month)
+
+  huc4_flow_wide_imputed_nodate =
+    huc4_flow_wide |>
+    select(-starts_with('year'), -starts_with('month')) |>
+    missRanger() #num.trees = 50)
+
+  huc4_flow_wide_imputed = ymd_label |>
+    bind_cols(huc4_flow_wide_imputed_nodate)
+
+  huc4_flow_wide_imputed |>
+    write_csv(huc4_flow_imputed_monthly_wide_fn)
+  message('Wrote imputed huc4 flows: ', huc4_flow_imputed_monthly_wide_fn)
+} else {
+  huc4_flow_wide_imputed = read_csv(huc4_flow_imputed_monthly_wide_fn)
+  message('Read cached imputed huc4 flows: ', huc4_flow_imputed_monthly_wide_fn)
+}
+
+#%% format data to long
+huc4_flow_monthly_imputed =
+  huc4_flow_wide_imputed |>
+  pivot_longer(
+    -c(year, month),
+    names_to = c("huc4", "usgs_id"),
+    names_sep = "_",
+    values_to = "av_flow_cfs"
+  ) |>
+  arrange(huc4, year, month) |>
+  mutate(date = sprintf('%s-%s-01', year, month) |> as.Date())
+
+huc4_flow_monthly_imputed |> write_csv(huc4_flow_imputed_monthly_fn)
+
+#%% impute daily (takes a long time)
+# impute missing flow data to create complete set
+if (!file.exists(huc4_flow_imputed_daily_wide_fn)) {
+  huc4_flow_wide =
+    huc4_flow_daily |>
+    group_by(year, month, day, huc4, usgs_id) |>
+    summarise(av_flow_cfs = mean(av_flow_cfs)) |>
     distinct(year, month, day, huc4, usgs_id, .keep_all = T) |>
     pivot_wider(
       id_cols = c(year, month, day),
       names_from = c(huc4, usgs_id),
       values_from = av_flow_cfs
-    )
+    ) |>
+    ungroup()
 
   ymd_label = huc4_flow_wide |> select(year, month, day)
 
   huc4_flow_wide_imputed_nodate =
     huc4_flow_wide |>
     select(-year, -month, -day) |>
-    missRanger()
+    missRanger() #num.trees = 50)
 
   huc4_flow_wide_imputed = ymd_label |>
     bind_cols(huc4_flow_wide_imputed_nodate)
 
   huc4_flow_wide_imputed |>
-    write_csv(huc4_flow_imputed_wide_fn)
+    write_csv(huc4_flow_imputed_daily_wide_fn)
+  message('Wrote imputed huc4 flows: ', huc4_flow_imputed_daily_wide_fn)
 } else {
-  huc4_flow_wide_imputed = read_csv(huc4_flow_imputed_wide_fn)
+  huc4_flow_wide_imputed = read_csv(huc4_flow_imputed_daily_wide_fn)
+  message('Read cached imputed huc4 flows: ', huc4_flow_imputed_daily_wide_fn)
 }
 
 #%% format data to long
-huc4_flow_imputed_long_fn = 'data/huc4_flow_usgs_long_imputed.csv'
-huc4_flow_imputed = huc4_flow_wide_imputed |>
+huc4_flow_daily_imputed =
+  huc4_flow_wide_imputed |>
   pivot_longer(
     -c(year, month, day),
     names_to = c("huc4", "usgs_id"),
@@ -148,4 +193,4 @@ huc4_flow_imputed = huc4_flow_wide_imputed |>
   arrange(huc4, year, month, day) |>
   mutate(date = sprintf('%s-%s-%s', year, month, day) |> as.Date())
 
-huc4_flow_imputed |> write_csv(huc4_flow_imputed_long_fn)
+huc4_flow_daily_imputed |> write_csv(huc4_flow_imputed_daily_fn)

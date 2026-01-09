@@ -4,31 +4,27 @@
 ## 2023 1.2.1 Update - Cameron Bracken cameron.bracken@pnnl.gov
 ## 2024 1.4.0 Update - Cameron Bracken cameron.bracken@pnnl.gov
 
-# %%
-library(starfit) # read ResOpsUS data
-library(tidyverse)
-library(missRanger)
-library(sf)
-library(readxl)
-# library(janitor)
+# setup ----------------------------------------------------------------------
+# %% packages and utility functions
+# load common packages and options
+source('packages_and_options.R')
+source('utilities.R')
 
-options(
-  readr.show_progress = FALSE,
-  readr.show_col_types = FALSE,
-  pillar.width = 1e6
-)
-
-# %% #settings
+# %% settings
 # resops has some data in 2021 but for the most part it ends in 2020
 # anything later will be imputed
-output_years <- 1980:2024
+output_years <- year_range
 
-# get
-eha = read_xlsx('data/ORNL_EHAHydroPlant_PublicFY2024.xlsx')
-hillari = read_csv('data/hillarri_v3.csv')
-grand_to_eha <- hillari |> select(eha_ptid, grand_id)
+# eha = read_xlsx('data/ORNL_EHAHydroPlant_PublicFY2024.xlsx')
+# Read HILLARI v3 data which has been pre-filtered for just CONUS hydro plants
+# see downloading script
+hilarri_hydro_plants =
+  file.path(data_dir, config::get('hilarri_csv')) |>
+  read_csv()
+
+grand_to_eha <- hilarri_hydro_plants |> select(eha_ptid, grand_id)
 grand_in_ResOpsUS <-
-  list.files("data/ResOpsUS/time_series_all/") %>%
+  list.files(file.path(resops_flow_dir, "/time_series_all/")) %>%
   substr(., 10, nchar(.) - 4) %>%
   as.integer()
 
@@ -45,7 +41,7 @@ resops_release_data <-
         return(tibble())
       }
 
-      read_reservoir_data(USRDATS_path = "Data/ResOpsUS", dam_id = grand) %>%
+      read_reservoir_data(USRDATS_path = resops_flow_dir, dam_id = grand) %>%
         mutate(
           year = year(date),
           month = month(date) # ,label = T)
@@ -91,11 +87,10 @@ resops_release_data <-
 
 # %%
 # impute missing resops data
-message('Filling missing values.')
-resops_imputed_fn = 'data/resops_imputed_%s_to_%s.csv' |>
-  sprintf(first(output_years), last(output_years))
+message('Filling missing resops values.')
 
-if (!file.exists(resops_imputed_fn)) {
+if (!file.exists(resops_imputed_fn) | !cache) {
+  message('Imputing missing resops data.')
   resops_release_fraction_filled = resops_release_data |>
     pivot_wider(
       id_cols = c(month, year),
@@ -131,7 +126,9 @@ if (!file.exists(resops_imputed_fn)) {
     select(eha_ptid, year, month, fraction, imputed)
 
   resops_release_fraction_filled |> write_csv(resops_imputed_fn)
+  message(s('Wrote: {resops_imputed_fn}'))
 } else {
+  message(s('Reading cached file: {resops_imputed_fn}'))
   resops_release_fraction_filled = read_csv(resops_imputed_fn)
 }
 
@@ -168,16 +165,15 @@ p_resops <- resops_release_fraction_filled |>
   scale_x_datetime(date_labels = "%y") +
   labs(x = "Year", y = "Release Fraction")
 p_resops
-plot_fn = "figures/resops.png"
+plot_fn = file.path(figures_dir, "resops.png")
 ggsave(plot_fn, p_resops, width = 16, height = 12)
 message('Created: ', plot_fn)
 
 # %%
 # pull in gage based release data
 message('Creating gage and release based fractions.')
-gage_flow_fraction <- "data/flow/proc/flow_all_eia_hydro_long_%s-01-01_to_%s-12-31.csv" |>
-  sprintf(first(output_years), last(output_years)) |>
-  read_csv() |>
+gage_flow_fraction <-
+  read_csv(gage_flow_eia_fn) |>
   janitor::clean_names() |>
   mutate(
     year = year(date),
@@ -199,7 +195,9 @@ gage_flow_fraction <- "data/flow/proc/flow_all_eia_hydro_long_%s-01-01_to_%s-12-
     # some eia plants are split, like hoover which is in two states,
     # There is also one eha_ptid that represents two eia_id's
     # but exclude the second one since represents the same plant
-    hillari |> rename(eia_id = eia_ptid) |> distinct(eia_id, .keep_all = T),
+    hilarri_hydro_plants |>
+      rename(eia_id = eia_ptid) |>
+      distinct(eia_id, .keep_all = T),
     by = "eia_id"
   ) %>%
   select(eha_ptid, year, month, fraction)
@@ -213,21 +211,19 @@ release_based_fractions <- gage_flow_fraction |>
     suffix = c('_gage', '_resops')
   ) |>
   mutate(
-    fraction = case_when(
+    fraction_release = case_when(
       !is.na(fraction_gage) ~ fraction_gage,
       !is.na(fraction_resops) ~ fraction_resops,
       .default = NA
     )
   ) |>
-  select(-fraction_resops, -fraction_resops) |>
+  # select(-fraction_resops, -fraction_resops) |>
   group_by(eha_ptid, year) |>
   # fix for a year of all 0 fractions
   mutate(
-    fraction = if_else(fraction == 0, 0.005, fraction),
-    fraction = fraction / sum(fraction),
-    month = month.abb[month]
+    fraction_release = if_else(fraction_release == 0, 0.005, fraction_release),
+    fraction_release = fraction_release / sum(fraction_release)
+    # month = month.abb[month]
   )
 
-
-release_based_fractions %>%
-  write_csv("data/release_based_fractions.csv")
+release_based_fractions %>% write_csv(release_fractions_fn)

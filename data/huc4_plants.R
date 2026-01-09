@@ -30,4 +30,8 @@ huc4_ind = sapply(int, function(x) {
 })
 eha_ll$HUC4 = huc4_sf$huc4[huc4_ind]
 
-eha_ll |> select(EIA_ID, HUC4) |> write_csv('data/eia_huc4.csv')
+eha_ll |>
+  select(EIA_ID, HUC4) |>
+  janitor::clean_names() |>
+  distinct_all() |>
+  write_csv('data/eia_huc4.csv')

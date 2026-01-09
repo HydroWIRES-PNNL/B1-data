@@ -3,73 +3,23 @@
 # Created by Cameron Bracken, cameron.bracken@pnnl.gov, Dec 31, 2025
 #
 
-# ----------------------------------------------------------------------------
 # setup ----------------------------------------------------------------------
-# ----------------------------------------------------------------------------
-
-# %% load conflicted first to avoid warnings
-library(conflicted)
-
-# %% renv
-## initial setup
-# install.packages('renv')
-# renv::init()
-# vignette("renv")
-# renv::snapshot()
-library(renv)
-renv::load()
-
 # %% packages and utility functions
-library(conflicted)
-library(tidyverse)
-conflicted::conflicts_prefer(dplyr::filter)
-library(readxl)
-library(sf)
-library(tools)
-library(arrow)
-library(janitor)
-library(glue)
-# shortcut for string interpolation like pythins f strings
-s = glue::glue
-
-options(
-  readr.show_progress = FALSE,
-  readr.show_col_types = FALSE,
-  pillar.width = 1000,
-  dplyr.summarise.inform = FALSE
-)
-
+# load common packages and options
+source('packages_and_options.R')
 source('utilities.R')
 
 
 # ---------------------------------------------------------------------------
 # data ingest ---------------------------------------------------------------
 # ---------------------------------------------------------------------------
-
 # %% Read hilarri and pudl data
 
-# monkey patch the st_read function to hide output when it is
-# called by the rfp function
-st_read = function(...) {
-  sf::st_read(..., quiet = TRUE)
-}
-
-# Read HILLARI v3 data to find catidate EIA plants
-# HILLARI data, it comes with the rfp inputs
-# https://hydrosource.ornl.gov/data/datasets/hilarri-v3/
-
-eha_hydro_plants =
-  read_HILARRI(
-    file.path(rfp_inputs_path, 'HILARRI_v3/HILARRI_v3_preliminary.gpkg'),
-    file.path(rfp_code_path, 'data/misc/HILARRI_changes.csv')
-  ) |>
-  suppressMessages() |>
-  # conus only for now
-  # filter(huc_02 %in% sprintf('%02d', 1:18)) |>
-  # state filtering is more reliable
-  filter(!(state %in% c('AK', 'HI', 'PR', 'DC'))) |>
-  filter(!is.na(eia_ptid)) |>
-  filter(prjct_type == 'Conventional hydropower')
+# Read HILLARI v3 data which has been pre-filtered for just CONUS hydro plants
+# see downloading script
+hilarri_hydro_plants =
+  file.path(data_dir, config::get('hilarri_csv')) |>
+  read_csv()
 
 # Read PUDL (eia) data
 # pudl data filtered for just hydro and cleaned up columns
@@ -85,7 +35,10 @@ eia_hydro_generators_raw =
   )
 
 # %% Determine target hydro plants from hilarri and pudl data
-target_eia_ids_hilarri = eha_hydro_plants$eia_ptid |> unique() |> as.integer() |> sort()
+target_eia_ids_hilarri = hilarri_hydro_plants$eia_ptid |>
+  unique() |>
+  as.integer() |>
+  sort()
 target_eia_ids_eia_pudl = eia_hydro_generators_raw$plant_id_eia |>
   unique() |>
   as.integer() |>
@@ -202,6 +155,24 @@ rfp_eia_pudl_map_uncombined |>
 # only pulls 1980 to 2022
 message('\nReading and formatting eia spreadsheets.')
 
+# reading the spreadsheets uses functions from rectifhydplus, thanks Sean!
+rfp_code_path =
+  if (config::get('rfp_code_checkout_repo')) {
+    config::get('rfp_code_dir') |>
+      paste0('_main') %>%
+      file.path(data_dir, .)
+  } else {
+    config::get('rfp_code_checkout_repo') |>
+      paste0('_', rfp_version) %>%
+      file.path(data_dir, .)
+  }
+source(file.path(rfp_code_path, '/R/EIA_xl_readers.R'))
+source(file.path(rfp_code_path, '/R/data reading and cleaning.R'))
+
+# set up input data paths
+rfp_inputs_dir = config::get('rfp_inputs_dir') |> paste0('_', rfp_version)
+eia_gen_dir = file.path(data_dir, rfp_inputs_dir, 'EIA/Generation/')
+eia_plant_dir = file.path(data_dir, rfp_inputs_dir, 'EIA/Plant/')
 
 eia_raw_complete_fn =
   file.path(
@@ -221,7 +192,8 @@ if (!file.exists(eia_raw_complete_fn)) {
       complete_date_seq,
       target_eia_ids,
       pudl_eia_map_uncombined,
-      rfp_eia_pudl_map_uncombined
+      rfp_eia_pudl_map_uncombined,
+      data_source_name = 'eia_raw'
     )
   eia_hydro_gen_monthly_1980_2022_complete |>
     write_csv(eia_raw_complete_fn)
@@ -245,7 +217,8 @@ if (!file.exists(eia_pudl_complete_fn)) {
       complete_date_seq,
       target_eia_ids,
       pudl_eia_map_uncombined,
-      rfp_eia_pudl_map_uncombined
+      rfp_eia_pudl_map_uncombined,
+      data_source_name = 'eia_pudl '
     )
   eia_hydro_gen_monthly_pudl_complete |>
     write_csv(eia_pudl_complete_fn)
@@ -331,9 +304,8 @@ hydro_gen_data_complete =
   # data source columns are now redundant
   select(-starts_with('data_source'))
 
-wide_fn = s('{data_dir}/hydro_gen_multisource_monthly_{start_year}_{end_year}_wide.csv')
-hydro_gen_data_complete |> write_csv(wide_fn)
-message(s('Wrote {wide_fn}'))
+hydro_gen_data_complete |> write_csv(hydro_gen_data_wide_fn)
+message(s('Wrote {hydro_gen_data_wide_fn}'))
 
 hydro_gen_data_long = bind_rows(
   eia_hydro_gen_monthly_pudl_complete,
@@ -347,9 +319,8 @@ hydro_gen_data_long = bind_rows(
     nameplate_mwh = nameplate_mw * n_hours
   )
 
-long_fn = s('{data_dir}/hydro_gen_multisource_monthly_{start_year}_{end_year}_long.csv')
-hydro_gen_data_long |> write_csv(long_fn)
-message(s('Wrote {long_fn}'))
+hydro_gen_data_long |> write_csv(hydro_gen_data_long_fn)
+message(s('Wrote {hydro_gen_data_long_fn}'))
 
 # ----------------------------------------------------------------------------
 # diagnostics ----------------------------------------------------------------
@@ -359,6 +330,7 @@ message(s('Wrote {long_fn}'))
 message()
 message("The following plants have mutiple eia_id's for one plant:")
 hydro_gen_data_long |>
+  ungroup() |>
   filter(if_any(starts_with("n_eia_ids_combined"), ~ . > 1)) |>
   distinct(
     eia_id,
@@ -451,46 +423,13 @@ message(
 )
 # rectifhyd target plants are based on EIA860, 2022
 rfp_target_eia_ids = identify_target_plants(eia_gen_dir, eia_plant_dir)
-rfp_target_eia_ids |> filter(!(EIA_ID %in% target_eia_ids))
+rfp_target_eia_ids |> filter(!(EIA_ID %in% target_eia_ids)) |> print()
 
 # TODO check annual vs monthly values all datasets
 # TODO check nameplate vs observed gen
 # TODO run more checks
 
 # %% plots
-multipage_pdf_by_group = function(data, group, fn = 'compare_gen.pdf') {
-  pdf(fn, 6, 4, onefile = TRUE)
-  data |>
-    group_by(!!as.name(group)) |>
-    group_split() |>
-    map(
-      function(hydro_df) {
-        title = with(hydro_df, eia_id)
-        # browser()
-        p = hydro_df |>
-          ggplot() +
-          geom_line(aes(
-            datetime,
-            net_gen_mw,
-            color = data_source,
-            # linetype = data_source
-          )) +
-          geom_step(
-            aes(datetime, nameplate_mw, linetype = data_source),
-            # linetype = 'solid',
-            color = 'black',
-            size = .2
-          ) +
-          labs(x = '', y = 'Net Hydro Gen [MWh]', title = title) +
-          theme_minimal()
-        print(p)
-      },
-      .progress = TRUE
-    ) -> shhhh
-  dev.off()
-  message('Wrote: ', fn)
-}
-
 hydro_gen_data_long %>%
   # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
   multipage_pdf_by_group('eia_id', 'figures/compare_gen_monthly.pdf') |>
@@ -532,6 +471,7 @@ hydro_gen_data_long %>%
   group_by(eia_id, year, data_source) |>
   summarise(
     net_gen_mwh = agg_na_rm_unless_all_na(net_gen_mwh, sum),
+    net_gen_mw = agg_na_rm_unless_all_na(net_gen_mw, mean),
     nameplate_mw = agg_na_rm_unless_all_na(nameplate_mw, max),
     datetime = ym(s('{year}-01'))
   ) |>
