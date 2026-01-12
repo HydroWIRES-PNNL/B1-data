@@ -1,4 +1,4 @@
-# 4a-B1-monthly.R
+# 5a_B1_monthly.R
 #
 # Create the HydroWIRES B1 monthly dataset
 #
@@ -6,6 +6,7 @@
 #
 # 2022 Original version by Sean Turner, PNNL
 # 2024 Update - Nov 3 2025 - Cameron Bracken cameron.bracken@pnnl.gov
+# v1.4.0 Update - Jan 8 2026 - Cameron Bracken cameron.bracken@pnnl.gov
 #
 # Approach:
 # 1. For the monthly version, take rectifhyd and add max, min, ador using average of PNW parameters
@@ -18,18 +19,8 @@ source('packages_and_options.R')
 source('utilities.R')
 
 # %%
-hydro_gen_data_fn = s(
-  '{data_dir}/hydro_gen_multisource_monthly_{start_year}_{end_year}_long.csv'
-)
-# rectifhyd_fn = 'data/RectifHyd_v1.4.csv'
-
-# eha_fn = "data/ORNL_EHAHydroPlant_PublicFY2024.xlsx"
-output_prefix = "B1_data"
-version = "1.4.0"
-
-
-# %%
-output_dir = paste0(output_prefix, "_", version)
+# defined in 'packages_and_options.R'
+output_dir = b1_dir
 dir.create(output_dir, showWarnings = FALSE)
 
 
@@ -71,7 +62,8 @@ eia_hydro_plants_pudl = read_parquet('data/out_eia__yearly_plants.parquet') |>
 # flow based disag proportions
 if (!file.exists(flow_based_disag_fn) & !cache) {
   message('Computing flow based disaggregation proportions.')
-  flow_disag = read_csv(release_fractions_fn) |>
+  flow_disag =
+    read_csv(release_fractions_fn) |>
     full_join(
       read_csv(huc4_fractions_fn) |> rename(fraction_huc4 = fraction),
       by = join_by(eha_ptid, year, month)
@@ -371,24 +363,29 @@ annual_p_ave_imputed =
 annual_p_ave_imputed |>
   filter(annual_p_ave >= annual_nameplate_mw)
 
+annual_p_ave_imputed |> write_csv('data/annual_gen_imputed_long.csv')
+
 # %%
-annual_p_ave_imputed %>%
-  # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
-  rename(nameplate_mw = annual_nameplate_mw) |>
-  # drop_na(p_ave) |>
-  arrange(eia_id, year) |>
-  # reduce the number of data source labels to simplify the plotting
-  mutate(data_source = ifelse(str_detect(data_source, ','), 'mixed', data_source)) |>
-  multipage_pdf_by_group('eia_id', 'annual_p_ave', 'figures/complete_gen_annual_imputed.pdf') |>
-  # ggplot warns about dropping NA values, ignore
-  suppressWarnings()
+if (create_figures) {
+  annual_p_ave_imputed %>%
+    # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
+    rename(nameplate_mw = annual_nameplate_mw) |>
+    # drop_na(p_ave) |>
+    arrange(eia_id, year) |>
+    # reduce the number of data source labels to simplify the plotting
+    mutate(data_source = ifelse(str_detect(data_source, ','), 'mixed', data_source)) |>
+    multipage_pdf_by_group('eia_id', 'annual_p_ave', 'figures/complete_gen_annual_imputed.pdf') |>
+    # ggplot warns about dropping NA values, ignore
+    suppressWarnings()
+}
 
 
 # ----------------------------------------------------------------------------
 # disaggregation -------------------------------------------------------------
 # ----------------------------------------------------------------------------
 # %% Disag
-flow_disag_join = flow_disag |>
+flow_disag_join =
+  flow_disag |>
   select(eia_id1 = eia_id, datetime, flow_proxy, p_disag1) |>
   na.omit() |>
   ungroup()
@@ -519,7 +516,7 @@ hydro_gen_with_disag =
     \(plant_year) {
       p_max = max(plant_year$p_ave)
 
-      if (all(plant_year$p_ave < p_max) | p_max == 0) {
+      if (is.na(p_max) || p_max == 0 || all(plant_year$p_ave < plant_year$nameplate_mw)) {
         return(plant_year)
       }
       plant_year |>
@@ -862,6 +859,15 @@ hydro_gen_with_disag_with_op_status |> filter(is.na(operational_status))
 hydro_gen_corected =
   hydro_gen_with_disag_with_op_status |>
   ungroup() |>
+  # first, if there is observed gen available,
+  # set the plant op status to 'existing'
+  mutate(
+    operational_status = case_when(
+      !is.na(net_gen_mwh) ~ 'existing',
+      .default = operational_status
+    ),
+  ) |>
+  # now modify the p_ave and nameplate values based on op status
   mutate(
     p_ave = case_when(
       !str_detect(operational_status, 'existing') ~ 0,
@@ -882,7 +888,7 @@ hydro_gen_corected =
 # ----------------------------------------------------------------------------
 # finalize -------------------------------------------------------------------
 # ----------------------------------------------------------------------------
-
+# %% merge metadata with gen data
 hydro_gen_complete_limited_metadata =
   hydro_gen_corected |>
   mutate(
@@ -910,7 +916,8 @@ hydro_gen_complete_limited_metadata =
     plant_id_pudl2
   ) |>
   # TODO fix these unknown cases
-  mutate(data_source = ifelse(is.na(data_source), 'unknown', data_source))
+  mutate(data_source = ifelse(is.na(data_source), 'unknown', data_source)) |>
+  mutate(operational_status = ifelse(is.na(operational_status), 'unknown', operational_status))
 
 # %%
 # TODO bring in more plant metdata
@@ -958,11 +965,13 @@ hydro_gen_monthly_complete =
 
 
 # %%
-hydro_gen_monthly_complete %>%
-  # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
-  multipage_pdf_by_group('eia_id', 'p_ave', 'figures/complete_gen_monthly_final.pdf') |>
-  # ggplot warns about dropping NA values, ignore
-  suppressWarnings()
+if (create_figures) {
+  hydro_gen_monthly_complete %>%
+    # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
+    multipage_pdf_by_group('eia_id', 'p_ave', 'figures/complete_gen_monthly_final.pdf') |>
+    # ggplot warns about dropping NA values, ignore
+    suppressWarnings()
+}
 
 #%%
 
@@ -997,7 +1006,7 @@ b1_params_pnw =
   rename(eia_id1 = eia_id)
 
 
-hydro_gen_monthly_final =
+b1_monthly =
   bind_rows(
     hydro_gen_monthly_complete |>
       left_join(modes, by = join_by(eia_id1)) |>
@@ -1023,81 +1032,30 @@ hydro_gen_monthly_final =
     year = year(datetime),
     month = month(datetime)
   )
-#|>
-# select(
-#   eia_id,
-#   plant,
-#   state,
-#   ba,
-#   year,
-#   month,
-#   target_mwh,
-#   nameplate = nameplate_mw,
-#   p_ave,
-#   p_min,
-#   p_max,
-#   ador
-# ) |>
-# left_join(eia_and_huc4, by = join_by(eia_id)) |>
-# left_join(huc4_flows_monthly, by = join_by(year, month, HUC4)) |>
-# rename(HUC4_flow_cfs = av_flow_cfs)
 
-# perform basic checks
-# pnw_dam_data = read_csv('data/usace_dam_data_daily_1980_2024.csv') |> mutate(eia_id1 = eia_id)
+# select only the rows of the monthly data where the nameplate or ops status changed
+b1_metadata =
+  b1_monthly |>
+  group_by(eia_id, year, nameplate_mw, operational_status, data_source) |>
+  reframe(datetime = datetime[1], month = month[1]) |>
+  ungroup() |>
+  left_join(
+    b1_monthly |>
+      select(-c(p_ave, target_mwh, n_hours, p_max, p_min, ador, nameplate_mw)),
+    multiple = 'first',
+    by = join_by(eia_id, year, operational_status, data_source, datetime, month)
+  )
 
-# these should all return zero rows
-hydro_gen_monthly_final |> filter(p_min < 0)
-hydro_gen_monthly_final |> filter(p_min > p_max)
-hydro_gen_monthly_final |> filter(p_min > (p_max - ador))
-hydro_gen_monthly_final |> filter(p_min > p_ave)
-hydro_gen_monthly_final |> filter(p_max < p_ave - .001)
-hydro_gen_monthly_final |> filter(p_max < p_min)
-hydro_gen_monthly_final |> filter(ador < 0)
-hydro_gen_monthly_final |> filter(ador < 0)
-
-
-# mutate(year = year(datetime), month = month(datetime)) |>
-# left_join(pnw_dam_data, by = join_by(year, month, eia_id1)) #|>
-# mutate(month = factor(month, levels = month.abb)) |>
-# mutate(
-# eia_id = as.integer(eia_id),
-# year = as.integer(year),
-# datetime = sprintf('%s-%02d-01', year, `names=`(1:12, month.abb)[month])
-# ) #|>
-# rename(eia_id = eia_id) |>
-# filter(eia_id == 3075) |>
-# ggplot(aes(month, p_ave, group = year)) +
-# geom_line() +
-# facet_wrap(~year) +
-# geom_line(aes(y = p_min), col = "red") +
-# geom_line(aes(y = p_max), col = "blue") +
-# geom_line(aes(y = ador), col = "pink")
-
-hydro_gen_monthly_final |>
+b1_monthly_fn = paste0(output_dir, "/B1_monthly.csv")
+b1_monthly |>
+  # no need to store all the precision
   mutate_if(is.double, function(x) round(x, 4)) |>
-  write_csv(paste0(output_dir, "/B1_monthly.csv"), na = "")
+  write_csv(b1_monthly_fn, na = "")
+message('Wrote: ', b1_monthly_fn)
 
-# monthly = list.files(output_dir, '*monthly*', full.names = T) |>
-#   map(function(x) read_csv(x, progress = F, show = F)) |>
-#   bind_rows()
-
-hydro_gen_monthly_final |>
-  filter(western) |>
-  mutate(year = year(datetime), month = month(datetime)) |>
-  group_by(month, year) |>
-  summarise(energy_mwh = sum(target_mwh, na.rm = T), .groups = "drop") |>
-  filter(year %in% c(2001, 2009)) |>
-  ggplot(aes(month, energy_mwh / 1000, fill = factor(year))) +
-  geom_bar(stat = "identity", position = "dodge") +
-  scale_fill_manual("", values = c("orange", "cornflowerblue")) +
-  theme_bw() +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(x = "", y = "Energy [GWh]")
-
-hydro_gen_monthly_final |>
-  filter(western) |>
-  group_by(year, month) |>
-  summarise(energy_mwh = sum(target_mwh), .groups = "drop") |>
-  filter(year %in% c(2001, 2009)) |>
-  pivot_wider(id_cols = month, names_from = year, values_from = energy_mwh) |>
-  mutate(pct_diff = (`2001` - `2009`) / `2009` * 100)
+b1_metadata_fn = paste0(output_dir, "/B1_metadata.csv")
+b1_metadata |>
+  # no need to store all the precision
+  mutate_if(is.double, function(x) round(x, 4)) |>
+  write_csv(b1_metadata_fn, na = "")
+message('Wrote: ', b1_metadata_fn)

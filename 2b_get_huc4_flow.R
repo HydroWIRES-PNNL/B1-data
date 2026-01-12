@@ -38,6 +38,8 @@ hillari = file.path(data_dir, config::get('hilarri_csv')) |>
 # eha = read_xlsx(eha_fn, sheet = "Operational") |>
 #   janitor::clean_names(parsing_option = 3)
 
+# TODO rearrange this script so it downloads the data once per eia_id and huc4
+# source('data/huc4_plants.R')
 eia_and_huc4 <- read_csv('data/eia_huc4.csv') |>
   distinct_all() |>
   janitor::clean_names() |>
@@ -148,7 +150,7 @@ huc4_flow_monthly_imputed =
 
 huc4_flow_monthly_imputed |> write_csv(huc4_flow_imputed_monthly_fn)
 
-#%% impute daily (takes a long time)
+#%% impute daily (takes a long time, like 24 hours or more on my M4 laptop)
 # impute missing flow data to create complete set
 if (!file.exists(huc4_flow_imputed_daily_wide_fn)) {
   huc4_flow_wide =
@@ -182,15 +184,57 @@ if (!file.exists(huc4_flow_imputed_daily_wide_fn)) {
 }
 
 #%% format data to long
+# TODO unify naming of flow column "av_flow" vs "ave_flow"
 huc4_flow_daily_imputed =
   huc4_flow_wide_imputed |>
   pivot_longer(
     -c(year, month, day),
     names_to = c("huc4", "usgs_id"),
     names_sep = "_",
-    values_to = "av_flow_cfs"
+    values_to = "ave_flow_cfs"
   ) |>
   arrange(huc4, year, month, day) |>
-  mutate(date = sprintf('%s-%s-%s', year, month, day) |> as.Date())
+  mutate(date = sprintf('%s-%s-%s', year, month, day) |> as.Date()) |>
+  left_join(
+    huc4_flow_daily |> rename(ave_flow_cfs_obs = av_flow_cfs),
+    by = join_by(year, month, day, huc4, usgs_id, date)
+  ) |>
+  mutate(
+    data_source = ifelse(is.na(ave_flow_cfs_obs), 'imputed_usgs_huc4_flow', 'usgs_huc4_flow')
+  ) |>
+  # TODO catch duplicates earlier
+  distinct(date, usgs_id, huc4, .keep_all = T) |>
+  select(-unit_of_measure)
 
 huc4_flow_daily_imputed |> write_csv(huc4_flow_imputed_daily_fn)
+
+
+if (create_figures) {
+  message('Creating diagnostic plots.')
+
+  huc4_flow_daily_imputed |>
+    rename(datetime = date) |>
+    mutate(plot_group = paste0(usgs_id, '_', huc4)) |>
+    multipage_pdf_timeseries_by_group_with_source(
+      group = 'plot_group',
+      y_var = 'ave_flow_cfs',
+      y_lab = 'Daily Average Flow [cfs]',
+      plot_y_step = FALSE,
+      fn = file.path(figures_dir, 'gage_flow_by_huc4_usgs_id.pdf')
+    )
+
+  p_sources =
+    huc4_flow_daily_imputed |>
+    group_by(date, data_source) |>
+    summarise(n = n()) |>
+    ggplot() +
+    geom_area(aes(date, n, fill = data_source)) +
+    theme_minimal() +
+    scale_fill_paletteer_d("pals::kelly", direction = -1, name = 'Data Source') +
+    labs(y = 'Number of gages')
+  p_sources
+  file.path(figures_dir, 'gage_flow_data_sources_usgs_huc4.pdf') |>
+    ggsave(p_sources, width = 10, height = 5)
+
+  message(s('Wrote diagnostics plots to: {figures_dir}'))
+}

@@ -23,7 +23,8 @@ datetime_sequence = tibble(
   )
 )
 
-sequence_monthly = datetime_sequence |>
+sequence_monthly =
+  datetime_sequence |>
   mutate(
     year = year(datetime),
     month = month(datetime),
@@ -32,7 +33,8 @@ sequence_monthly = datetime_sequence |>
   select(year, month, date) |>
   unique()
 
-sequence_weekly = datetime_sequence |>
+sequence_weekly =
+  datetime_sequence |>
   mutate(year = year(datetime)) |>
   group_by(year) |>
   group_split() |>

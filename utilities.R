@@ -1,6 +1,7 @@
 #===========================================================
 # Name: utilities.R
-# Author: C. Bracken, D. Broman (get_nwd, get_cdss, get_cdec, get_rise, get_mbh, get_pnh, get_usgs), PNNL
+# Author: C. Bracken, all functions unless otherwise noted
+#         D. Broman, get_nwd, get_cdss, get_cdec, get_rise, get_mbh, get_pnh, get_usgs), PNNL
 # Last Modified: 2024-04-24
 # Description: [B1-data] utilities
 #===========================================================
@@ -21,7 +22,7 @@ require(janitor)
 #' @author D. Broman, C. Bracken
 #' @export none
 #'
-get_usgs = function(site_no, date_start, date_end) {
+get_usgs = function(site_no, date_start, date_end, return_raw = FALSE) {
   # TODO error handling
   # TODO par_cd and stat_cd hard-coded
   # https://help.waterdata.usgs.gov/codes-and-parameters/parameters
@@ -45,15 +46,27 @@ get_usgs = function(site_no, date_start, date_end) {
   ) |>
     st_drop_geometry()
 
-  # TODO if the site has no daily data, check for other data (eg. hourly or 15 min)
-  dat_fmt = tibble(date = seq(from = date_start, to = date_end, by = 'day'))
-  dat_fmt = dat_fmt |>
-    left_join(
-      dat_raw |> select(date = time, value, unit_of_measure),
-      by = 'date'
-    )
-
-  return(dat_fmt)
+  if (!return_raw) {
+    # TODO if the site has no daily data, check for other data (eg. hourly or 15 min)
+    # dat_fmt = tibble(date = seq(from = date_start, to = date_end, by = 'day'))
+    dat_fmt =
+      tibble(date = seq(from = date_start, to = date_end, by = 'day')) |>
+      group_by(date) |>
+      left_join(
+        # dat_raw |> select(date = time, value, unit_of_measure),
+        dat_raw |>
+          # some sites have mutiple data points per time step, so choose the latest availablle
+          group_by(date = time) |>
+          summarise(
+            value = value[which.max(last_modified)],
+            unit_of_measure = unit_of_measure[which.max(last_modified)]
+          ),
+        by = 'date'
+      )
+    return(dat_fmt)
+  } else {
+    return(return_raw)
+  }
 }
 
 #' get_pnh
@@ -288,6 +301,7 @@ get_cdec = function(sta_code, sens_code, dur_code = 'D', date_start, date_end) {
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse
 #' @return dat_fmt tibble with columns date (date in 'YYYY-MM-DD') and value (float)
+#' @author D. Broman
 #' @export none
 
 get_cdss = function(sta_abb, date_start, date_end) {
@@ -354,6 +368,7 @@ get_cdss = function(sta_abb, date_start, date_end) {
 #' @param date_end string (or date) end date in 'YYYY-MM-DD' format
 #' @importFrom tidyverse
 #' @return dat_fmt tibble with columns date (date in 'YYYY-MM-DD') and value (float)
+#' @author D. Broman, C. Bracken
 #' @export none
 
 get_nwd = function(item_id, units, dur_code, date_start, date_end) {
@@ -1354,45 +1369,77 @@ download_unzip_rename_orig = function(
 #'
 #' @param data
 #' @param group
+#' @param y_var
+#' @param y_lab
+#' @param y_step_var
+#' @param plot_y_step
 #' @param fn
+#' @param data_source_col
 #'
 #' @returns
 #'
 #' @export
 #' @examples
-multipage_pdf_by_group = function(data, group, y_var = 'net_gen_mw', fn = 'compare_gen.pdf') {
-  # browser()
-  # set up fixed colors for all the data labels so they dont change between plots
-  data_sources = unique(data$data_source)
-  data_source_colors = ggthemes::colorblind_pal()(8)[1:length(data_sources) + 1]
-  names(data_source_colors) = data_sources
+multipage_pdf_timeseries_by_group_with_source =
+  function(
+    data,
+    group,
+    y_var = 'net_gen_mw',
+    y_lab = 'Net Hydro Gen [aMW]',
+    y_step_var = 'nameplate_mw',
+    plot_y_step = TRUE,
+    fn = 'compare_gen.pdf',
+    data_source_col = 'data_source'
+  ) {
+    # browser()
+    # set up fixed colors for all the data labels so they dont change between plots
+    if (data_source_col != 'data_source') {
+      data$data_source = data[[data_source_col]]
+    }
+    data_sources = unique(data$data_source)
+    data_source_colors = ggthemes::colorblind_pal()(8)[1:length(data_sources) + 1]
+    names(data_source_colors) = data_sources
 
-  pdf(fn, 6, 4, onefile = TRUE)
-  data |>
-    group_by(!!as.name(group)) |>
-    group_split() |>
-    map(
-      function(hydro_df) {
-        title = with(hydro_df, eia_id)
-        # browser()
-        p = hydro_df |>
-          ggplot() +
-          geom_line(
-            aes(datetime, !!as.name(y_var), color = data_source, group = 1),
-            size = .8
-          ) +
-          scale_color_manual(values = data_source_colors) +
-          geom_step(
-            aes(datetime, nameplate_mw, color = data_source),
-            size = .4,
-            group = 1
-          ) +
-          labs(x = '', y = 'Net Hydro Gen [aMW]', title = title) +
-          theme_minimal()
-        print(p)
-      },
-      .progress = TRUE
-    ) -> shhhh
-  dev.off()
-  message('Wrote: ', fn)
+    y_step_geom =
+      if (plot_y_step) {
+        geom_step(
+          aes(datetime, nameplate_mw, color = data_source),
+          linewidth = .4,
+          group = 1
+        )
+      } else {
+        geom_blank()
+      }
+    pdf(fn, 6, 4, onefile = TRUE)
+    data |>
+      group_by(!!as.name(group)) |>
+      group_split() |>
+      walk(
+        function(hydro_df) {
+          title = hydro_df[[group]][1] #with(hydro_df, eia_id)
+          # browser()
+          p = hydro_df |>
+            ggplot() +
+            geom_line(
+              aes(datetime, !!as.name(y_var), color = data_source, group = 1),
+              linewidth = .8
+            ) +
+            scale_color_manual(values = data_source_colors) +
+            y_step_geom +
+            labs(x = '', y = y_lab, title = title) +
+            theme_minimal()
+          print(p)
+        },
+        .progress = TRUE
+      )
+    message('Wrote: ', fn)
+    on.exit({
+      dev.off()
+    })
+    invisible()
+  }
+
+
+distinct_keep <- function(.data, ...) {
+  dplyr::distinct(.data, ..., .keep_all = TRUE)
 }

@@ -25,29 +25,29 @@ hilarri_hydro_plants =
 grand_to_eha <- hilarri_hydro_plants |> select(eha_ptid, grand_id)
 grand_in_ResOpsUS <-
   list.files(file.path(resops_flow_dir, "/time_series_all/")) %>%
-  substr(., 10, nchar(.) - 4) %>%
+  substr(., 10, nchar(.) - 4) |>
   as.integer()
 
 # %%
 # pull in resops data
 message('Reading ResOps data.')
 resops_release_data <-
-  grand_to_eha %>%
-  pull(grand_id) %>%
-  unique() %>%
+  grand_to_eha |>
+  pull(grand_id) |>
+  unique() |>
   map(
     function(grand) {
       if (!grand %in% grand_in_ResOpsUS) {
         return(tibble())
       }
 
-      read_reservoir_data(USRDATS_path = resops_flow_dir, dam_id = grand) %>%
+      read_reservoir_data(USRDATS_path = resops_flow_dir, dam_id = grand) |>
         mutate(
           year = year(date),
           month = month(date) # ,label = T)
-        ) %>%
-        filter(year %in% output_years) %>%
-        mutate(r_cumecs_Q90 = quantile(r_cumecs, 0.9, na.rm = T)) %>%
+        ) |>
+        filter(year %in% output_years) |>
+        mutate(r_cumecs_Q90 = quantile(r_cumecs, 0.9, na.rm = T)) |>
         # TODO find a better way to do this
         mutate(
           r_cumecs_capped = if_else(
@@ -55,11 +55,11 @@ resops_release_data <-
             r_cumecs_Q90,
             r_cumecs
           )
-        ) %>%
+        ) |>
         mutate(
           r_cumecs_capped = ifelse(r_cumecs_capped < 0, 0, r_cumecs_capped)
-        ) %>%
-        group_by(year, month) %>%
+        ) |>
+        group_by(year, month) |>
         summarise(
           av_release_cumecs = mean(r_cumecs_capped, na.rm = T),
           .groups = "drop"
@@ -68,7 +68,7 @@ resops_release_data <-
       expand.grid(
         month = 1:12, # ordered(month.abb, levels = month.abb),
         year = output_years
-      ) %>%
+      ) |>
         left_join(
           release_data,
           by = c("month", "year")
@@ -134,41 +134,42 @@ if (!file.exists(resops_imputed_fn) | !cache) {
 
 # %%
 # plot to show where data was imputed
-message('Creating plots.')
-p_resops <- resops_release_fraction_filled |>
-  mutate(
-    date = ISOdate(year, month, 1),
-    fraction_not_imputed = ifelse(imputed, fraction, NA)
-  ) |>
-  ggplot() +
-  geom_line(aes(date, fraction)) +
-  geom_line(
-    aes(date, fraction_not_imputed),
-    color = "red"
-  ) +
-  facet_wrap(~eha_ptid) +
-  geom_text(
-    aes(label = eha_ptid),
-    data = resops_release_fraction_filled |> distinct(eha_ptid),
-    x = ISOdate(2000, 01, 1),
-    y = 0.6,
-    hjust = 'center',
-    vjust = 'center',
-    size = 2
-  ) +
-  theme_bw() +
-  theme(
-    panel.grid = element_blank(),
-    strip.text.x = element_blank(),
-    strip.background = element_blank()
-  ) +
-  scale_x_datetime(date_labels = "%y") +
-  labs(x = "Year", y = "Release Fraction")
-p_resops
-plot_fn = file.path(figures_dir, "resops.png")
-ggsave(plot_fn, p_resops, width = 16, height = 12)
-message('Created: ', plot_fn)
-
+if (create_figures) {
+  message('Creating plots.')
+  p_resops <- resops_release_fraction_filled |>
+    mutate(
+      date = ISOdate(year, month, 1),
+      fraction_not_imputed = ifelse(imputed, fraction, NA)
+    ) |>
+    ggplot() +
+    geom_line(aes(date, fraction)) +
+    geom_line(
+      aes(date, fraction_not_imputed),
+      color = "red"
+    ) +
+    facet_wrap(~eha_ptid) +
+    geom_text(
+      aes(label = eha_ptid),
+      data = resops_release_fraction_filled |> distinct(eha_ptid),
+      x = ISOdate(2000, 01, 1),
+      y = 0.6,
+      hjust = 'center',
+      vjust = 'center',
+      size = 2
+    ) +
+    theme_bw() +
+    theme(
+      panel.grid = element_blank(),
+      strip.text.x = element_blank(),
+      strip.background = element_blank()
+    ) +
+    scale_x_datetime(date_labels = "%y") +
+    labs(x = "Year", y = "Release Fraction")
+  p_resops
+  plot_fn = file.path(figures_dir, "resops.png")
+  ggsave(plot_fn, p_resops, width = 16, height = 12)
+  message('Created: ', plot_fn)
+}
 # %%
 # pull in gage based release data
 message('Creating gage and release based fractions.')
@@ -189,7 +190,7 @@ gage_flow_fraction <-
     # so replace those fractions with zero, its not many points
     fraction = ifelse(is.na(fraction), 0, fraction)
   ) |>
-  ungroup() %>%
+  ungroup() |>
   left_join(
     # There are multiple eia_id's for some eha_ptid's because some
     # some eia plants are split, like hoover which is in two states,
@@ -199,7 +200,7 @@ gage_flow_fraction <-
       rename(eia_id = eia_ptid) |>
       distinct(eia_id, .keep_all = T),
     by = "eia_id"
-  ) %>%
+  ) |>
   select(eha_ptid, year, month, fraction)
 
 
@@ -226,4 +227,4 @@ release_based_fractions <- gage_flow_fraction |>
     # month = month.abb[month]
   )
 
-release_based_fractions %>% write_csv(release_fractions_fn)
+release_based_fractions |> write_csv(release_fractions_fn)

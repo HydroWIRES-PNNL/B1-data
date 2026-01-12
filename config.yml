@@ -1,28 +1,46 @@
 # B1-Data configuration options
 default:
+  
+  # controls the naming of the final output
+  b1_version: '1.4'
+  b1_dir_prefix: 'B1_data'
+  
+  # data window 
   start_year: 1980
   end_year: 2024
-  table_print_width: 10000
+
+  # input dataset versions
   rfp_version: '1.1'
   rf_version: '1.3'
   data_dir: 'data'
-  figures_dir: 'figures'
-  # where possible, create cached data files to save 
-  # time on subsequent runs
-  cache: True
+
+  # global switches, true/false doesnt need to be capitalized
+  cache: true # where possible, create cached data files to save time on subsequent runs
+  verbose: true # print more output to the screen
+  create_figures: false # create diagnostic figures along the way
+
+  # output directories
+  figures_dir: 'figures' # location for figures if create_figures is true
+
+  # directories for saving downloaded data 
+  usgs_data_dir: 'data/usgs_huc4_flow'
+  eia_flow_dir: 'data/flow_eia_hydro_plants'
+  resops_data_dir: 'data/resopsus'
+
+  # names of directories for rfp data
   # these will be inside {data_dir}, version number appended
   rfp_code_dir: 'rectifhyd_plus_code'
   rfp_supl_dir: 'rectifhyd_plus_supplemental'
   rfp_misc_dir: 'rectifhyd_plus_misc'
   rfp_data_dir: 'rectifhyd_plus_data'
   rfp_inputs_dir: 'rectifhyd_plus_inputs'
-  # check out code from git repo if True
+
+  # check out rectifhydplus code from git repo if True
   # if False, get snapshot of code released with dataset
   rfp_code_checkout_repo: True
 
   # pre-processed hillari file name, created by downloading script
   hilarri_csv: 'hillarri_v3_hydro.csv'
-  # for downloading usgs data
-  usgs_data_dir: 'data/usgs_huc4_flow'
-  eia_flow_dir: 'data/flow_eia_hydro_plants'
-  resops_data_dir: 'data/resopsus'
+  
+  # console options
+  table_print_width: 1000

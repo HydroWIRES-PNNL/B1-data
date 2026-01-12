@@ -430,11 +430,13 @@ rfp_target_eia_ids |> filter(!(EIA_ID %in% target_eia_ids)) |> print()
 # TODO run more checks
 
 # %% plots
-hydro_gen_data_long %>%
-  # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
-  multipage_pdf_by_group('eia_id', 'figures/compare_gen_monthly.pdf') |>
-  # ggplot warns aout dropping NA values, ignore
-  suppressWarnings()
+if (create_figures) {
+  hydro_gen_data_long %>%
+    # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
+    multipage_pdf_by_group('eia_id', 'figures/compare_gen_monthly.pdf') |>
+    # ggplot warns aout dropping NA values, ignore
+    suppressWarnings()
+}
 
 
 # %% read different sources of annual gen data
@@ -466,16 +468,18 @@ hydro_gen_data_long %>%
 #     nameplate_mw = first(nameplate_mw)
 #   )
 
-hydro_gen_data_long %>%
-  mutate(year = year(datetime)) |>
-  group_by(eia_id, year, data_source) |>
-  summarise(
-    net_gen_mwh = agg_na_rm_unless_all_na(net_gen_mwh, sum),
-    net_gen_mw = agg_na_rm_unless_all_na(net_gen_mw, mean),
-    nameplate_mw = agg_na_rm_unless_all_na(nameplate_mw, max),
-    datetime = ym(s('{year}-01'))
-  ) |>
-  # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
-  multipage_pdf_by_group('eia_id', 'figures/compare_gen_annual.pdf') |>
-  # ggplot warns aout dropping NA values, ignore
-  suppressWarnings()
+if (create_figures) {
+  hydro_gen_data_long %>%
+    mutate(year = year(datetime)) |>
+    group_by(eia_id, year, data_source) |>
+    summarise(
+      net_gen_mwh = agg_na_rm_unless_all_na(net_gen_mwh, sum),
+      net_gen_mw = agg_na_rm_unless_all_na(net_gen_mw, mean),
+      nameplate_mw = agg_na_rm_unless_all_na(nameplate_mw, max),
+      datetime = ym(s('{year}-01'))
+    ) |>
+    # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
+    multipage_pdf_by_group('eia_id', 'figures/compare_gen_annual.pdf') |>
+    # ggplot warns aout dropping NA values, ignore
+    suppressWarnings()
+}

@@ -4,7 +4,40 @@
 #
 # Created by Cameron Bracken, cameron.bracken@pnnl.gov, Jan 06, 2026
 
+# %% packages - load conflicted first to avoid warnings
 library(conflicted)
+
+library(tidyverse)
+conflicted::conflicts_prefer(dplyr::filter)
+
+# data cleaning
+library(janitor)
+library(glue)
+# shortcut for string interpolation like python's f strings
+s = glue::glue
+
+# reading data
+library(sf)
+library(readxl)
+library(arrow)
+
+# data processing and downloading
+library(starfit)
+library(missRanger)
+library(dataRetrieval)
+library(cder)
+library(crayon)
+
+# misc
+library(tools)
+
+# plotting
+library(ggthemes)
+library(paletteer)
+
+# needed by rfp
+library(foreign)
+library(zoo)
 
 # %% renv
 ## initial setup
@@ -13,25 +46,6 @@ library(conflicted)
 # vignette("renv")
 # renv::snapshot()
 library(renv)
-
-# %% packages - load conflicted first to avoid warnings
-library(tidyverse)
-conflicted::conflicts_prefer(dplyr::filter)
-library(janitor)
-library(glue)
-# shortcut for string interpolation like pythins f strings
-s = glue::glue
-library(arrow)
-library(missRanger)
-library(dataRetrieval)
-library(cder)
-library(sf)
-library(starfit)
-library(readxl)
-library(tools)
-# needed by rfp
-library(foreign)
-library(zoo)
 
 # %% R options
 options(
@@ -42,17 +56,19 @@ options(
 )
 
 # %% settings
+
 # directory for all data
 data_dir = config::get('data_dir')
+b1_version = config::get('b1_version')
+b1_dir = paste0(config::get('b1_dir_prefix'), '_', config::get('b1_version'))
+
 # subdirectories
 figures_dir = config::get('figures_dir')
 eia_flow_dir = config::get('eia_flow_dir')
 resops_flow_dir = config::get('resops_data_dir')
 cache = config::get('cache')
-
-# cutoff for excluding low capacity plant, set to zero to include everything
-# needed for calling rfp target plant functions, not used by the B1 code
-capacity_cutoff_MW <- 0
+verbose = config::get('verbose')
+create_figures = config::get('create_figures')
 
 # output will be filtered to these years
 # TODO add filtering everywhere
@@ -62,6 +78,9 @@ year_range = start_year:end_year
 datetime_sequence_a = seq.Date(s('{start_year}-01-01'), s('{end_year}-12-01'), by = 'year')
 datetime_sequence_m = seq.Date(s('{start_year}-01-01'), s('{end_year}-12-01'), by = 'month')
 
+# cutoff for excluding low capacity plant, set to zero to include everything
+# needed for calling rfp target plant functions, not used by the B1 code
+capacity_cutoff_MW <- 0
 
 # %% set up paths and data source versions
 rfp_version = config::get('rfp_version')
@@ -89,7 +108,9 @@ huc4_flow_imputed_daily_wide_fn = 'data/huc4_flow_usgs_daily_wide_imputed.csv'
 huc4_fractions_fn = s("{data_dir}/huc4_based_fractions.csv")
 release_fractions_fn = s("{data_dir}/release_based_fractions.csv")
 resops_imputed_fn = s("{data_dir}/resops_imputed_{start_year}_{end_year}.csv")
-gage_flow_eia_fn = s("{eia_flow_dir}/proc/flow_all_eia_hydro_long_{start_year}_to_{end_year}.csv")
+release_gage_flow_eia_fn = s(
+  "{eia_flow_dir}/proc/flow_all_eia_hydro_long_{start_year}_to_{end_year}.csv"
+)
 pudl_generators_fn = s("{data_dir}/out_eia__monthly_generators.parquet")
 pudl_generators_annual_fn = s("{data_dir}/out_eia__yearly_generators.parquet")
 pudl_plants_fn = s("{data_dir}/out_eia__yearly_plants.parquet")
@@ -101,6 +122,7 @@ hydro_gen_data_long_fn =
 hydro_gen_with_disag_imputed_fn = s('{data_dir}/hydro_gen_with_disag_imputed.csv')
 annual_p_ave_imputed_fn = s('{data_dir}/annual_p_ave_imputed.csv')
 flow_based_disag_fn = s('{data_dir}/flow_based_proxy_disag_proportions.csv')
+weekly_target_prelim_fn = 'data/weekly_targets_prelim.csv'
 
 # to shut up the syntax linter, . is from the magrittr package but not defined globally
 . = NULL

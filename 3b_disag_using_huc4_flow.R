@@ -101,7 +101,7 @@ year_month_seq =
 # %%
 # Pull USGS data for each huc4
 huc4_average_flows_all =
-  read_csv(huc4_flows_imputed_fn) |>
+  read_csv(huc4_flow_imputed_monthly_fn) |>
   # # na.omit() |>
   # group_by(huc4, day, month, year) |>
   # summarise(av_flow_cfs = mean(av_flow_cfs, na.rm = T)) |>
