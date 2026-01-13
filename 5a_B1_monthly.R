@@ -374,7 +374,11 @@ if (create_figures) {
     arrange(eia_id, year) |>
     # reduce the number of data source labels to simplify the plotting
     mutate(data_source = ifelse(str_detect(data_source, ','), 'mixed', data_source)) |>
-    multipage_pdf_by_group('eia_id', 'annual_p_ave', 'figures/complete_gen_annual_imputed.pdf') |>
+    multipage_pdf_timeseries_by_group_with_source(
+      'eia_id',
+      'annual_p_ave',
+      'figures/complete_gen_annual_imputed.pdf'
+    ) |>
     # ggplot warns about dropping NA values, ignore
     suppressWarnings()
 }
@@ -968,7 +972,11 @@ hydro_gen_monthly_complete =
 if (create_figures) {
   hydro_gen_monthly_complete %>%
     # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
-    multipage_pdf_by_group('eia_id', 'p_ave', 'figures/complete_gen_monthly_final.pdf') |>
+    multipage_pdf_timeseries_by_group_with_source(
+      'eia_id',
+      'p_ave',
+      'figures/complete_gen_monthly_final.pdf'
+    ) |>
     # ggplot warns about dropping NA values, ignore
     suppressWarnings()
 }

@@ -422,7 +422,7 @@ if (!file.exists(weekly_target_prelim_fn)) {
                   # get the annual average gen value, it may have been imputed,
                   # but the annual gen data is mostly complete.
                   # convert to total energy
-                  annual_target_mwh = with(x, annual_p_ave_i * n_hours_annual)
+                  annual_target_mwh = with(x, annual_p_ave * n_hours_annual)
                 ) |>
                 mutate(
                   p_disag_daily = if_else(
