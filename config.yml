@@ -2,7 +2,7 @@
 default:
   
   # controls the naming of the final output
-  b1_version: '1.4'
+  b1_version: '1.5.0'
   b1_dir_prefix: 'B1_data'
   
   # data window 
@@ -16,7 +16,7 @@ default:
 
   # global switches, true/false doesnt need to be capitalized
   cache: true # where possible, create cached data files to save time on subsequent runs
-  verbose: true # print more output to the screen
+  verbose: false # print more output to the screen
   create_figures: false # create diagnostic figures along the way
 
   # output directories

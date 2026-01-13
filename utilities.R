@@ -1289,19 +1289,27 @@ read_b1 = function(path, version, timestep = 'monthly', ...) {
         if (timestep == 'weekly') {
           mutate(., datetime = week_start)
         } else if (timestep == 'monthly') {
-          mutate(., datetime = ymd(sprintf('%s-%s-01', year, month)))
+          mutate(
+            .,
+            datetime = ymd(sprintf('%s-%s-01', year, month)),
+            month = `names<-`(1:12, month.abb)[month]
+          )
         } else {
           stop("Timestep must be 'monthly' or 'weekly'.")
         }
       } |>
       janitor::clean_names(parsing_option = 3) |>
-      mutate(version = version)
+      mutate(
+        version = version,
+        eia_id = as.character(eia_id)
+      )
   } else {
     fn = list.files(path, full.names = TRUE) |>
       str_subset(regex(timestep, ignore_case = TRUE))
     # one file for enture period
     read_csv(fn) |>
-      mutate(version = version)
+      mutate(version = version) |>
+      mutate(eia_id = as.character(eia_id))
   }
 }
 

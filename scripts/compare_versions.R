@@ -1,12 +1,13 @@
 # scripts/compare_versions.R
 #
-# Compares multiple versions of the B1 data.
 #
-# NOTE: this is intended to be run with the working directory set as
-# the project root, i.e. source('scripts/compare_versions.R')
 #
-# Created by Cameron Bracken, cameron.bracken@pnnl.gov, Jan 31, 2025
+# Created by Cameron Bracken, Jan 12, 2026
 
+# ----------------------------------------------------------------------------
+# setup ----------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# %% packages - load conflicted first to avoid warnings
 library(conflicted)
 conflicts_prefer(dplyr::filter)
 library(tidyverse)
@@ -22,9 +23,15 @@ options(
 
 source('utilities.R')
 
+
+# %% options
+
 data_dir = 'data'
-current_version_dir = 'B1_data_1.4.0/'
-current_version_number = '1.4.0'
+
+interim_version_dir = 'data/B1_data_1.4.0/'
+interim_version_number = '1.4.0'
+current_version_dir = 'B1_data_1.5.0/'
+current_version_number = '1.5.0'
 
 previous_versions = tribble(
   ~url                                                    , ~zip_fn             ,
@@ -39,31 +46,41 @@ previous_versions = tribble(
     path = file.path(exdir, dir_rename_to)
   )
 
+# %% download and read data
+
 b1_versions = bind_rows(
   previous_versions,
+  data.frame(path = interim_version_dir, version = interim_version_number),
   data.frame(path = current_version_dir, version = current_version_number)
 )
 
 # download previous version data and unzip it
 previous_versions |> pmap(download_unzip_rename_orig) -> shh
 
-b1m = b1_versions |> pmap(read_b1, timestep = 'monthly') |> bind_rows()
-b1w = b1_versions |> pmap(read_b1, timestep = 'weekly') |> bind_rows()
+b1m = b1_versions |> pmap_dfr(read_b1, timestep = 'monthly')
+b1w = b1_versions |> pmap_dfr(read_b1, timestep = 'weekly')
 
 
-plot_one_plant = function(id, data) {
+# %% plot
+plot_one_plant = function(id, data, version_colors = NULL) {
   plant_name = data |> filter(eia_id == id) |> pull(plant) |> unique()
-  data |>
+  if (is.null(version_colors)) {
+    versions = unique(data$version)
+    version_colors = ggthemes::colorblind_pal()(8)[1:length(versions) + 1]
+    names(version_colors) = versions
+  }
+  p = data |>
     filter(eia_id == id) |>
     ggplot() +
     geom_line(aes(datetime, target_mwh, color = factor(version))) +
     theme_minimal() +
-    ggthemes::scale_color_colorblind() +
+    scale_color_manual(values = version_colors) +
     labs(title = paste(plant_name, id), color = 'B1 Data\nVersion')
+  return(p)
 }
 plot_one_plant(b1m$eia_id |> sample(1), b1m)
 
-pdf('B1_version_compare_monthly.pdf', 6, 4, onefile = TRUE)
+pdf('figures/B1_version_compare_monthly.pdf', 6, 4, onefile = TRUE)
 shhh = b1m$eia_id |>
   unique() |>
   sort() |>
@@ -75,13 +92,13 @@ shhh = b1m$eia_id |>
   )
 dev.off()
 
-pdf('B1_version_compare_weekly.pdf', 6, 4, onefile = TRUE)
+pdf('figures/B1_version_compare_weekly.pdf', 6, 4, onefile = TRUE)
 shhh = b1w$eia_id |>
   unique() |>
   sort() |>
   map(
     function(id) {
-      plot_one_plant(id, b1m) |> print()
+      plot_one_plant(id, b1w) |> print()
     },
     .progress = TRUE
   )

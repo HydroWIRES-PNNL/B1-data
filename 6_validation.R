@@ -166,7 +166,8 @@ b1 = bind_rows(
   b1_monthly |> mutate(timestep = 'monthly'),
   b1_weekly |> mutate(timestep = 'weekly')
 )
-b1 |>
+b1_annual =
+  b1 |>
   filter(western) |>
   group_by(timestep, year) |>
   summarise(energy_twh = sum(target_mwh, na.rm = T) / 1000000, .groups = "drop") |>

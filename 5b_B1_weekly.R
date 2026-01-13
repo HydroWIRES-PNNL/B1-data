@@ -73,8 +73,11 @@ b1_annual = b1_monthly_with_annual |>
     annual_nameplate_mw = max(nameplate_mw, na.rm = T),
     annual_p_ave = agg_na_rm_unless_all_na(p_ave, mean),
     sources = str_flatten_comma(unique(data_source)),
-    annual_p_ave_i = annual_p_ave_i[1],
-    n_hours_annual = sum(n_hours)
+    annual_p_ave_i = first(annual_p_ave_i),
+    n_hours_annual = sum(n_hours),
+    eia_id1 = first(eia_id1),
+    eia_id2 = first(eia_id2),
+    eia_id3 = first(eia_id3),
   ) |>
   mutate(annual_cf = ifelse(annual_nameplate_mw == 0, 0, annual_p_ave / annual_nameplate_mw)) |>
   # drop plants with no data, if any
@@ -473,8 +476,9 @@ if (!file.exists(weekly_target_prelim_fn)) {
 #   PNNL_MWh = PNNL_MW / max(PNNL_MW) * nameplate_MW * n_hours,
 #   PNNL_MW = PNNL_MWh / n_hours
 message('Scaling weekly disag based on nameplate values.')
-# weekly_targets =
-#   weekly_targets_prelim |>
+weekly_targets =
+  weekly_targets_prelim
+# |>
 #   group_by(eia_id, year) |>
 #   group_split() |>
 #   map_dfr(
