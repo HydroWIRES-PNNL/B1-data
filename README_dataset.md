@@ -11,7 +11,7 @@ The B1 dataset provides observationally derived hydropower generation data as we
 
 ### Generation data and disaggregation
 
-Version 1.5.0 is a significant update that extends the data back to 1980 (previously it want to 2001). The monthly generation data is derived from multiple sources:
+Version 2.0.0 is a significant update that extends the data back to 1980 (previously it went to 2001). The monthly generation data is derived from multiple sources:
 
 -   [EIA 923](https://www.eia.gov/electricity/data/eia923/) and [EIA 906](https://www.eia.gov/electricity/data/eia923/eia906u.php) monthly and annual reported total generation and capacity.
 -   [EIA 860](https://www.eia.gov/electricity/data/eia860m/) plant and generator information from the [Public Utility Data Liberation](https://catalyst.coop/pudl/) project.
@@ -20,13 +20,13 @@ Version 1.5.0 is a significant update that extends the data back to 1980 (previo
 
 The monthly data sources are selected in the following priority order: RectifHydPlus, EIA, RectifHyd. Any missing data after this is estimated by first imputing annual total generation then disaggregating to monthly and weekly using the best available proxy for a particular plant. Available proxies are (from best to worst) turbine release data, total plant outflow, flow at the HUC4 outlet, and average observed generation.
 
-![](figures/data_source_count_monthly.png)
+![](data_source_count_monthly.png)
 
 The weekly generation data is disaggregated from annual using the same proxy priority as the monthly data.
 
 ### EIA ID aggregation
 
-Several EIA plant IDs refer to the same plant but are split for reporting purposes (such as Hoover Dam). See the [RectifHydPlus paper](https://www.nature.com/articles/s41597-025-05323-y) for details. In version 1.5.0 of the B1 data, these plants are combined where possible. The `eia_id` column will have the ids combined like this: `xxxxx_yyyyy` where the underscode separates the two combined ids. Currently no more than 3 EIA IDs are combined and the 
+Several EIA plant IDs refer to the same plant but are split for reporting purposes (such as Hoover Dam). See the [RectifHydPlus paper](https://www.nature.com/articles/s41597-025-05323-y) for details. In version 2.0.0 of the B1 data, these plants are combined where possible. The `eia_id` column will have the ids combined like this: `xxxxx_yyyyy` where the underscode separates the two combined ids. Currently no more than 3 EIA IDs are combined and the 
 
 ### Additional details
 
@@ -73,7 +73,7 @@ __Version 1.1.0__
 
 ## RectifHydPlus License
 
-Version 2.0 makes use of [RectifHydPlus code](https://code.ornl.gov/turnersw/rectifhydplus) and [data](https://hydrosource.ornl.gov/data/datasets/rectifhydplus/) for which the following license applies:
+Version 1.4 makes use of [RectifHydPlus code](https://code.ornl.gov/turnersw/rectifhydplus) and [data](https://hydrosource.ornl.gov/data/datasets/rectifhydplus/) for which the following license applies:
 
 BSD 2-Clause License
 
