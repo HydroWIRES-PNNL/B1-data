@@ -2,7 +2,7 @@
 default:
   
   # controls the naming of the final output
-  b1_version: '1.5.0'
+  b1_version: '2.0.0'
   b1_dir_prefix: 'B1_data'
   
   # data window 

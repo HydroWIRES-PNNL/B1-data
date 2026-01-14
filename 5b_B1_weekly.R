@@ -547,7 +547,7 @@ b1_params_pnw = b1_params_weekly |>
   )
 
 
-b1_metadata = read_csv('B1_data_1.4/B1_metadata.csv') |>
+b1_metadata = read_csv(s('{output_dir}/B1_metadata.csv')) |>
   select(-c(nameplate_mw))
 
 b1_weekly =
@@ -596,8 +596,8 @@ b1_weekly |> filter(p_ave > nameplate_mw * (1.25 + 0.01))
 
 b1_weekly_fn = paste0(output_dir, "/B1_weekly.csv")
 b1_weekly |>
+  select(-c(datetime, max_param, min_param, ador_param)) |>
   select(
-    -c(datetime, max_param, min_param, ador_param),
     week_start,
     jweek,
     year,

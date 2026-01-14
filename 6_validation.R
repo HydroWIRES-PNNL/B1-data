@@ -95,14 +95,17 @@ b1_annual =
 # TODO fix unknown source
 p_sources_m =
   b1_monthly |>
+  mutate(data_source = factor(data_source)) |>
+  group_by(datetime, data_source) |>
+  count(.drop = FALSE) |>
   ggplot() +
-  geom_bar(aes(datetime, fill = data_source)) +
-  scale_fill_manual(values = colourblind_pal()(8)[-1][c(1:5, 7, 6)]) +
+  geom_area(aes(datetime, n, fill = data_source)) +
   theme_minimal() +
-  labs(title = 'Data sources by month', y = 'Number of plants', x = 'Date')
+  scale_fill_paletteer_d("pals::kelly", direction = -1, name = 'Data Source') +
+  labs(y = 'Number of hydropower plants')
 print(p_sources_m)
-ggsave(s('{figures_dir}/data_source_count_monthly.pdf'), width = 7, height = 5)
-
+ggsave(s('{figures_dir}/data_source_count_monthly.pdf'), p_sources_m, width = 7, height = 3)
+ggsave(s('{figures_dir}/data_source_count_monthly.png'), p_sources_m, width = 7, height = 3)
 
 # %% weekly
 message('---------------------')
@@ -133,17 +136,28 @@ wecc_weekly_2001_2009 =
 print(wecc_weekly_2001_2009)
 ggsave(s('{figures_dir}/wecc_total_2001_2009.pdf'), width = 7, height = 5)
 
-# TODO fix unknown source
-p_sources_w =
-  b1_weekly |>
-  filter(year == 200) |>
-  ggplot() +
-  geom_bar(aes(week_start, fill = data_source), ) +
-  scale_fill_manual(values = colourblind_pal()(8)[-1][c(1:5, 7, 6)]) +
-  theme_minimal() +
-  labs(title = 'Data sources by month', y = 'Number of plants', x = 'Date')
-print(p_sources_w)
-ggsave(s('{figures_dir}/data_source_count_weekly.pdf'), width = 7, height = 5)
+# # TODO fix unknown source
+# p_sources_w =
+#   b1_weekly |>
+#   filter(year == 200) |>
+#   ggplot() +
+#   geom_bar(aes(week_start, fill = data_source), ) +
+#   scale_fill_manual(values = colourblind_pal()(8)[-1][c(1:5, 7, 6)]) +
+#   theme_minimal() +
+#   labs(title = 'Data sources by month', y = 'Number of plants', x = 'Date')
+
+# p_sources_w =
+#   b1_weekly |>
+#   filter(year == 200) |>
+#   group_by(datetime, data_source) |>
+#   summarise(n = n()) |>
+#   ggplot() +
+#   geom_area(aes(datetime, n, fill = data_source)) +
+#   theme_minimal() +
+#   scale_fill_paletteer_d("pals::kelly", direction = -1, name = 'Data Source') +
+#   labs(y = 'Number of gages')
+# print(p_sources_w)
+# ggsave(s('{figures_dir}/data_source_count_weekly.pdf'), width = 7, height = 5)
 
 # difference between a wet and dry year
 b1_weekly |>
@@ -162,16 +176,55 @@ message('-----------------------')
 message('B1 combined diagnostics')
 message('-----------------------')
 
+
 b1 = bind_rows(
   b1_monthly |> mutate(timestep = 'monthly'),
   b1_weekly |> mutate(timestep = 'weekly')
 )
-b1_annual =
-  b1 |>
+
+# TODO find oput why there is a diffrence, they should be identical
+b1 |>
   filter(western) |>
   group_by(timestep, year) |>
   summarise(energy_twh = sum(target_mwh, na.rm = T) / 1000000, .groups = "drop") |>
-  ggplot() +
-  geom_line(aes(year, energy_twh, color = timestep)) +
+  ggplot(aes(year, energy_twh, color = timestep)) +
+  geom_line() +
+  geom_point() +
+  theme_minimal() +
+  scale_color_colorblind()
+
+# %% compare to eia observations where available
+
+eia_monthly = read_parquet('data/out_eia__monthly_generators.parquet') |>
+  select(datetime = report_date, eia_id1 = plant_id_eia, generator_id, net_generation_mwh) |>
+  group_by(datetime, eia_id1) |>
+  summarise(eia_mwh = sum(net_generation_mwh, na.rm = T))
+
+# eia_annual = read_parquet('data/out_eia923__generation.parquet') |>
+#   mutate(year = year(report_date)) |>
+#   select(year, eia_id1 = plant_id_eia, generator_id, net_generation_mwh) |>
+#   group_by(year, eia_id1) |>
+#   summarise(eia_mwh = sum(net_generation_mwh, na.rm = T))
+
+b1_annual_total_from_monthly_with_eia =
+  b1_monthly |>
+  left_join(eia_monthly, by = join_by(datetime, eia_id1)) |>
+  drop_na(eia_mwh) |>
+  group_by(year) |>
+  summarise(
+    b1_twh = sum(target_mwh, na.rm = T) / 1000000,
+    eia_twh = sum(eia_mwh, na.rm = T) / 1000000
+  )
+
+# TODO find out why there is a bias
+b1_annual_total_from_monthly_with_eia |>
+  pivot_longer(
+    -c(year),
+    names_to = c('dataset'),
+    values_to = 'energy_twh'
+  ) |>
+  ggplot(aes(year, energy_twh, linetype = dataset)) +
+  geom_line() +
+  geom_point() +
   theme_minimal() +
   scale_color_colorblind()
