@@ -1,4 +1,4 @@
-# HydroWIRES B1 Data: Historical Monthly and Weekly Hydropower Data for the United States
+# HydroWIRES B1 Data v2.0.0: Historical Monthly and Weekly Hydropower Data for the United States
 
 Cameron Bracken, Nathalie Voisin, Daniel Broman -- PNNL
 
