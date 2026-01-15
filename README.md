@@ -1,4 +1,4 @@
-# HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data
+# HydroWIRES B1 Data: Historical Monthly and Weekly Hydropower Data for the United States
 
 Authors: Cameron Bracken (PNNL), Daniel Broman (PNNL), Nathlie Voisin (PNNL)
 

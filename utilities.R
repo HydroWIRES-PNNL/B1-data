@@ -1448,6 +1448,43 @@ multipage_pdf_timeseries_by_group_with_source =
   }
 
 
+#' Title
+#'
+#' @param .data
+#' @param ...
+#'
+#' @returns
+#'
+#' @export
+#' @examples
 distinct_keep <- function(.data, ...) {
   dplyr::distinct(.data, ..., .keep_all = TRUE)
+}
+
+
+#' Title
+#'
+#' @param x
+#' @param fn
+#' @param output_dir
+#' @param format
+#' @param round_to
+#'
+#' @returns
+#'
+#' @export
+#' @examples
+write_output = function(x, fn, output_dir = '.', format = 'csv', round_to = 4) {
+  fn_path = paste0(file.path(output_dir, fn), '.', format)
+  x |>
+    # ususally dont need to store all the precision
+    mutate_if(is.double, function(x) round(x, round_to)) %>%
+    {
+      if (format == 'csv') {
+        write_csv(., fn_path, na = "")
+      } else if (format == 'parquet') {
+        write_parquet(., fn_path)
+      }
+    }
+  message('Wrote: ', fn_path)
 }

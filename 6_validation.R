@@ -13,9 +13,10 @@ source('packages_and_options.R')
 source('utilities.R')
 
 # %% read data
-b1_monthly = file.path(b1_dir, 'B1_monthly.csv') |> read_csv()
-b1_weekly = file.path(b1_dir, 'B1_weekly.csv') |> read_csv()
-b1_metadata = file.path(b1_dir, 'B1_metadata.csv') |> read_csv()
+reader = ifelse(output_format == 'csv', read_csv, read_parquet)
+b1_monthly = file.path(b1_dir, s('B1_monthly.{output_format}')) |> reader()
+b1_weekly = file.path(b1_dir, s('B1_weekly.{output_format}')) |> reader()
+b1_metadata = file.path(b1_dir, s('B1_metadata.{output_format}')) |> reader()
 pnw_dam_data = read_csv('data/usace_dam_data_daily_1980_2024.csv') |> mutate(eia_id1 = eia_id)
 
 conds = c(
@@ -77,20 +78,19 @@ wecc_monthly_2001_2009 =
 #   pivot_wider(id_cols = month, names_from = year, values_from = energy_mwh) |>
 #   mutate(pct_diff = (`2001` - `2009`) / `2009` * 100)
 
-b1_annual =
-  b1_monthly |>
-  # aggregate to annual if possible, but split the years if the op status changed
-  group_by(eia_id, year, operational_status) |>
-  reframe(
-    datetime = datetime[1],
-    net_gen_mwh = agg_na_rm_unless_all_na(target_mwh, sum),
-    nameplate_mw = agg_na_rm_unless_all_na(nameplate_mw, max),
-    n_hours = sum(n_hours),
-    operational_status = last(operational_status)
-  ) |>
-  mutate(annual_cf = net_gen_mwh / (nameplate_mw * n_hours)) |>
-  left_join(b1_metadata, by = join_by(eia_id, year, nameplate_mw, operational_status, datetime))
-
+# b1_annual =
+#   b1_monthly |>
+#   # aggregate to annual if possible, but split the years if the op status changed
+#   group_by(eia_id, year, operational_status) |>
+#   reframe(
+#     datetime = datetime[1],
+#     net_gen_mwh = agg_na_rm_unless_all_na(target_mwh, sum),
+#     nameplate_mw = agg_na_rm_unless_all_na(nameplate_mw, max),
+#     n_hours = sum(n_hours),
+#     operational_status = last(operational_status)
+#   ) |>
+#   mutate(annual_cf = net_gen_mwh / (nameplate_mw * n_hours)) |>
+#   left_join(b1_metadata, by = join_by(eia_id, year, nameplate_mw, operational_status, datetime))
 
 # TODO fix unknown source
 p_sources_m =
@@ -183,14 +183,15 @@ b1 = bind_rows(
 )
 
 # TODO find oput why there is a diffrence, they should be identical
-b1 |>
+p_val_monthly_vs_weekly =
+  b1 |>
   filter(western) |>
   group_by(timestep, year) |>
   summarise(energy_twh = sum(target_mwh, na.rm = T) / 1000000, .groups = "drop") |>
   ggplot(aes(year, energy_twh, color = timestep)) +
   geom_line() +
   geom_point() +
-  theme_minimal() +
+  theme_classic() +
   scale_color_colorblind()
 
 # %% compare to eia observations where available
@@ -217,14 +218,17 @@ b1_annual_total_from_monthly_with_eia =
   )
 
 # TODO find out why there is a bias
-b1_annual_total_from_monthly_with_eia |>
+p_val_annual_b1_vs_eia =
+  b1_annual_total_from_monthly_with_eia |>
   pivot_longer(
     -c(year),
     names_to = c('dataset'),
     values_to = 'energy_twh'
   ) |>
-  ggplot(aes(year, energy_twh, linetype = dataset)) +
+  ggplot(aes(year, energy_twh, linetype = dataset, color = dataset)) +
   geom_line() +
   geom_point() +
-  theme_minimal() +
-  scale_color_colorblind()
+  scale_color_paletteer_d("pals::kelly", direction = -1, name = 'Data Source') +
+  scale_linetype_discrete(name = 'Data Source') +
+  theme_classic() +
+  theme(legend.position = 'inside', legend.position.inside = c(.9, .85))

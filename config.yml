@@ -14,6 +14,9 @@ default:
   rf_version: '1.3'
   data_dir: 'data'
 
+  # current options are 'csv' or 'parquet'
+  output_format: 'parquet'
+
   # global switches, true/false doesnt need to be capitalized
   cache: true # where possible, create cached data files to save time on subsequent runs
   verbose: false # print more output to the screen

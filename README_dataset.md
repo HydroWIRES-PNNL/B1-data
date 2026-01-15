@@ -1,4 +1,4 @@
-# HydroWIRES B1 Data v2.0.0: Historical Monthly and Weekly Hydropower Data for the United States
+# HydroWIRES B1 Data: Historical Monthly and Weekly Hydropower Data for the United States
 
 Cameron Bracken, Nathalie Voisin, Daniel Broman -- PNNL
 
@@ -40,9 +40,8 @@ __Version 2.0.0__
 
 -   Extends the data back to 1980
 -   Uses mutiple monthly data sources, selecting the best available source
-
--   Annual files are now combined into a single file (one for monthly and one for weekly)
--   Fixes a bug with the HUC4 proxy flow affecting about 130 small plants
+-   Metadata for each plant is included with the data and as a separate file `B1_metadata.csv`
+-   The in-service (and possibly out-of-service) dates of plants are accurately reflected in generation and capacity data, as well as any changes in capacity over time due to adding or removing turbines. 
 
 __Version 1.4.0 (not released publicly)__
 

@@ -57,6 +57,12 @@ options(
 
 # %% settings
 
+# config options
+cache = config::get('cache')
+verbose = config::get('verbose')
+create_figures = config::get('create_figures')
+output_format = config::get('output_format')
+
 # directory for all data
 data_dir = config::get('data_dir')
 b1_version = config::get('b1_version')
@@ -66,9 +72,6 @@ b1_dir = paste0(config::get('b1_dir_prefix'), '_', config::get('b1_version'))
 figures_dir = config::get('figures_dir')
 eia_flow_dir = config::get('eia_flow_dir')
 resops_flow_dir = config::get('resops_data_dir')
-cache = config::get('cache')
-verbose = config::get('verbose')
-create_figures = config::get('create_figures')
 
 # output will be filtered to these years
 # TODO add filtering everywhere

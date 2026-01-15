@@ -1054,16 +1054,8 @@ b1_metadata =
     by = join_by(eia_id, year, operational_status, data_source, datetime, month)
   )
 
-b1_monthly_fn = paste0(output_dir, "/B1_monthly.csv")
-b1_monthly |>
-  # no need to store all the precision
-  mutate_if(is.double, function(x) round(x, 4)) |>
-  write_csv(b1_monthly_fn, na = "")
-message('Wrote: ', b1_monthly_fn)
-
-b1_metadata_fn = paste0(output_dir, "/B1_metadata.csv")
 b1_metadata |>
-  # no need to store all the precision
-  mutate_if(is.double, function(x) round(x, 4)) |>
-  write_csv(b1_metadata_fn, na = "")
-message('Wrote: ', b1_metadata_fn)
+  write_output("B1_metadata", output_dir, output_format, verbose)
+
+b1_monthly |>
+  write_output("B1_monthly", output_dir, output_format, verbose)

@@ -62,7 +62,7 @@ pnw_dam_data =
   rename(eia_id1 = eia_id)
 
 # read monthly B1 data
-b1_monthly = read_csv(file.path(output_dir, 'B1_monthly.csv'))
+b1_monthly = read_parquet(file.path(output_dir, 'B1_monthly.parquet'))
 annual_gen = read_csv('data/annual_gen_imputed_long.csv')
 b1_monthly_with_annual = b1_monthly |>
   left_join(annual_gen |> select(-datetime, -data_source), by = join_by(eia_id, year))
@@ -251,6 +251,7 @@ flow_daily_data_sources =
   left_join(flow_huc4_lookup, by = join_by(date, eia_id1)) |>
   mutate(month = month(date), day = day(date)) |>
   left_join(ave_gen_daily_lookup, by = join_by(eia_id1, month, day)) |>
+  ungroup() |>
   # fill in missing cases
   mutate_if(is.logical, coalesce, FALSE) |>
   # join in data source info
@@ -547,8 +548,15 @@ b1_params_pnw = b1_params_weekly |>
   )
 
 
-b1_metadata = read_csv(s('{output_dir}/B1_metadata.csv')) |>
-  select(-c(nameplate_mw))
+b1_metadata =
+  if (output_format == 'csv') {
+    read_csv(s('{output_dir}/B1_metadata.csv')) |>
+      select(-c(nameplate_mw))
+    # write_csv(., fn_path, na = "")
+  } else if (output_format == 'parquet') {
+    read_parquet(s('{output_dir}/B1_metadata.parquet')) |>
+      select(-c(nameplate_mw))
+  }
 
 b1_weekly =
   weekly_targets |>
@@ -580,7 +588,30 @@ b1_weekly =
     ador = ador_param * (p_max - p_min)
   )
 
-#%%
+
+# data,
+# group,
+# y_var = 'net_gen_mw',
+# y_lab = 'Net Hydro Gen [aMW]',
+# y_step_var = 'nameplate_mw',
+# plot_y_step = TRUE,
+# fn = 'compare_gen.pdf',
+# data_source_col = 'data_source'
+# %%
+if (create_figures) {
+  b1_weekly %>%
+    mutate(datetime = week_start) |>
+    # filter(eia_id %in% (.$eia_id |> unique() |> head())) |>
+    multipage_pdf_timeseries_by_group_with_source(
+      'eia_id',
+      'p_ave',
+      fn = 'figures/complete_gen_weekly_final.pdf'
+    ) |>
+    # ggplot warns about dropping NA values, ignore
+    suppressWarnings()
+}
+
+#%% basic checks, more in the validation script
 b1_weekly |> filter(p_min < 0)
 b1_weekly |> filter(p_min > p_max)
 b1_weekly |> filter(p_min > (p_max - ador))
@@ -589,12 +620,12 @@ b1_weekly |> filter(p_max < p_ave - .001)
 b1_weekly |> filter(p_max < p_min)
 b1_weekly |> filter(ador < 0)
 b1_weekly |> filter(ador < 0)
+
 # TODO investigate these
 b1_weekly |> filter(p_ave > nameplate_mw * (1.25 + 0.01))
 
-#%%
+#%% write data
 
-b1_weekly_fn = paste0(output_dir, "/B1_weekly.csv")
 b1_weekly |>
   select(-c(datetime, max_param, min_param, ador_param)) |>
   select(
@@ -608,5 +639,4 @@ b1_weekly |>
     nameplate_mw,
     everything()
   ) |>
-  write_csv(b1_weekly_fn, na = "")
-message('Wrote: ', b1_weekly_fn)
+  write_output("B1_weekly", output_dir, output_format)
