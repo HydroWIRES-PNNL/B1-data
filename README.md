@@ -1,16 +1,16 @@
-# HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data
+# HydroWIRES B1-data: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data
 
 **Version 1.4.0**
 
-**Authors:** Cameron Bracken (PNNL), Sean Turner (ORNL), Daniel Broman (PNNL), Nathalie Voisin (PNNL)
+**Authors:** Cameron Bracken (PNNL), Daniel Broman (PNNL), Nathalie Voisin (PNNL)
 
 **Corresponding author:** cameron.bracken@pnnl.gov
 
-This repository contains the code to reproduce the dataset: [HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data](https://zenodo.org/records/13351949).
+This repository contains the code to reproduce the dataset: [HydroWIRES B1-data: Monthly and Weekly Hydropower Generation and Constraint data](ref)
 
 ## Overview
 
-The B1 dataset provides both monthly and weekly hydropower constraints (maximum and minimum generation) and power targets for hundreds of hydropower plants across the United States. The data is intended for use in Production Cost Models (PCMs) and Capacity Expansion Models (CEMs). The hydropower data is based on disaggregated monthly power data from the RectifHyd dataset, which improves upon the original EIA-923 annual data through a multi-step disaggregation and correction procedure.
+The B1 dataset provides both monthly and weekly hydropower constraints (maximum and minimum generation) and power targets for hundreds of hydropower plants across the United States. The data is intended for use in Production Cost Models (PCMs) and Capacity Expansion Models (CEMs). The hydropower data is based on disaggregated monthly and annual reported EIA 923 data and monthly power data from the RectifHyd dataset.
 
 ## Steps to Reproduce
 
@@ -29,17 +29,6 @@ Place the following files in the `data/` directory:
 - **EHA FY2024 database** (plant metadata): Download [ORNL_EHAHydroPlant_PublicFY2024.xlsx](https://hydrosource.ornl.gov/) and place in `data/`
 
 - **HILARRI database** (reservoir data): Download and unzip [HILARRI_v1_1_0.zip](https://hydrosource.ornl.gov/sites/default/files/2021-08/HILARRI_v1_1_0.zip) into `data/`
-
-- **Crosswalk files**: Ensure `data/eia_huc4.csv` and `data/USGS_Streamgage_huc4.csv` are present
-
-- **Gauge mappings**: Ensure `gauge-inputs/flow_to_EIA_crosswalk.csv` is present
-
-### 3. Install required R packages
-
-From within R:
-```R
-install.packages(c('tidyverse', 'dataRetrieval', 'missRanger', 'readxl', 'cder', 'janitor', 'lubridate'))
-```
 
 ### 4. Run the processing pipeline
 
@@ -107,16 +96,16 @@ Key columns in the final datasets:
 
 - **Updated to 2024 data**: Extended time series from 2001-2024
 - **Removed hydrofixr dependency**: USACE data now downloaded directly from NWD web services
-- **Reorganized pipeline**: Scripts reordered to better reflect data dependencies
-- **Improved validation**: Added comprehensive validation script with diagnostic plots
+- **Code refactor**: Code and pipeline cleand up for better maintainability and readability
+- **Improved validation**: New validation script with diagnostic plots
 - **Centralized outputs**: All generated files now in `output/` directory
 
 ## Related Resources
 
 The disaggregation methodology and source data:
 
-- [RectifHyd Dataset (Zenodo)](https://zenodo.org/records/10011017)
-- [Turner et al. 2022 - Scientific Data](https://www.nature.com/articles/s41597-022-01748-x)
+- [RectifHyd Dataset (Zenodo)](https://zenodo.org/records/10011017) - Monthly only data
+- [Turner et al. 2022 - Scientific Data](https://www.nature.com/articles/s41597-022-01748-x) 
 - [Original disaggregation code](https://github.com/immm-sfa/turner_voisin_nelson_2022_scientific_data)
 
 Final published dataset:
@@ -127,7 +116,7 @@ Final published dataset:
 
 If you use this dataset, please cite:
 
-> Bracken, C., Turner, S. W. D., Broman, D., & Voisin, N. (2024). HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data (Version 1.4.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.13351949
+> Bracken, C., Broman, D., & Voisin, N. (2024). HydroWIRES B1-data: Monthly and Weekly Hydropower Generation and Constraint Data (Version 1.4.0) [Data set]. (ref)
 
 ## Support
 

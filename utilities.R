@@ -30,6 +30,7 @@
 library(tidyverse)
 library(cder)
 library(dataRetrieval)
+library(arrow)
 
 # %% USGS data retrieval
 #' get_usgs

@@ -20,6 +20,8 @@
 
 # %% Libraries
 library(tidyverse)
+# for writing parquet files
+library(arrow)
 
 # %% Configuration
 options(
@@ -40,12 +42,13 @@ flow_gauge_file = "data/flow/proc/flow_all_td.csv"
 huc4_flows_file = "output/huc4_average_flows_imputed.csv"
 pnw_params_weekly_file = "output/PNW_28_max_min_ador_parameters_WEEKLY_BASED.csv"
 
-# Final output name
-b1_weekly_fn = file.path(b1_dir, "B1_weekly.csv")
-
 # Output paths
 output_dir = "output"
 b1_dir = file.path(output_dir, paste0(output_prefix, "_", version))
+
+# Final output name
+b1_weekly_fn = file.path(b1_dir, "B1_weekly.parquet")
+b1_monthly_fn = file.path(b1_dir, "B1_monthly.parquet")
 
 # Create directories
 dir.create(output_dir, showWarnings = FALSE)
@@ -65,7 +68,7 @@ sequence_monthly =
   date_time_sequence |>
   mutate(
     year = year(date_time),
-    month = month(date_time, label = TRUE),
+    month = month(date_time),
     date = date(date_time)
   ) |>
   select(year, month, date) |>
@@ -73,8 +76,9 @@ sequence_monthly =
 
 sequence_weekly =
   date_time_sequence |>
-  mutate(year = year(date_time)) %>%
-  split(.$year) |>
+  mutate(year = year(date_time)) |>
+  group_by(year) |>
+  group_split() |>
   map_dfr(
     \(x) {
       yr = x[["date_time"]][1] |> year()
@@ -116,9 +120,7 @@ flow_gauge =
 
 # %% Load monthly B1 data
 b1_monthly =
-  read_csv(file.path(b1_dir, "B1_monthly.csv")) |>
-  mutate(month = as.integer(month)) |>
-  rename(eia_id = eia_id, target_mwh = target_mwh)
+  read_parquet(b1_monthly_fn)
 
 # %% Weekly disaggregation
 weekly_targets_all_years =
@@ -130,7 +132,7 @@ weekly_targets_all_years =
       wk_seq =
         sequence_weekly |>
         filter(year == yr) |>
-        mutate(month = month(date, label = TRUE))
+        mutate(month = month(date))
 
       all_targets_yr_x =
         b1_monthly |>
@@ -218,12 +220,12 @@ weekly_targets_all_years =
               ) |>
               select(year, month, day, daily_allocation, av_flow_cfs) |>
               ungroup() |>
-              mutate(month = month(month, label = TRUE))
+              mutate(month = month(month))
 
             weekly_targets =
               x |>
               select(month, target_mwh) |>
-              left_join(daily_flow_allocation, by = c("month")) |>
+              left_join(daily_flow_allocation, by = join_by(month)) |>
               mutate(daily_gen_mwh = daily_allocation * target_mwh) |>
               mutate(date = ymd(paste0(year, "-", month, "-", day))) |>
               left_join(select(wk_seq, date, jweek, week_start), by = "date") |>
@@ -339,10 +341,10 @@ weekly_final |>
   arrange(-Western) |>
   janitor::clean_names(parsing_option = 3) |>
   arrange(eia_id, datetime) |>
-  write_csv(b1_weekly_fn, na = "")
+  write_parquet(b1_weekly_fn)
 
 # %% Diagnostic plots
-weekly = read_csv(b1_weekly_fn, progress = FALSE, show = FALSE)
+weekly = read_parquet(b1_weekly_fn)
 
 weekly |>
   filter(western == TRUE) |>

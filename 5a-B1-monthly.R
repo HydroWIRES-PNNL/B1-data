@@ -34,6 +34,8 @@ conflicted::conflicts_prefer(dplyr::filter)
 library(tidyverse)
 library(glue)
 s = glue::glue
+# for writing parquet files
+library(arrow)
 
 source('utilities.R')
 
@@ -60,6 +62,9 @@ pnw_params_file = "output/PNW_28_max_min_ador_parameters.csv"
 # Output paths
 output_dir = "output"
 b1_dir = file.path(output_dir, paste0(output_prefix, "_", version))
+
+# Final output name
+b1_monthly_fn = file.path(b1_dir, "B1_monthly.parquet")
 
 # Create directories
 dir.create(output_dir, showWarnings = FALSE)
@@ -107,7 +112,8 @@ all_flows_monthly =
 
 # %% Load RectifHyd data
 rectifhyd =
-  read_csv(rectifhyd_file, show_col_types = FALSE, progress = FALSE)
+  read_csv(rectifhyd_file, show_col_types = FALSE, progress = FALSE) |>
+  mutate(month = monthi)
 
 # %% Prepare monthly targets
 monthly_targets =
@@ -258,10 +264,10 @@ monthly_final |>
   ) |>
   arrange(-Western) |>
   janitor::clean_names(parsing_option = 3) |>
-  write_csv(file.path(b1_dir, "B1_monthly.csv"), na = "")
+  write_parquet(b1_monthly_fn)
 
 # %% Diagnostic plots
-b1_monthly = read_csv(file.path(b1_dir, 'B1_monthly.csv'))
+b1_monthly = read_parquet(b1_monthly_fn)
 
 b1_monthly |>
   filter(western) |>
