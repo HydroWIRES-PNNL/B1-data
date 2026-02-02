@@ -1,48 +1,136 @@
 # HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data
 
-Authors: Cameron Bracken (PNNL), Sean Turner (ORNL), Daniel Broman (PNNL), Nathlie Voisin (PNNL)
+**Version 1.4.0**
 
-Corresponding author: cameron.bracken@pnnl.gov 
+**Authors:** Cameron Bracken (PNNL), Sean Turner (ORNL), Daniel Broman (PNNL), Nathalie Voisin (PNNL)
 
-This repo contains the code to reproduce the dataset: [HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data](https://zenodo.org/records/13351949).
+**Corresponding author:** cameron.bracken@pnnl.gov
 
-Steps to reproduce:
+This repository contains the code to reproduce the dataset: [HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data](https://zenodo.org/records/13351949).
 
-  1. Download this repo 
-  
-  2. Install the [hydrofixr package](https://github.com/pnnl/hydrofixr)
-  
-  3. Download [these data files](https://github.com/HydroWIRES-PNNL/B1-data/releases/tag/1.0) from GitHub and place them in `data/hydrofixr`
-  
-  4. Download all the data files from [this Zenodo record](https://zenodo.org/records/5773123) and place them in   `data/hydrofixr`
-  
-  5. Download the latest version of the [RectifHyd data](https://zenodo.org/records/10011017) and place it in `data`
-  
-  6. Download the [EHA 2023 database](https://hydrosource.ornl.gov/sites/default/files/2023-08/ORNL_EHAHydroPlant_FY2023_rev.xlsx) and place the Excel file in `data`
-  
-  7. Download the [HILLARI database](https://hydrosource.ornl.gov/sites/default/files/2021-08/HILARRI_v1_1_0.zip) and unpack the zip file into `data`
-  
-  8. Install the required R packages, from within R run `install.packages(c('tidyverse','dataRetrieval','missRanger','readxl'))`
-  
-  9. Run `1-pnw-params.R` from within R using `source('1-pnw-params.R')` or on the command line `Rscript 1-pnw-params.R` to   produce the parameters for disaggregation
-  
-  10. Run `2-streamflow.R` from within R using `source('2-streamflow.R')` or on the command line `Rscript 2-streamflow.R` to download and prepare the streamflow data
-  
-  11. Run `3-hydropower.R` from within R using `source('3-hydropower.R')` or on the command line `Rscript 3-hydropower.R` to download and prepare the hydropower data (power, inflow, outflow, forebay)
-  
-  12. Run `4a-B1-monthly.R` from within R using `source('4a-B1-monthly.R')` or on the command line `Rscript 4a-B1-monthly.R` to produce monthly constraints 
-  
-  13. Run `4a-B1-weekly.R` from within R using `source('4a-B1-weekly.R')` or on the command line `Rscript 4a-B1-weekly.R` to produce weekly constraints
+## Overview
 
-The output from these steps will be two directories `B1_monthly` and `B1_weekly` with one file per year. The dataset provides both monthly and weekly constraints (maximum and minimum generation) and power targets for hundreds of hydropower plants across the United States. The data is intended for use in Production Cost Models (PCMs) and Capacity Expansion Models (CEMs). The hydropower data is based on disaggregated annual power data which is part of the EIA-923 dataset. The original disaggregation procedure is detailed here:
+The B1 dataset provides both monthly and weekly hydropower constraints (maximum and minimum generation) and power targets for hundreds of hydropower plants across the United States. The data is intended for use in Production Cost Models (PCMs) and Capacity Expansion Models (CEMs). The hydropower data is based on disaggregated monthly power data from the RectifHyd dataset, which improves upon the original EIA-923 annual data through a multi-step disaggregation and correction procedure.
 
-- https://www.nature.com/articles/s41597-022-01748-x
-- https://github.com/immm-sfa/turner_voisin_nelson_2022_scientific_data
-- https://github.com/pnnl/hydrofixr
-- https://zenodo.org/records/10011017
+## Steps to Reproduce
 
-The final data is here:
+### 1. Download this repository
+```bash
+git clone https://github.com/HydroWIRES-PNNL/B1-data-1.4.git
+cd B1-data-1.4
+```
 
-- https://zenodo.org/records/8408246
+### 2. Download required input data files
+
+Place the following files in the `data/` directory:
+
+- **RectifHyd v1.4.0** (monthly hydropower data): Download from [Zenodo](https://zenodo.org/records/10011017) and save as `data/RectifHyd_v1.4.0.csv`
+
+- **EHA FY2024 database** (plant metadata): Download [ORNL_EHAHydroPlant_PublicFY2024.xlsx](https://hydrosource.ornl.gov/) and place in `data/`
+
+- **HILARRI database** (reservoir data): Download and unzip [HILARRI_v1_1_0.zip](https://hydrosource.ornl.gov/sites/default/files/2021-08/HILARRI_v1_1_0.zip) into `data/`
+
+- **Crosswalk files**: Ensure `data/eia_huc4.csv` and `data/USGS_Streamgage_huc4.csv` are present
+
+- **Gauge mappings**: Ensure `gauge-inputs/flow_to_EIA_crosswalk.csv` is present
+
+### 3. Install required R packages
+
+From within R:
+```R
+install.packages(c('tidyverse', 'dataRetrieval', 'missRanger', 'readxl', 'cder', 'janitor', 'lubridate'))
+```
+
+### 4. Run the processing pipeline
+
+Execute the following scripts in order. Each script depends on outputs from previous steps:
+
+```bash
+# Step 1: Download and prepare HUC4-level streamflow data
+Rscript 1-huc4-streamflow.R
+
+# Step 2: Download and prepare gauge-level streamflow data for specific plants
+Rscript 2-gauge-streamflow.R
+
+# Step 3: Download USACE dam operational data (downloads directly from NWD web services)
+Rscript 3-hydropower.R
+
+# Step 4: Calculate PNW parameters from hourly generation data
+Rscript 4-pnw-params.R
+
+# Step 5a: Generate monthly B1 constraints dataset
+Rscript 5a-B1-monthly.R
+
+# Step 5b: Generate weekly B1 constraints dataset
+Rscript 5b-B1-weekly.R
+
+# Step 6: Validate outputs and generate diagnostic plots
+Rscript 6-validation.R
+```
+
+All scripts can also be run from within R using `source('script-name.R')`.
+
+### 5. Review outputs
+
+The final datasets will be in the `output/` directory:
+
+- `output/B1_data_1.4.0/B1_monthly.csv` - Monthly constraints dataset
+- `output/B1_data_1.4.0/B1_weekly.csv` - Weekly constraints dataset
+- `output/validation_report.txt` - Data validation summary
+- `output/validation_plots/` - Diagnostic plots
+
+## Key Features
+
+- **Monthly and weekly resolutions** for flexible model integration
+- **Coverage**: 2001-2024 for hundreds of US hydropower plants (excluding Alaska and Hawaii)
+- **Constraints**: p_min, p_max, and ADOR (Average Daily Operating Range)
+- **Flow-based disaggregation**: Uses HUC4 or plant-specific streamflow to disaggregate monthly to weekly
+- **PNW-derived parameters**: Empirically derived from 28 Pacific Northwest hydropower plants with high-quality hourly data
+- **Regional support**: Western and non-Western US plant classifications
+
+## Dataset Columns
+
+Key columns in the final datasets:
+
+- `eia_id`: EIA plant identifier
+- `plant`, `state`, `ba`: Plant metadata
+- `year`, `month` (monthly) or `year`, `jweek`, `week_start` (weekly)
+- `target_mwh`: Energy target
+- `nameplate`: Maximum plant capacity (MW)
+- `p_avg`, `p_min`, `p_max`: Average, minimum, maximum generation constraints (MW)
+- `ador`: Average Daily Operating Range (MW)
+- `huc4`, `usgs_id`: Watershed identifiers
+- `huc4_flow_cfs`: HUC4 streamflow (cubic feet per second)
+- `forebay_ft`, `inflow_cfs`, `outflow_cfs`: Dam operational data (PNW plants only)
+
+## Changes in Version 1.4
+
+- **Updated to 2024 data**: Extended time series from 2001-2024
+- **Removed hydrofixr dependency**: USACE data now downloaded directly from NWD web services
+- **Reorganized pipeline**: Scripts reordered to better reflect data dependencies
+- **Improved validation**: Added comprehensive validation script with diagnostic plots
+- **Centralized outputs**: All generated files now in `output/` directory
+
+## Related Resources
+
+The disaggregation methodology and source data:
+
+- [RectifHyd Dataset (Zenodo)](https://zenodo.org/records/10011017)
+- [Turner et al. 2022 - Scientific Data](https://www.nature.com/articles/s41597-022-01748-x)
+- [Original disaggregation code](https://github.com/immm-sfa/turner_voisin_nelson_2022_scientific_data)
+
+Final published dataset:
+
+- [HydroWIRES B1 Dataset (Zenodo)](https://zenodo.org/records/13351949)
+
+## Citation
+
+If you use this dataset, please cite:
+
+> Bracken, C., Turner, S. W. D., Broman, D., & Voisin, N. (2024). HydroWIRES B1: Monthly and Weekly Hydropower Constraints Based on Disaggregated EIA-923 Data (Version 1.4.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.13351949
+
+## Support
+
+For questions or issues, please contact cameron.bracken@pnnl.gov or open an issue on GitHub.
 
 
