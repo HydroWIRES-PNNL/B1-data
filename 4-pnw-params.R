@@ -17,10 +17,12 @@
 #   - output/PNW_28_max_min_ador_parameters_WEEKLY_BASED.csv (weekly-based)
 #   - output/USACE_weekly_parameters_28.csv (weekly targets for PNW plants)
 #
-# Authors: Sean Turner (sean.turner@pnnl.gov)
-#          Cameron Bracken (cameron.bracken@pnnl.gov)
+# Authors: Cameron Bracken (cameron.bracken@pnnl.gov)
+#
+# Original code: Sean Turner (sean.turner@pnnl.gov)
 #
 # Version History:
+#   v1.0   - Sean Turner - Original version
 #   2023 Update - Cameron Bracken
 #   2024 Update - Cameron Bracken
 # ==============================================================================

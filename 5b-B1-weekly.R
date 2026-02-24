@@ -152,6 +152,7 @@ weekly_targets_all_years =
               HUC = NA_character_
             }
 
+            # Plant 314 has incorrect HUC4 mapping in crosswalk, fall back to flat allocation
             if (eia_id_ == 314) {
               HUC = NA_character_
             }
@@ -328,8 +329,7 @@ weekly_final |>
     year = as.integer(year),
     datetime = week_start
   ) |>
-  rename(eia_id = eia_id) |>
-  mutate_if(is.double, \(x) round(x, 4)) |>
+  mutate(across(where(is.double), \(x) round(x, 4))) |>
   mutate(
     Western = if_else(
       state %in%

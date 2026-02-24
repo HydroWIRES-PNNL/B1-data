@@ -252,8 +252,7 @@ monthly_final |>
     month = as.integer(month),
     datetime = sprintf("%s-%02d-01", year, month)
   ) |>
-  rename(eia_id = eia_id) |>
-  mutate_if(is.double, \(x) round(x, 4)) |>
+  mutate(across(where(is.double), \(x) round(x, 4))) |>
   mutate(
     Western = if_else(
       state %in%
